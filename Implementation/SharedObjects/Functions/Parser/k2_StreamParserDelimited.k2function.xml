@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="4.0.0.5">
+  <Name>k2_StreamParserDelimited</Name>
+  <ID>Parser.k2_StreamParserDelimited</ID>
+  <Category>Parser</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>
+if(enclosingChar == null || enclosingChar.isEmpty()){
+	throw new IllegalArgumentException("Please Populate Mandatory Parameter: Enclosing Char");
+}
+
+if(fieldDelimiter == null || fieldDelimiter.isEmpty()){
+	throw new IllegalArgumentException("Please Populate Mandatory Parameter: Field Delimiter");
+}
+
+if(recordDelimiter == null || recordDelimiter.isEmpty()){
+	throw new IllegalArgumentException("Please Populate Mandatory Parameter: Record Delimiter");
+}
+
+InputStream stream = getStream();
+
+if (stream != null) {
+	Object[] row = null;
+	InputStreamReader reader = new InputStreamReader(stream, java.nio.charset.StandardCharsets.UTF_8.name());
+	do {
+		if( reader != null ) {
+			row = getStreamMap(reader, enclosingChar.charAt(0), fieldDelimiter.charAt(0), recordDelimiter);
+			yield(row);
+		}
+	} while (row != null &amp;&amp; row[0] != null);
+}
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="recordDelimiter" id="fi.Parser.k2_StreamParserDelimited.0" index="0" dataType="String">
+      <Comment>a character to be used as a separator between records</Comment>
+    </Input>
+    <Input name="fieldDelimiter" id="fi.Parser.k2_StreamParserDelimited.1" index="1" dataType="String">
+      <Comment>a character to be used as a separator between fields</Comment>
+    </Input>
+    <Input name="enclosingChar" id="fi.Parser.k2_StreamParserDelimited.2" index="2" dataType="String">
+      <Comment>a character to be used to enclose fields</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="result" id="fo.Parser.k2_StreamParserDelimited.0" index="0" dataType="Map&lt;String,Object&gt;">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

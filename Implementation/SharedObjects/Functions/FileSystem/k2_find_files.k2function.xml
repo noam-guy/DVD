@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_find_files</Name>
+  <ID>FileSystem.k2_find_files</ID>
+  <Category>FileSystem</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>get the list of all files matching file_regExp in a specific path</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>java.nio.file.Path dir = java.nio.file.Paths.get(path);
+ArrayList&lt;String&gt; al = new ArrayList&lt;String&gt;();
+
+// the Files class offers methods for validation
+if (!java.nio.file.Files.exists(dir)
+		|| !java.nio.file.Files.isDirectory(dir)) {
+	throw new java.io.IOException("Directory does not exist: "
+			+ dir);
+}
+
+java.nio.file.PathMatcher pathMatcher;
+pathMatcher = java.nio.file.FileSystems.getDefault().getPathMatcher("regex:" + file_regExp);
+
+try (java.nio.file.DirectoryStream&lt;java.nio.file.Path&gt; ds = java.nio.file.Files
+		.newDirectoryStream(dir)) {
+	java.nio.file.Path pFile;
+	for (java.nio.file.Path p : ds) {
+		pFile = p.getFileName();
+		if (pathMatcher != null &amp;&amp; pathMatcher.matches(pFile)) {
+			al.add(pFile.toUri().getRawPath());
+		}
+	}
+}
+
+return al.toArray();</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="path" id="fi.FileSystem.k2_find_files.0" index="0" dataType="String">
+      <Comment>Full path</Comment>
+    </Input>
+    <Input name="file_regExp" id="fi.FileSystem.k2_find_files.1" index="1" dataType="String">
+      <Comment>regular expression filter</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="files" id="fo.FileSystem.k2_find_files.0" index="0" dataType="Object[]">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

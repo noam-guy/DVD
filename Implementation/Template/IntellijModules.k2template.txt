@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <!-- Next line to be used in project with one module containing all LUs: -->
+      <!-- <module fileurl="file://$PROJECT_DIR$/.idea/#PROJ#.iml" filepath="$PROJECT_DIR$/.idea/#PROJ#.iml" /> -->
+      <!-- Create module for each LU and Shared: -->
+      <module fileurl="file://$PROJECT_DIR$/Implementation/SharedObjects/Java/SharedObjects.iml" filepath="$PROJECT_DIR$/Implementation/SharedObjects/Java/SharedObjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Implementation/LogicalUnits/#LU#/Java/#LU#.iml" filepath="$PROJECT_DIR$/Implementation/LogicalUnits/#LU#/Java/#LU#.iml" />
+    </modules>
+  </component>
+</project>

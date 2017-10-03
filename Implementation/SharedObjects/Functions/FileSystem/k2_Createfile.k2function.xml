@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_Createfile</Name>
+  <ID>FileSystem.k2_Createfile</ID>
+  <Category>FileSystem</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will create a physical file based on an input string.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(i_fileContent==null || i_fileName==null || i_location==null)
+	return;
+
+java.nio.file.Path path = java.nio.file.Paths.get(i_location, i_fileName);
+java.nio.file.StandardOpenOption options = 
+	i_append == 1 ?
+	java.nio.file.StandardOpenOption.APPEND :
+	java.nio.file.StandardOpenOption.CREATE;
+java.nio.file.Files.write(
+	path,
+	i_fileContent.getBytes(java.nio.charset.StandardCharsets.UTF_8),
+	options);</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="i_fileContent" id="fi.FileSystem.k2_Createfile.0" index="0" dataType="String">
+      <Comment>The string to create the file based on</Comment>
+    </Input>
+    <Input name="i_fileName" id="fi.FileSystem.k2_Createfile.1" index="1" dataType="String">
+      <Comment>The name of the file to be created</Comment>
+    </Input>
+    <Input name="i_location" id="fi.FileSystem.k2_Createfile.2" index="2" dataType="String">
+      <Comment>The location where to place the file in</Comment>
+    </Input>
+    <Input name="i_append" id="fi.FileSystem.k2_Createfile.3" index="3" dataType="Integer">
+      <Comment>If set to 1, the content of the i_fileContent will be appended to an existing file</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams />
+</KFunction>

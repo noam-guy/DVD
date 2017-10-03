@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_amIMinNode</Name>
+  <ID>Utilities.k2_amIMinNode</ID>
+  <Category>Utilities</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(inDebugMode()){
+	return true;
+}
+
+//com.k2view.cdbms.cluster.ClusterUtils.getLiveNodes().iterator().next();
+List&lt;java.net.InetAddress&gt; nodes = new ArrayList&lt;&gt;(com.k2view.cdbms.cluster.ClusterUtils.getLiveMembers());
+Collections.sort(nodes, Comparator.comparing((java.net.InetAddress arr) -&gt; arr.toString()));
+String aNodeId =  org.apache.cassandra.gms.Gossiper.instance.getHostId(nodes.get(0)).toString();
+String nodeID = com.k2view.cdbms.cluster.ClusterUtils.getNodeID().toString();
+
+if (nodeID.equals(aNodeId))
+	return true;
+else
+	return false;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams />
+  <OutputParams>
+    <Output name="ind" id="fo.Utilities.k2_amIMinNode.0" index="0" dataType="Boolean">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

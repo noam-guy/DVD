@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_breakDate</Name>
+  <ID>Date.k2_breakDate</ID>
+  <Category>Date</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(dateStr == null || format == null)
+	return null;
+
+java.text.DateFormat dateFormat = new java.text.SimpleDateFormat(format);
+java.util.Date date = dateFormat.parse(dateStr);
+
+java.util.Calendar calendar = java.util.Calendar.getInstance();
+calendar.setTime(date);  
+			
+Object[] arr = new Object[] {
+	calendar.get(java.util.Calendar.YEAR),
+	calendar.get(java.util.Calendar.MONTH) + 1,
+	calendar.get(java.util.Calendar.DAY_OF_MONTH),
+	calendar.get(java.util.Calendar.HOUR),
+	calendar.get(java.util.Calendar.MINUTE),
+	calendar.get(java.util.Calendar.SECOND),
+	calendar.get(java.util.Calendar.MILLISECOND),
+};
+			
+return arr;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="dateStr" id="fi.Date.k2_breakDate.0" index="0" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="format" id="fi.Date.k2_breakDate.1" index="1" dataType="String">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="year" id="fo.Date.k2_breakDate.0" index="0" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="month" id="fo.Date.k2_breakDate.1" index="1" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="day" id="fo.Date.k2_breakDate.2" index="2" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="hour" id="fo.Date.k2_breakDate.3" index="3" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="minute" id="fo.Date.k2_breakDate.4" index="4" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="second" id="fo.Date.k2_breakDate.5" index="5" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="fraction" id="fo.Date.k2_breakDate.6" index="6" dataType="Integer">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

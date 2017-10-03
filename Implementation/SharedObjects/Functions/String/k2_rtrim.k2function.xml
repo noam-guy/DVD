@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_rtrim</Name>
+  <ID>String.k2_rtrim</ID>
+  <Category>String</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>Strip whitespace (or other characters) from the end of a string</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(i_str == null)
+	return null;
+if(i_charList == null || i_charList.isEmpty())
+	i_charList = " ";
+return org.apache.commons.lang3.StringUtils.stripEnd(i_str, i_charList);</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="i_str" id="fi.String.k2_rtrim.0" index="0" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="i_charList" id="fi.String.k2_rtrim.1" index="1" dataType="String">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="o_str" id="fo.String.k2_rtrim.0" index="0" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,71 @@
+﻿/////////////////////////////////////////////////////////////////////////
+// Utils - Auto generated file (contains all LU functions and Globals)
+/////////////////////////////////////////////////////////////////////////
+	
+package com.k2view.cdbms.#luName#;
+
+import java.util.*;
+import java.sql.*;
+import java.math.*;
+import java.io.*;
+import com.k2view.cdbms.shared.*;
+import com.k2view.cdbms.sync.*;
+import com.k2view.cdbms.lut.*;
+import com.k2view.cdbms.shared.logging.LogEntry.*;
+import com.k2view.cdbms.func.oracle.OracleToDate;
+import com.k2view.cdbms.func.oracle.OracleRownum;
+
+public class Utils extends UserUtils {
+
+	public Utils(LUType luType,ExecutionContext context) throws ClassNotFoundException, SQLException {
+		super(luType,context);
+        LUDBBase ludb = getLudb();
+        if(ludb != null) {
+            if(ludb.getConnection() != null) {
+                initSqliteUDFs(ludb.getConnection());
+            }
+        }		
+	}
+	
+	////////////////////////////////////////////
+	// Register as LUDB functions (Sqlite UDFs)
+	////////////////////////////////////////////
+	public void initSqliteUDFs(Connection conn) 
+		throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+
+		#methodsSqliteUDF#
+		#each#
+		org.sqlite.Function.create(conn, "!NAME!", new org.sqlite.Function() {
+			protected void xFunc() throws SQLException {
+				try {
+					result((!RETRUN_TYPE!)!NAME!(!ARGS!));
+				} catch (SQLException e) {
+					throw e;
+				} catch (Exception e) {
+					throw new RuntimeException(e.toString());
+				}
+			}
+		});
+
+		#end#
+	}
+	
+
+
+	#methods#
+	#each#
+	/* !COMMENT! */
+	public !RETRUN_TYPE! !NAME!(!ARGS!) throws Exception {
+!BODY!
+	}
+	#end#
+
+
+	#globals#
+	#each#
+	/* !COMMENT! */
+	public static final String !NAME! = "!VALUE!";
+	#end#
+}

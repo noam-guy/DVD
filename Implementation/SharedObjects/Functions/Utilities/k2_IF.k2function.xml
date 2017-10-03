@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_IF</Name>
+  <ID>Utilities.k2_IF</ID>
+  <Category>Utilities</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(i_var == null || i_var_check_val == null)
+	return null;
+
+String o_val;
+if (i_var.equals(i_var_check_val)){
+	o_val=i_var_true_val;
+}else{
+	o_val=i_var_false_val;
+}
+return o_val;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="i_var" id="fi.Utilities.k2_IF.0" index="0" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="i_var_check_val" id="fi.Utilities.k2_IF.1" index="1" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="i_var_true_val" id="fi.Utilities.k2_IF.2" index="2" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="i_var_false_val" id="fi.Utilities.k2_IF.3" index="3" dataType="String">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="o_val" id="fo.Utilities.k2_IF.0" index="0" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

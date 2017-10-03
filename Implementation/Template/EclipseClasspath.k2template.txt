@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="_srcDynamic"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/cdbms*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/gson*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/http*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/jackson*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/javax*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/commons*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/slf4j*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/log4j*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/logback*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/zip4j*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/jedis*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/sqlite-jdbc*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/cassandra*.jar"/>
+	<classpathentry kind="lib" path="#STUDIO_CLASSPATH_DIR#/guava*.jar"/>
+	<classpathentry kind="lib" path="#EXTERNAL_JARS_DIR#/*.jar"/>
+	<classpathentry kind="output" path="_bin"/>
+</classpath>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_plus</Name>
+  <ID>Math.k2_plus</ID>
+  <Category>Math</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>sum up to five parameters to get a result</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if (i_num1 == null) i_num1 = 0d;
+if (i_num2 == null) i_num2 = 0d;
+if (i_num3 == null) i_num3 = 0d;
+if (i_num4 == null) i_num4 = 0d;
+if (i_num5 == null) i_num5 = 0d;
+
+return i_num1 + i_num2 + i_num3 + i_num4 + i_num5;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="i_num1" id="fi.Math.k2_plus.0" index="0" dataType="Double">
+      <Comment />
+    </Input>
+    <Input name="i_num2" id="fi.Math.k2_plus.1" index="1" dataType="Double">
+      <Comment />
+    </Input>
+    <Input name="i_num3" id="fi.Math.k2_plus.2" index="2" dataType="Double">
+      <Comment />
+    </Input>
+    <Input name="i_num4" id="fi.Math.k2_plus.3" index="3" dataType="Double">
+      <Comment />
+    </Input>
+    <Input name="i_num5" id="fi.Math.k2_plus.4" index="4" dataType="Double">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="o_num" id="fo.Math.k2_plus.0" index="0" dataType="Double">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.0">
+  <Name>k2_FolderStreamReader</Name>
+  <ID>Parser.k2_FolderStreamReader</ID>
+  <Category>Parser</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>A template function to be used as a root function for parser map.
+The function scans a folder for delimited files based on a file name pattern, parses the files and generates a stream of records.
+</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>boolean inDebug = inDebugMode();
+if (inDebug){
+	folderPath = folderPathDebug;
+}
+
+if(folderPath == null || folderPath.isEmpty()){
+	throw new IllegalArgumentException("Please Populate Mandatory Parameter: Folder Path");
+}
+
+if(enclosingChar == null || enclosingChar.isEmpty()){
+	throw new IllegalArgumentException("Please Populate Mandatory Parameter: Enclosing Char");
+}
+
+if(fieldDelimiter == null || fieldDelimiter.isEmpty()){
+	throw new IllegalArgumentException("Please Populate Mandatory Parameter: Field Delimiter");
+}
+
+if(regexFilter == null || regexFilter.isEmpty()){
+	throw new IllegalArgumentException("Please Populate Mandatory Parameter: Regex Filter");
+}
+
+if(recordDelimiter == null || recordDelimiter.isEmpty()){
+	throw new IllegalArgumentException("Please Populate Mandatory Parameter: Record Delimiter");
+}
+
+FolderReader reader = new FolderReader(folderPath, regexFilter);
+InputStreamReader stream = null;
+
+while ((stream = reader.getNextStream()) != null) {	
+	Object[] row = null;
+	do {
+		row = getStreamMap(stream, enclosingChar.charAt(0), fieldDelimiter.charAt(0), recordDelimiter);
+	    yield(row);
+	} while (row !=null &amp;&amp; row[0] != null);
+	
+	// Drop stream only in running mode
+	if(!inDebug) { // Running mode
+		reader.dropStream(stream);
+	}
+}
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="folderPath" id="fi.Parser.k2_FolderStreamReader.0" index="0" dataType="String">
+      <Comment>the folder to scan for files</Comment>
+    </Input>
+    <Input name="folderPathDebug" id="fi.Parser.k2_FolderStreamReader.1" index="1" dataType="String">
+      <Comment>the folder to scan for files in debug mode</Comment>
+    </Input>
+    <Input name="regexFilter" id="fi.Parser.k2_FolderStreamReader.2" index="2" dataType="String">
+      <Comment>a Java regualr expression of file names to be parsed</Comment>
+    </Input>
+    <Input name="recordDelimiter" id="fi.Parser.k2_FolderStreamReader.3" index="3" dataType="String">
+      <Comment>a character to be used as a separator between records</Comment>
+    </Input>
+    <Input name="fieldDelimiter" id="fi.Parser.k2_FolderStreamReader.4" index="4" dataType="String">
+      <Comment>a character to be used as a separator between fields</Comment>
+    </Input>
+    <Input name="enclosingChar" id="fi.Parser.k2_FolderStreamReader.5" index="5" dataType="String">
+      <Comment>a character to be used to enclose fields</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="result" id="fo.Parser.k2_FolderStreamReader.0" index="0" dataType="Map&lt;String,Object&gt;">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

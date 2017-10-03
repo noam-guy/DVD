@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_strpos</Name>
+  <ID>String.k2_strpos</ID>
+  <Category>String</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>Find position of first occurrence of a string</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(str == null || substring == null)
+	return -1;
+return str.indexOf(substring);</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="str" id="fi.String.k2_strpos.0" index="0" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="substring" id="fi.String.k2_strpos.1" index="1" dataType="String">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="pos" id="fo.String.k2_strpos.0" index="0" dataType="Integer">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

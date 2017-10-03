@@ -1,0 +1,14 @@
+VirtualDB_Data
+.git
+.classpath
+.project
+_srcDynamic
+_bin
+ludb.jar
+ludb.json
+ludb.zip
+ludbXMLs.zip
+*.xml.tmp
+out
+.idea
+*.iml

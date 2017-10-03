@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_currentDate</Name>
+  <ID>Date.k2_currentDate</ID>
+  <Category>Date</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("yyyy/MM/dd");
+java.util.Date date = new java.util.Date();
+return dateFormat.format(date);</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams />
+  <OutputParams>
+    <Output name="current_date" id="fo.Date.k2_currentDate.0" index="0" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

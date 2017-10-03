@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_concat5</Name>
+  <ID>String.k2_concat5</ID>
+  <Category>String</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>Concatenate upto 5 strings with defined delimiter</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(i_delimiter == null)
+	i_delimiter = "";
+
+ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
+if(i_str1 != null)
+	list.add(i_str1);
+if(i_str2 != null)
+	list.add(i_str2);
+if(i_str3 != null)
+	list.add(i_str3);
+if(i_str4 != null)
+	list.add(i_str4);
+if(i_str5 != null)
+	list.add(i_str5);
+
+return org.apache.commons.lang3.StringUtils.join(list, i_delimiter);
+
+//
+//StringBuilder sb = new StringBuilder();
+//
+//if(i_str1 != null)
+//	sb.append(i_str1);
+//if(i_str2 != null){
+//	if(sb.length()&gt;0) sb.append(i_delimiter);
+//	sb.append(i_str2);
+//}
+//if(i_str3 != null){
+//	if(sb.length()&gt;0) sb.append(i_delimiter);
+//	sb.append(i_str3);
+//}
+//if(i_str4 != null){
+//	if(sb.length()&gt;0) sb.append(i_delimiter);
+//	sb.append(i_str4);
+//}
+//if(i_str5 != null){
+//	if(sb.length()&gt;0) sb.append(i_delimiter);
+//	sb.append(i_str5);
+//}
+//
+//return sb.toString();</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="i_str1" id="fi.String.k2_concat5.0" index="0" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="i_str2" id="fi.String.k2_concat5.1" index="1" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="i_str3" id="fi.String.k2_concat5.2" index="2" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="i_str4" id="fi.String.k2_concat5.3" index="3" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="i_str5" id="fi.String.k2_concat5.4" index="4" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="i_delimiter" id="fi.String.k2_concat5.5" index="5" dataType="String">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="o_str1" id="fo.String.k2_concat5.0" index="0" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_UrlDecoder</Name>
+  <ID>Parser.k2_UrlDecoder</ID>
+  <Category>Parser</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>Decodes a url-parameters String into a map.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if (map == null) 
+	return new HashMap&lt;&gt;();
+
+if (key == null || key.equals("null") || key.trim().isEmpty())
+	throw new IllegalArgumentException("Key should not be null or empty");
+
+try {
+	String val = (String) map.remove(key);
+	final Map&lt;String, String&gt; map2 = com.google.common.base.Splitter.on('&amp;').trimResults().withKeyValueSeparator("=").split(val);
+	try {
+		for (Map.Entry&lt;String, String&gt; entry : map2.entrySet()) {
+			String nKey = java.net.URLDecoder.decode(entry.getKey(), "UTF-8");
+			String nVal = java.net.URLDecoder.decode(entry.getValue(), "UTF-8");
+			map.put(nKey, nVal);
+		}
+	} catch (UnsupportedEncodingException e) {
+		e.printStackTrace();
+		return new HashMap&lt;&gt;();
+	}
+}
+catch(Exception e) {
+	return map;
+}		
+return map;
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="map" id="fi.Parser.k2_UrlDecoder.0" index="0" dataType="Map&lt;String,Object&gt;">
+      <Comment>the map that contains the input URL</Comment>
+    </Input>
+    <Input name="key" id="fi.Parser.k2_UrlDecoder.1" index="1" dataType="String">
+      <Comment>the key of the entry in the map that contains the URL</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="map" id="fo.Parser.k2_UrlDecoder.0" index="0" dataType="Map&lt;String,Object&gt;">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_multiply</Name>
+  <ID>Math.k2_multiply</ID>
+  <Category>Math</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>k2_Multiply two numbers to get a result</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if (i_num_1 == null || i_num_2 == null){
+	return null;
+}else{
+	return i_num_1 * i_num_2;
+}</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="i_num_1" id="fi.Math.k2_multiply.0" index="0" dataType="Double">
+      <Comment />
+    </Input>
+    <Input name="i_num_2" id="fi.Math.k2_multiply.1" index="1" dataType="Double">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="o_result" id="fo.Math.k2_multiply.0" index="0" dataType="Double">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

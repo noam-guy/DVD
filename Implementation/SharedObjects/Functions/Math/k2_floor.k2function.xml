@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_floor</Name>
+  <ID>Math.k2_floor</ID>
+  <Category>Math</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>Round fractions down - returns the next lowest integer value by rounding down value if necessary.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(value == null)
+	return null;
+return java.lang.Math.floor(value);</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="value" id="fi.Math.k2_floor.0" index="0" dataType="Double">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="floor" id="fo.Math.k2_floor.0" index="0" dataType="Double">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

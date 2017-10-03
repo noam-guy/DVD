@@ -1,0 +1,37 @@
+﻿/////////////////////////////////////////////////////////////////////////
+// Utils - Auto generated file (contains all Web Services and Globals)
+/////////////////////////////////////////////////////////////////////////
+
+package com.k2view.cdbms.#luName#;
+
+import java.util.*;
+import java.sql.*;
+import java.math.*;
+import java.io.*;
+import com.k2view.cdbms.shared.*;
+import com.k2view.cdbms.sync.*;
+import com.k2view.cdbms.lut.*;
+import com.k2view.cdbms.shared.logging.LogEntry.*;
+import com.k2view.cdbms.func.oracle.OracleToDate;
+import com.k2view.cdbms.func.oracle.OracleRownum;
+
+public class Utils extends WebServiceUtils {
+
+	public Utils(LUType f) {
+		super(f);
+	}
+	#methods#
+	#each#
+	/* !COMMENT! */
+	public !RETRUN_TYPE! !NAME!(!ARGS!) throws Exception {
+!BODY!
+	}
+	#end#
+
+
+	#globals#
+	#each#
+	/* !COMMENT! */
+	public static final String !NAME! = "!VALUE!";
+	#end#
+}

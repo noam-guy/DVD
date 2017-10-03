@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_ifNull</Name>
+  <ID>String.k2_ifNull</ID>
+  <Category>String</Category>
+  <FunctionLevel>Product</FunctionLevel>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>when the input is null return the value entered, else return the input itself</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if (input==null){
+	return value;
+}
+else{
+	return input;
+}</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <InputParams>
+    <Input name="input" id="fi.String.k2_ifNull.0" index="0" dataType="String">
+      <Comment />
+    </Input>
+    <Input name="value" id="fi.String.k2_ifNull.1" index="1" dataType="String">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="output" id="fo.String.k2_ifNull.0" index="0" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>
