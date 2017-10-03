@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>parPaymentTable</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_159</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>payment</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_159" name="fnPrsRootPayment" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPrsRootPayment.k2function.xml">
+          <InputsList>
+            <Input id="fi_159.0" name="input" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_159.0" name="payment_id" />
+            <Output id="fo_159.1" name="customer_id" />
+            <Output id="fo_159.2" name="staff_id" />
+            <Output id="fo_159.3" name="rental_id" />
+            <Output id="fo_159.4" name="amount_new" />
+            <Output id="fo_159.5" name="payment_date" />
+            <Output id="fo_159.6" name="tmp" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_payment" name="payment" nodeOrder="1" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="parPaymentTable" active="true">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_27d60242700f4bbe833b69ec9ecf07e8" name="payment_id" dataType="Integer" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_48457d2cf5cd45c8bdf79bcd7cc92b7a" name="customer_id" dataType="Integer" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_93435075f1c247dbab5792da751bcd97" name="staff_id" dataType="Integer" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_34b0606abf934054a10290201a22deb6" name="rental_id" dataType="Integer" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_aab557910f1e40f5ae97337798726458" name="amount_new" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_8fc3b223392d400ab2117319a9f2276a" name="payment_date" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_19197861ea214ecdaffac4322a16cf92" name="tmp" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn>rtCol_34b0606abf934054a10290201a22deb6</RecordTypeKeyColumn>
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_48457d2cf5cd45c8bdf79bcd7cc92b7a" name="customer_id" pkType="Partition_Key" />
+            <RecordTypePkColumn id="rtCol_27d60242700f4bbe833b69ec9ecf07e8" name="payment_id" pkType="Partition_Key" />
+            <RecordTypePkColumn id="rtCol_93435075f1c247dbab5792da751bcd97" name="staff_id" pkType="Clustering_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="168" fromNodeOrder="0" fromItemID="f_159" fromColID="fo_159.0" toItemID="rt_payment" toColID="rtCol_27d60242700f4bbe833b69ec9ecf07e8" />
+        <Link partId="169" fromNodeOrder="0" fromItemID="f_159" fromColID="fo_159.1" toItemID="rt_payment" toColID="rtCol_48457d2cf5cd45c8bdf79bcd7cc92b7a" />
+        <Link partId="170" fromNodeOrder="0" fromItemID="f_159" fromColID="fo_159.2" toItemID="rt_payment" toColID="rtCol_93435075f1c247dbab5792da751bcd97" />
+        <Link partId="171" fromNodeOrder="0" fromItemID="f_159" fromColID="fo_159.3" toItemID="rt_payment" toColID="rtCol_34b0606abf934054a10290201a22deb6" />
+        <Link partId="172" fromNodeOrder="0" fromItemID="f_159" fromColID="fo_159.4" toItemID="rt_payment" toColID="rtCol_aab557910f1e40f5ae97337798726458" />
+        <Link partId="173" fromNodeOrder="0" fromItemID="f_159" fromColID="fo_159.5" toItemID="rt_payment" toColID="rtCol_8fc3b223392d400ab2117319a9f2276a" />
+        <Link partId="174" fromNodeOrder="0" fromItemID="f_159" fromColID="fo_159.6" toItemID="rt_payment" toColID="rtCol_19197861ea214ecdaffac4322a16cf92" />
+      </LinksList>
+      <ParserMapRecordType id="rt_payment" name="payment" parentParser="parPaymentTable">
+        <Active>true</Active>
+        <RecordTypeKeyColumn>rtCol_34b0606abf934054a10290201a22deb6</RecordTypeKeyColumn>
+        <Columns>
+          <Column id="rtCol_27d60242700f4bbe833b69ec9ecf07e8" name="payment_id" index="0">
+            <DataType>Integer</DataType>
+          </Column>
+          <Column id="rtCol_48457d2cf5cd45c8bdf79bcd7cc92b7a" name="customer_id" index="1">
+            <DataType>Integer</DataType>
+          </Column>
+          <Column id="rtCol_93435075f1c247dbab5792da751bcd97" name="staff_id" index="2">
+            <DataType>Integer</DataType>
+          </Column>
+          <Column id="rtCol_34b0606abf934054a10290201a22deb6" name="rental_id" index="3">
+            <DataType>Integer</DataType>
+          </Column>
+          <Column id="rtCol_aab557910f1e40f5ae97337798726458" name="amount_new" index="4">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_8fc3b223392d400ab2117319a9f2276a" name="payment_date" index="5">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_19197861ea214ecdaffac4322a16cf92" name="tmp" index="6">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_48457d2cf5cd45c8bdf79bcd7cc92b7a" name="customer_id" pkType="Partition_Key" />
+          <PkColumn id="rtCol_27d60242700f4bbe833b69ec9ecf07e8" name="payment_id" pkType="Partition_Key" />
+          <PkColumn id="rtCol_93435075f1c247dbab5792da751bcd97" name="staff_id" pkType="Clustering_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+</ParserMap>

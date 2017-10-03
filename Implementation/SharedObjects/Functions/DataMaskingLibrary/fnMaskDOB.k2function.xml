@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskDOB</Name>
+  <ID>DataMaskingLibrary.fnMaskDOB</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask the DOB (Date of Birth) by simply adding or substracting number of days from its DOB.
+The function will add a random number between 0 and the iDays value to the iDOB if iOperation is +, and will substract them if iOperation is -.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>final String SUM_OPER = "+";
+final String SUBSTRACT_OPER = "-";
+
+// Determine if to add or substract the iDays from/to iDOB
+if (iDOB!=null &amp;&amp; !iDOB.isEmpty()){
+	//format the date 
+	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(DATE_FORMAT);
+	Calendar c = Calendar.getInstance();
+	//set the time for the calendar object
+	c.setTime(sdf.parse(iDOB));
+	String oMasedDOB = "";
+	//generate random number which will be the number of days that will add/substracted to/from the input date
+	int shiftDays = fnGetRandomNumber(0,iDays);
+	
+	if(iOperation.equals(SUM_OPER)){	
+		// Add shiftDays to iDOB
+		c.add(Calendar.DATE, shiftDays);
+	} else if(iOperation.equals(SUBSTRACT_OPER)){ // Substract days
+		// Substract shiftDays from iDOB
+		c.add(Calendar.DATE, -1*shiftDays);
+	}else{//in case of invalid operator 
+		reportUserMessage("Invalid Operation Param");
+		return oMasedDOB;
+	}
+	oMasedDOB = sdf.format(c.getTime());
+	// Return the masked DOB
+	return sdf.format(sdf.parse(oMasedDOB));
+}
+
+return iDOB;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iDOB" id="fi.DataMaskingLibrary.fnMaskDOB.0" index="0" dataType="String">
+      <Comment>Date of Birth</Comment>
+    </Input>
+    <Input name="iOperation" id="fi.DataMaskingLibrary.fnMaskDOB.1" index="1" dataType="String">
+      <Comment>+ to add days, - to substract days</Comment>
+    </Input>
+    <Input name="iDays" id="fi.DataMaskingLibrary.fnMaskDOB.2" index="2" dataType="Integer">
+      <Comment>Number of days</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="iMaskedDOB" id="fo.DataMaskingLibrary.fnMaskDOB.0" index="0" dataType="String">
+      <Comment>The Masked Date Of Birth</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

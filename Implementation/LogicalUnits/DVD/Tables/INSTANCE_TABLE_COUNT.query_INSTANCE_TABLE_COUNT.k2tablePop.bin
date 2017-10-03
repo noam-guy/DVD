@@ -1,0 +1,7 @@
+﻿<Graph name="INSTANCE_TABLE_COUNT.query_INSTANCE_TABLE_COUNT.k2tablePop.bin" lastPartID="38">
+  <TableNode partID="0" name="INSTANCE_TABLE_COUNT" pos="894 83" width="309.324219" />
+  <FunctionMapNode id="0" L0="1" R0="2" partID="7" topLabel="fnRootINSTANCE_TABLE_COUNT (7)" pos="52.681 72" size="238.632782 45.09114" isRoot="true">
+    <KFunction>{"Name":"fnRootINSTANCE_TABLE_COUNT","ID":"f_7","Category":"Stats","Version":"3.1.0.0","FunctionLevel":0,"FunctionType":0,"FunctionType2":1,"RegisterAsLuDbFunction":false,"SaveToDLUR":false,"ApiFunction":false,"DecisionFunction":false,"RequiresLuReference":false,"Desc":"","Auther":{"Name":"","ID":""},"Language":1,"FunctionBody":"if(1 == 2){\n\tyield(new Object[]{null});\n}","IsSyntaxValid":true,"IsRootFunction":true,"inputParams":[{"Name":"input","ID":"fi_7.0","Index":0,"DataType":"String"}],"outputParams":[{"Name":"output","ID":"fo_7.0","Index":0,"DataType":"String"}]}</KFunction>
+  </FunctionMapNode>
+  <Link partID="10" from="2" to="3" pointsArr="237.569 97.09114 247.569 97.09114 884 114.036461 894 114.036461" fromNodePartID="7" fromNodeColumnName="output" toNodePartID="0" toNodeColumnName="EI" />
+</Graph>

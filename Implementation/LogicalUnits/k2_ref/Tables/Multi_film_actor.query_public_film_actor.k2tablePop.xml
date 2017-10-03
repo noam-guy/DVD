@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_film_actor</ID>
+  <PopulationObjectName>query_public_film_actor</PopulationObjectName>
+  <TableName>Multi_film_actor</TableName>
+  <RootItemID>query_query_public_film_actor</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="actor_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="film_id" id="queryCol_1" dataType="Integer" index="1" />
+    <Arg name="last_update" id="queryCol_2" dataType="Text" index="2" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_film_actor" name="query_public_film_actor" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="actor_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="film_id" dataType="Integer" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_update" dataType="Text" index="2" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.film_actor]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="10" fromNodeOrder="0" fromItemID="query_query_public_film_actor" fromColID="queryCol_0" toItemID="tbl_Multi_film_actor" toColID="tblCol_f65bd29993b34d6d90d6057c7684132d" />
+    <Link partId="11" fromNodeOrder="0" fromItemID="query_query_public_film_actor" fromColID="queryCol_1" toItemID="tbl_Multi_film_actor" toColID="tblCol_9a85fac5b72949eeb93d1f76718d443e" />
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_film_actor" fromColID="queryCol_2" toItemID="tbl_Multi_film_actor" toColID="tblCol_fa1d5040995f498b9ad491ac8677b6cd" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

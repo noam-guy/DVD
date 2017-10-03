@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnExtractZipInfo</Name>
+  <ID>DataMaskingLibrary.fnExtractZipInfo</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>// Returns the structure of the ZIP file's row
+return new Object [] {
+	iMap.get("0"),
+	iMap.get("1"),
+	iMap.get("2"),
+	iMap.get("3"),
+	iMap.get("4"),
+	iMap.get("5"),
+	iMap.get("6"),
+	iMap.get("7"),
+	iMap.get("8"),
+	iMap.get("9"),
+	iMap.get("10"),
+	iMap.get("11"),
+	iMap.get("12"),
+	iMap.get("13"),
+	iMap.get("14"),
+	iMap.get("15")};</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iMap" id="fi.DataMaskingLibrary.fnExtractZipInfo.0" index="0" dataType="Map&lt;String,Object&gt;">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="zip" id="fo.DataMaskingLibrary.fnExtractZipInfo.0" index="0" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="type" id="fo.DataMaskingLibrary.fnExtractZipInfo.1" index="1" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="primary_city" id="fo.DataMaskingLibrary.fnExtractZipInfo.2" index="2" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="acceptable_cities" id="fo.DataMaskingLibrary.fnExtractZipInfo.3" index="3" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="unacceptable_cities" id="fo.DataMaskingLibrary.fnExtractZipInfo.4" index="4" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="state" id="fo.DataMaskingLibrary.fnExtractZipInfo.5" index="5" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="county" id="fo.DataMaskingLibrary.fnExtractZipInfo.6" index="6" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="timezone" id="fo.DataMaskingLibrary.fnExtractZipInfo.7" index="7" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="area_codes" id="fo.DataMaskingLibrary.fnExtractZipInfo.8" index="8" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="latitude" id="fo.DataMaskingLibrary.fnExtractZipInfo.9" index="9" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="longitude" id="fo.DataMaskingLibrary.fnExtractZipInfo.10" index="10" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="world_region" id="fo.DataMaskingLibrary.fnExtractZipInfo.11" index="11" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="country" id="fo.DataMaskingLibrary.fnExtractZipInfo.12" index="12" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="decommissioned" id="fo.DataMaskingLibrary.fnExtractZipInfo.13" index="13" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="estimated_population" id="fo.DataMaskingLibrary.fnExtractZipInfo.14" index="14" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="notes" id="fo.DataMaskingLibrary.fnExtractZipInfo.15" index="15" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

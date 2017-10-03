@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_film_list</ID>
+  <PopulationObjectName>query_public_film_list</PopulationObjectName>
+  <TableName>film_list</TableName>
+  <RootItemID>query_query_public_film_list</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="fid" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="title" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="description" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="category" id="queryCol_3" dataType="Text" index="3" />
+    <Arg name="price" id="queryCol_4" dataType="Real" index="4" />
+    <Arg name="length" id="queryCol_5" dataType="Integer" index="5" />
+    <Arg name="rating" id="queryCol_6" dataType="Text" index="6" />
+    <Arg name="actors" id="queryCol_7" dataType="Text" index="7" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_film_list" name="query_public_film_list" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="fid" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="title" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="description" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="category" dataType="Text" index="3" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_4" name="price" dataType="Real" index="4" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_5" name="length" dataType="Integer" index="5" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_6" name="rating" dataType="Text" index="6" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_7" name="actors" dataType="Text" index="7" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.film_list]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="20" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_0" toItemID="tbl_film_list" toColID="tblCol_828a982409934c5b86f4e6da36388722" />
+    <Link partId="21" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_1" toItemID="tbl_film_list" toColID="tblCol_e0c67bc028e44b53ba7eb682e327ebbc" />
+    <Link partId="22" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_2" toItemID="tbl_film_list" toColID="tblCol_407780577d5e447a839a57683622cb48" />
+    <Link partId="23" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_3" toItemID="tbl_film_list" toColID="tblCol_7df905ca3e124786a14566426cc7001c" />
+    <Link partId="24" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_4" toItemID="tbl_film_list" toColID="tblCol_0d28cf6e35da48aa80519c6788eff929" />
+    <Link partId="25" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_5" toItemID="tbl_film_list" toColID="tblCol_89e61196e7f6406d8f757d19b0aca5d3" />
+    <Link partId="26" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_6" toItemID="tbl_film_list" toColID="tblCol_b075e2ef026f4e61b2344d66ef41ff9b" />
+    <Link partId="27" fromNodeOrder="0" fromItemID="query_query_public_film_list" fromColID="queryCol_7" toItemID="tbl_film_list" toColID="tblCol_a0fbcea9cdb448839f6ef5ad38e588d9" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

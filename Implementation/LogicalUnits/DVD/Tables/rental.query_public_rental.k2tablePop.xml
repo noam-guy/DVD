@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_rental</ID>
+  <PopulationObjectName>query_public_rental</PopulationObjectName>
+  <TableName>rental</TableName>
+  <RootItemID>f_41</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="customer_id" id="fi_41.0" dataType="Integer" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_41" name="fnPopRootRental" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPopRootRental.k2function.xml">
+      <InputsList>
+        <Input id="fi_41.0" name="customer_id" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_41.0" name="rental_id" />
+        <Output id="fo_41.1" name="rental_date" />
+        <Output id="fo_41.2" name="inventory_id" />
+        <Output id="fo_41.3" name="customer_id" />
+        <Output id="fo_41.4" name="return_date" />
+        <Output id="fo_41.5" name="staff_id" />
+        <Output id="fo_41.6" name="last_update" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="50" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.0" toItemID="tbl_rental" toColID="tblCol_4a1044732c33488092841c4aaef15a69" />
+    <Link partId="51" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.1" toItemID="tbl_rental" toColID="tblCol_4d8e7a7a058a44f3988c35dd5589100c" />
+    <Link partId="52" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.2" toItemID="tbl_rental" toColID="tblCol_1ec50b239c6b4c34b5d145eb1e0a7a41" />
+    <Link partId="53" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.3" toItemID="tbl_rental" toColID="tblCol_e3a45f0f6f9b46ee90a9dcf5568d837d" />
+    <Link partId="54" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.4" toItemID="tbl_rental" toColID="tblCol_647bbad5f80c459e8f91deea9a178b9e" />
+    <Link partId="55" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.5" toItemID="tbl_rental" toColID="tblCol_60db80b10f3a42fdb8a474b0dca3c500" />
+    <Link partId="56" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.6" toItemID="tbl_rental" toColID="tblCol_942635dd6b474defb96dea8099c14b6b" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

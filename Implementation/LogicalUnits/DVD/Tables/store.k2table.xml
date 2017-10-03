@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>store</Name>
+  <ID>tbl_store</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="store_id" id="tblCol_e8744feb5b41466881cc4720ac5a80f7" index="0" datatype="Integer" mandatory="true" />
+    <Column name="manager_staff_id" id="tblCol_79f301f5a75d449eb0c367f649d43ab8" index="1" datatype="Integer" mandatory="true" />
+    <Column name="address_id" id="tblCol_35741f7acd044bdab5c8ae1a63a34afc" index="2" datatype="Integer" mandatory="true" />
+    <Column name="last_update" id="tblCol_878332beac77412789d78679da59f864" index="3" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_e8744feb5b41466881cc4720ac5a80f7" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

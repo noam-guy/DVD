@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericInterface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="SFTP" displayName="SFTP" enabled="true" version="1.1">
+  <Name>TPAWLAN</Name>
+  <Properties>
+    <Property name="IP" displayName="IP" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+      <Value>192.168.139.151</Value>
+      <DefaultValue />
+      <Comments />
+      <OptionsList />
+    </Property>
+    <Property name="User" displayName="User" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+      <Value>k2view</Value>
+      <DefaultValue />
+      <Comments />
+      <OptionsList />
+    </Property>
+    <Property name="Password" displayName="Password" dataType="password" mandatory="false" show="true" readOnly="false" category="">
+      <Value>0ykIK3eeYo/Mej+tC6s6iq+tVsnG19gvcYkOs9td58g=:6X7JJvdDiRH6KcALj9wW3EjqWphCohh1+56OIFFux54=</Value>
+      <DefaultValue />
+      <Comments />
+      <OptionsList />
+    </Property>
+    <Property name="RemoteDir" displayName="Remote Directory" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+      <Value>/usr/local/k2view/parser_files</Value>
+      <DefaultValue />
+      <Comments />
+      <OptionsList />
+    </Property>
+    <Property name="FilesFilter" displayName="Files Filter" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+      <Value>TPAWLAN*.csv.gz</Value>
+      <DefaultValue />
+      <Comments>Regular expression</Comments>
+      <OptionsList />
+    </Property>
+  </Properties>
+  <TestConnection displayName="Test Connection" enabled="true">
+    <MethodName>com.k2view.cdbms.services.TestGenericInterfaceConnection</MethodName>
+    <Args>SFTP "@IP@" "@User@" "@Password@" "@RemoteDir@"</Args>
+  </TestConnection>
+</GenericInterface>

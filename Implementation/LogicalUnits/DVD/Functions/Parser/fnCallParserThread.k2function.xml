@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>fnCallParserThread</Name>
+  <ID>Parser.fnCallParserThread</ID>
+  <Category>Parser</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>//Getting DC from 
+Runtime rt = Runtime.getRuntime();
+Process proc = rt.exec(new String[]{"grep -Po '(?&lt;=dc=).*' /usr/local/k2view/fabric/cassandra/conf/cassandra-rackdc.properties"});
+java.io.BufferedReader stdInput = new java.io.BufferedReader(new java.io.InputStreamReader(proc.getInputStream()));
+String DC = stdInput.readLine();
+log.info("============= " + DC + " =============");
+if(1 == 2)yield(new Object[]{null});</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="numOfThreads" id="fi.Parser.fnCallParserThread.0" index="0" dataType="Integer" />
+  </InputParams>
+  <OutputParams>
+    <Output name="dummy" id="fo.Parser.fnCallParserThread.0" index="0" dataType="String" />
+  </OutputParams>
+</KFunction>

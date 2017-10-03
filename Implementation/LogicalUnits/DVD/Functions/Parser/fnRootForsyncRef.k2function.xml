@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>fnRootForsyncRef</Name>
+  <ID>Parser.fnRootForsyncRef</ID>
+  <Category>Parser</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>DBExecute("cass_local", "fabric on", null);
+DBExecute("cass_local", "set sync force", null);	
+int i = 0;
+ResultSetWrapper rs = DBQuery("cass_local", "pragma k2_ref.table_list", null);
+for (Object[] row : rs) {			
+	try{
+		 DBQuery("cass_local", "select count(*) from "+row[0], null);
+	}catch(Exception e) {
+		e.printStackTrace();
+	}					
+}
+rs.closeStmt();
+DBExecute("cass_local", "set default", null);
+DBExecute("cass_local", "fabric off", null);
+if(1 == 2)yield(new Object[]{null});</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="numOfThreads" id="fi.Parser.fnRootForsyncRef.0" index="0" dataType="Integer" />
+  </InputParams>
+  <OutputParams>
+    <Output name="ref_table_name" id="fo.Parser.fnRootForsyncRef.0" index="0" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="start_time" id="fo.Parser.fnRootForsyncRef.1" index="1" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="end_time" id="fo.Parser.fnRootForsyncRef.2" index="2" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="status" id="fo.Parser.fnRootForsyncRef.3" index="3" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="ref_load_time" id="fo.Parser.fnRootForsyncRef.4" index="4" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="error_msg" id="fo.Parser.fnRootForsyncRef.5" index="5" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="num_of_rows_loaded" id="fo.Parser.fnRootForsyncRef.6" index="6" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="thread_name" id="fo.Parser.fnRootForsyncRef.7" index="7" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

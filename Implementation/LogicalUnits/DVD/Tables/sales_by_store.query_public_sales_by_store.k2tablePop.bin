@@ -1,0 +1,9 @@
+﻿<Graph name="sales_by_store.query_public_sales_by_store.k2tablePop.bin" lastPartID="12">
+  <TableNode partID="0" name="sales_by_store" pos="315.457336 5.854168" width="309.324158" />
+  <DBQueryNode partID="6" name="dvdRental" pos="10 1.890625" size="260.457336 96.21875" isRoot="true">
+    <DBQuery>{"Name":"query_public_sales_by_store","ID":"query_query_public_sales_by_store","ConnName":"dvdRental","SQL":"SELECT * FROM public.sales_by_store","ColumnsList":[{"ID":"queryCol_0","Name":"store","DataType":"Text","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"manager","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"total_sales","DataType":"Real","Index":2,"IsInputArgument":true}]}</DBQuery>
+  </DBQueryNode>
+  <Link partID="10" from="0" to="1" pointsArr="270.457336 37.9270859 280.457336 37.9270859 282.957336 25 302.957336 25 305.457336 36.890625 315.457336 36.890625" fromNodePartID="6" fromNodeColumnName="store" toNodePartID="0" toNodeColumnName="store" />
+  <Link partID="11" from="2" to="3" pointsArr="270.457336 50 280.457336 50 282.957336 50 302.957336 50 305.457336 48.9635429 315.457336 48.9635429" fromNodePartID="6" fromNodeColumnName="manager" toNodePartID="0" toNodeColumnName="manager" />
+  <Link partID="12" from="4" to="5" pointsArr="270.457336 62.0729141 280.457336 62.0729141 282.957336 75 302.957336 75 305.457336 61.0364571 315.457336 61.0364571" fromNodePartID="6" fromNodeColumnName="total_sales" toNodePartID="0" toNodeColumnName="total_sales" />
+</Graph>

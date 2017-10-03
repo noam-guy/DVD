@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>fnTryGetTrnVal</Name>
+  <ID>Check.fnTryGetTrnVal</ID>
+  <Category>Check</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RegularFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>Map &lt;String, String&gt; myMap = new HashMap&lt;String, String&gt;();
+myMap = getTranslationValues("trnTest", new Object[]{1});
+reportUserMessage(myMap.get("Name"));
+return null;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="input" id="fi.Check.fnTryGetTrnVal.0" index="0" dataType="String" />
+  </InputParams>
+  <OutputParams>
+    <Output name="output" id="fo.Check.fnTryGetTrnVal.0" index="0" dataType="String" />
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>fnRootFnWithMultiThread</Name>
+  <ID>Parser.fnRootFnWithMultiThread</ID>
+  <Category>Parser</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>//Validating inputs param
+if(numOfThreads == null){
+	log.info("============= MULTI THREAD PARSER FOUND INPUT numOfThreads = null setting input to 5 =============");
+	numOfThreads = 5;
+}
+if(timeOutBeforeKillingThreads == null){
+	log.info("============= MULTI THREAD PARSER FOUND INPUT timeOutBeforeKillingThreads = null setting input to 60 =============");
+	timeOutBeforeKillingThreads = 60;
+}
+
+java.util.concurrent.ExecutorService executorsGroup = java.util.concurrent.Executors.newFixedThreadPool(numOfThreads);
+log.info("============= MULTI THREAD PARSER - START PARSER FOR REF TABLES =============");
+String luName = luType.luName.toLowerCase();
+
+DBExecute("cass_local", "fabric on", null);
+DBExecute("cass_local", "set sync force", null);	
+
+ResultSetWrapper rs = DBQuery("cass_local", "pragma k2_ref.table_list", null);
+for (Object[] row : rs) {			
+	try{
+		Runnable worker = new k2Studio.lu.DVD.syncRefTask(row[0]+"", luName);
+		executorsGroup.execute(worker);
+	}catch(Exception e) {
+		e.printStackTrace();
+	}					
+}
+
+try {
+    executorsGroup.shutdown();
+    executorsGroup.awaitTermination(timeOutBeforeKillingThreads, java.util.concurrent.TimeUnit.SECONDS);
+	
+}
+catch (InterruptedException e) {
+    e.printStackTrace();
+}
+finally {
+	 if (!executorsGroup.isTerminated()) {
+			log.info("============= MULTI THREAD PARSER - FORCING SHUTDOWN FOR ALL TASKS =============");
+			executorsGroup.shutdownNow();
+   	 }else{
+			log.info("============= MULTI THREAD PARSER - ALL TASKS WERE SHUTDOWN =============");
+		}		
+}
+
+rs.closeStmt();
+DBExecute("cass_local", "set default", null);
+DBExecute("cass_local", "fabric off", null);
+if(1 == 2)yield(new Object[]{null});</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="numOfThreads" id="fi.Parser.fnRootFnWithMultiThread.0" index="0" dataType="Integer" />
+    <Input name="timeOutBeforeKillingThreads" id="fi.Parser.fnRootFnWithMultiThread.1" index="1" dataType="Integer" />
+  </InputParams>
+  <OutputParams>
+    <Output name="ref_table_name" id="fo.Parser.fnRootFnWithMultiThread.0" index="0" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="start_time" id="fo.Parser.fnRootFnWithMultiThread.1" index="1" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="end_time" id="fo.Parser.fnRootFnWithMultiThread.2" index="2" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="status" id="fo.Parser.fnRootFnWithMultiThread.3" index="3" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="ref_load_time" id="fo.Parser.fnRootFnWithMultiThread.4" index="4" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="error_msg" id="fo.Parser.fnRootFnWithMultiThread.5" index="5" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="num_of_rows_loaded" id="fo.Parser.fnRootFnWithMultiThread.6" index="6" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="thread_name" id="fo.Parser.fnRootFnWithMultiThread.7" index="7" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>country</Name>
+  <ID>tbl_country</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="country_id" id="tblCol_1f989a3713fe482dbf42e46aa2ededc5" index="0" datatype="Integer" mandatory="true" />
+    <Column name="country" id="tblCol_de1bf94b4f834692a118348949e2e57c" index="1" datatype="Text" mandatory="true" />
+    <Column name="last_update" id="tblCol_0a4b1e955d1844faa14661c48096c483" index="2" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_1f989a3713fe482dbf42e46aa2ededc5" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

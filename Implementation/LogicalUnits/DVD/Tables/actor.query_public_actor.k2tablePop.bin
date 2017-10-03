@@ -1,0 +1,10 @@
+﻿<Graph name="actor.query_public_actor.k2tablePop.bin" lastPartID="15">
+  <TableNode partID="0" name="actor" pos="308 24.8177147" width="309.324158" />
+  <DBQueryNode partID="7" name="dvdRental" pos="10 20.8541718" size="253 108.291656" isRoot="true">
+    <DBQuery>{"Name":"query_public_actor","ID":"query_query_public_actor","ConnName":"dvdRental","SQL":"SELECT * FROM public.actor","ColumnsList":[{"ID":"queryCol_0","Name":"actor_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"first_name","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"last_name","DataType":"Text","Index":2,"IsInputArgument":true},{"ID":"queryCol_3","Name":"last_update","DataType":"Text","Index":3,"IsInputArgument":true}]}</DBQuery>
+  </DBQueryNode>
+  <Link partID="12" from="0" to="1" pointsArr="263 56.89063 273 56.89063 275.5 25 295.5 25 298 55.85417 308 55.85417" fromNodePartID="7" fromNodeColumnName="actor_id" toNodePartID="0" toNodeColumnName="actor_id" />
+  <Link partID="13" from="2" to="3" pointsArr="263 68.96355 273 68.96355 275.5 50 295.5 50 298 67.9270859 308 67.9270859" fromNodePartID="7" fromNodeColumnName="first_name" toNodePartID="0" toNodeColumnName="first_name" />
+  <Link partID="14" from="4" to="5" pointsArr="263 81.03645 273 81.03645 275.5 75 295.5 75 298 80 308 80" fromNodePartID="7" fromNodeColumnName="last_name" toNodePartID="0" toNodeColumnName="last_name" />
+  <Link partID="15" from="6" to="7" pointsArr="263 93.109375 273 93.109375 275.5 100 295.5 100 298 92.07292 308 92.07292" fromNodePartID="7" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+</Graph>

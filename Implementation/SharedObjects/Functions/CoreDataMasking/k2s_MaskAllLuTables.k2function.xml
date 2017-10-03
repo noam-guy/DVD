@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2s_MaskAllLuTables</Name>
+  <ID>CoreDataMasking.k2s_MaskAllLuTables</ID>
+  <Category>CoreDataMasking</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>The function runs k2s_MaskTable for every table in the LU Database </Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if (MASK_FLAG.equals(FLAG_ENABLED)){
+	
+	if(FLAG_ENABLED.equals(SHARED_MEMORY_FLUSH_ALL)){
+		redis.clients.jedis.Jedis jds = null;
+		try{
+			jds = getJedisConnection(SHARED_MEMORY_HOST_NAME,SHARED_MEMORY_HOST_PORT,SHARED_MEMORY_EXPIRATION);
+			if(jds!=null){
+				jds.flushDB();
+			}
+		}catch(Exception e){
+			throw new Exception("Could not flush Redis DB.",e.getCause());
+		}finally{
+			closeJedisConnection(jds);
+		}
+	}
+	
+	//Get the translation data
+	Map&lt;String,Map&lt;String,String&gt;&gt; data = getTranslationsData(TRN_MASKING);
+	Map&lt;String, String&gt; tableIndexMap = new HashMap&lt;String, String&gt;();
+	Map&lt;Integer, String&gt; indexTableMap = new TreeMap&lt;Integer, String&gt;();
+	String tableName = null;
+	//// Read the encryption information for iTableName from the trnMasking translation.
+	for(String index: data.keySet()){
+		Map&lt;String, String&gt; valMap = data.get(index);
+		tableName = valMap.get(TRN_TABLE_NAME_COLUMN_HEADER);
+		if(tableIndexMap.get(tableName) == null){
+			tableIndexMap.put(tableName, index);
+			indexTableMap.put(new Integer(index), tableName);
+		}
+	}
+	// Run the k2_MaskTable function based on the order above:
+	for(Integer index: indexTableMap.keySet()){
+		k2s_MaskTable(indexTableMap.get(index));
+	}
+	//clear the Globals of this thread
+	clearThreadGlobals();
+}</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams />
+  <OutputParams />
+</KFunction>

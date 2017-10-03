@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_category</ID>
+  <PopulationObjectName>query_public_category</PopulationObjectName>
+  <TableName>category</TableName>
+  <RootItemID>query_query_public_category</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="category_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="name" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_update" id="queryCol_2" dataType="Text" index="2" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_category" name="query_public_category" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="category_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="name" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_update" dataType="Text" index="2" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.category]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="10" fromNodeOrder="0" fromItemID="query_query_public_category" fromColID="queryCol_0" toItemID="tbl_category" toColID="tblCol_0f4777dfd0bb4ffe825aca1b3fe6accc" />
+    <Link partId="11" fromNodeOrder="0" fromItemID="query_query_public_category" fromColID="queryCol_1" toItemID="tbl_category" toColID="tblCol_c7af1f16686146f7ba9f1239dc7af4ba" />
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_category" fromColID="queryCol_2" toItemID="tbl_category" toColID="tblCol_c773f419463c44c8b54ad7d0e2da1930" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_status</ID>
+  <PopulationObjectName>query_public_status</PopulationObjectName>
+  <TableName>status</TableName>
+  <RootItemID>query_query_public_status</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="entity_id" id="queryCol_0" dataType="Text" index="0" />
+    <Arg name="status" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_updated" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="status_comment" id="queryCol_3" dataType="Text" index="3" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_status" name="query_public_status" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="entity_id" dataType="Text" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="status" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_updated" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="status_comment" dataType="Text" index="3" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.status]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_status" fromColID="queryCol_0" toItemID="tbl_status" toColID="tblCol_441d26ba5056439e9dfe78496343f4c5" />
+    <Link partId="13" fromNodeOrder="0" fromItemID="query_query_public_status" fromColID="queryCol_1" toItemID="tbl_status" toColID="tblCol_165eeeb307b844f8b9f40ec32e3bfe61" />
+    <Link partId="14" fromNodeOrder="0" fromItemID="query_query_public_status" fromColID="queryCol_2" toItemID="tbl_status" toColID="tblCol_bd13e790ca3b4fbdb511460a54d8520b" />
+    <Link partId="15" fromNodeOrder="0" fromItemID="query_query_public_status" fromColID="queryCol_3" toItemID="tbl_status" toColID="tblCol_8cecd2c6d3d24b86a8aef7cb12a83a82" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

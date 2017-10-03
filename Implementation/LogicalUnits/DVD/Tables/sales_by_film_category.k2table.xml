@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>sales_by_film_category</Name>
+  <ID>tbl_sales_by_film_category</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="category" id="tblCol_f4b5ce251d2543e98f02dd81fa453026" index="0" datatype="Text" />
+    <Column name="total_sales" id="tblCol_45cf606658be45f3b052ecea09334335" index="1" datatype="Real" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+</TableObject>

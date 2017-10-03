@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_payment</ID>
+  <PopulationObjectName>query_public_payment</PopulationObjectName>
+  <TableName>payment</TableName>
+  <RootItemID>f_41</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="customer_id" id="fi_41.0" dataType="Long" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_41" name="fnPopPaymentFromCass" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnPopPaymentFromCass.k2function.xml">
+      <InputsList>
+        <Input id="fi_41.0" name="customer_id" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_41.0" name="customer_id" />
+        <Output id="fo_41.1" name="payment_id" />
+        <Output id="fo_41.2" name="amount_new" />
+        <Output id="fo_41.3" name="payment_date" />
+        <Output id="fo_41.4" name="rental_id" />
+        <Output id="fo_41.5" name="staff_id" />
+        <Output id="fo_41.6" name="tmp" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="50" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.1" toItemID="tbl_payment" toColID="tblCol_271834eb2a854d6684e397f21f1bac14" />
+    <Link partId="51" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.0" toItemID="tbl_payment" toColID="tblCol_d4d560f18bf54c8682b96a8cb3fdba20" />
+    <Link partId="52" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.5" toItemID="tbl_payment" toColID="tblCol_23d345f093b24febbf40e55c2d0a7841" />
+    <Link partId="53" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.4" toItemID="tbl_payment" toColID="tblCol_5c84e0189f734a1b8688bbd18016ed17" />
+    <Link partId="54" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.2" toItemID="tbl_payment" toColID="tblCol_2af4a5fd00474ffb89e85f28bbaea944" />
+    <Link partId="55" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.3" toItemID="tbl_payment" toColID="tblCol_947ea5741682428fa786c2472a24010a" />
+    <Link partId="56" fromNodeOrder="0" fromItemID="f_41" fromColID="fo_41.6" toItemID="tbl_payment" toColID="tblCol_ac67cc549793463384ec0962f5eee38f" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

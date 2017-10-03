@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>rental</Name>
+  <ID>tbl_rental</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="rental_id" id="tblCol_4a1044732c33488092841c4aaef15a69" index="0" datatype="Integer" />
+    <Column name="rental_date" id="tblCol_4d8e7a7a058a44f3988c35dd5589100c" index="1" datatype="Text" />
+    <Column name="inventory_id" id="tblCol_1ec50b239c6b4c34b5d145eb1e0a7a41" index="2" datatype="Integer" />
+    <Column name="customer_id" id="tblCol_e3a45f0f6f9b46ee90a9dcf5568d837d" index="3" datatype="Integer" />
+    <Column name="return_date" id="tblCol_647bbad5f80c459e8f91deea9a178b9e" index="4" datatype="Text" />
+    <Column name="staff_id" id="tblCol_60db80b10f3a42fdb8a474b0dca3c500" index="5" datatype="Integer" />
+    <Column name="last_update" id="tblCol_942635dd6b474defb96dea8099c14b6b" index="6" datatype="Text" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_4a1044732c33488092841c4aaef15a69" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

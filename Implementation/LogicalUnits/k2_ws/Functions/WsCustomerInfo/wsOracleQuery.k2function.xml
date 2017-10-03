@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>wsOracleQuery</Name>
+  <ID>WsCustomerInfo.wsOracleQuery</ID>
+  <Category>WsCustomerInfo</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>WebService</FunctionType>
+  <FunctionType2>WebService</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>Object rs = null;
+DBExecute("fabric", "get DVD.1", null);
+
+String sql = "select customer_id from customer where customer_id = ? ";
+Object[] values = new Object[]{1};
+values = null;
+try{
+	rs =  DBSelectValue("fabric", sql, values);
+}catch(Exception e){
+	log.info("Exception msg - " + e.getMessage());
+}
+return rs;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams />
+  <OutputParams>
+    <Output name="result" id="fo.WsCustomerInfo.wsOracleQuery.0" index="0" dataType="Object" />
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>fnGetValFromTrn</Name>
+  <ID>TrnFunctions.fnGetValFromTrn</ID>
+  <Category>TrnFunctions</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RegularFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>String trnName = "trnExample";
+java.util.Map &lt;String,String&gt; rsFromTrn = new java.util.HashMap&lt;String,String&gt;();
+rsFromTrn = getTranslationValues( trnName, new Object[]{1});
+return (new Object[]{rsFromTrn.get("value_one"), rsFromTrn.get("value_two")});</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="input" id="fi.TrnFunctions.fnGetValFromTrn.0" index="0" dataType="String" />
+  </InputParams>
+  <OutputParams>
+    <Output name="inputValue" id="fo.TrnFunctions.fnGetValFromTrn.0" index="0" dataType="String" />
+    <Output name="first" id="fo.TrnFunctions.fnGetValFromTrn.1" index="1" dataType="String" />
+    <Output name="last" id="fo.TrnFunctions.fnGetValFromTrn.2" index="2" dataType="String" />
+  </OutputParams>
+</KFunction>

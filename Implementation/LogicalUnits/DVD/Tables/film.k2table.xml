@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>film</Name>
+  <ID>tbl_film</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="film_id" id="tblCol_e066abcdaf014d1e8474b07a58dbb070" index="0" datatype="Integer" mandatory="true" />
+    <Column name="title" id="tblCol_0c1c74a236784ef595807f6f22cefea0" index="1" datatype="Text" mandatory="true" />
+    <Column name="description" id="tblCol_dc815ef8d91e4dde976a3ad9dfd6dc10" index="2" datatype="Text" />
+    <Column name="release_year" id="tblCol_92e28289360c404282e5ee879cba3843" index="3" datatype="Integer" />
+    <Column name="language_id" id="tblCol_ede34166a5a54a3e82e868dbffe9651b" index="4" datatype="Integer" mandatory="true" />
+    <Column name="rental_duration" id="tblCol_a23769ccbe58412e981d252fcca26624" index="5" datatype="Integer" mandatory="true" />
+    <Column name="rental_rate" id="tblCol_db741d5ed5bc42508f525a296cce4398" index="6" datatype="Real" mandatory="true" />
+    <Column name="length" id="tblCol_276a65f3b1434a56b7fef68445105b5a" index="7" datatype="Integer" />
+    <Column name="replacement_cost" id="tblCol_d247a10db97b4c5eb71e75c545b529f7" index="8" datatype="Real" mandatory="true" />
+    <Column name="rating" id="tblCol_1ecaac19efa641358e265adc3dc9e1d6" index="9" datatype="Text" />
+    <Column name="last_update" id="tblCol_7ac52ab74c504a1a87cebf6594de401d" index="10" datatype="Text" mandatory="true" />
+    <Column name="special_features" id="tblCol_e19220ee15674552ba3537eced85f2b0" index="11" datatype="Text" />
+    <Column name="fulltext" id="tblCol_e6e451ed47f44fd293233e53224a5814" index="12" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_e066abcdaf014d1e8474b07a58dbb070" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

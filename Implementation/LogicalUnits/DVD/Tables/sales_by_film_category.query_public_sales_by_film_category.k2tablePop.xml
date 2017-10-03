@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_sales_by_film_category</ID>
+  <PopulationObjectName>query_public_sales_by_film_category</PopulationObjectName>
+  <TableName>sales_by_film_category</TableName>
+  <RootItemID>query_query_public_sales_by_film_category</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="category" id="queryCol_0" dataType="Text" index="0" />
+    <Arg name="total_sales" id="queryCol_1" dataType="Real" index="1" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_sales_by_film_category" name="query_public_sales_by_film_category" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="category" dataType="Text" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="total_sales" dataType="Real" index="1" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.sales_by_film_category]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="8" fromNodeOrder="0" fromItemID="query_query_public_sales_by_film_category" fromColID="queryCol_0" toItemID="tbl_sales_by_film_category" toColID="tblCol_f4b5ce251d2543e98f02dd81fa453026" />
+    <Link partId="9" fromNodeOrder="0" fromItemID="query_query_public_sales_by_film_category" fromColID="queryCol_1" toItemID="tbl_sales_by_film_category" toColID="tblCol_45cf606658be45f3b052ecea09334335" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

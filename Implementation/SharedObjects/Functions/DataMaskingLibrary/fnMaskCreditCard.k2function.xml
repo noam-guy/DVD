@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskCreditCard</Name>
+  <ID>DataMaskingLibrary.fnMaskCreditCard</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will generate a valid masked Credit Card number based on the type of the card.
+Currently the following card types are supported: 
+   * Visa
+   * MasterCard
+   * American Express (Amex)
+   * Discover
+   * Diners
+   * Jcb
+   * enRoute
+   * Voyager
+   * Solo
+   * Maestro
+   * Switch
+The function will first check if that specific credit card was already masked previously and will return the masked value if it was.
+Otherwise it will generate a new masked valid credit card and will return it.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>//get connection from Redis DB
+redis.clients.jedis.Jedis jds = null;
+try{
+	jds = getJedisConnection(SHARED_MEMORY_HOST_NAME,SHARED_MEMORY_HOST_PORT,SHARED_MEMORY_EXPIRATION);
+	if(jds != null){
+		//remove all the non-numeric characters
+		String modifiedCreditCardNumber = iCreditCardNumber.replaceAll("[^\\d]", "");
+		boolean notUsedCC = true;
+		int counter = 0;
+		String creditCardHashCode = Integer.toString(modifiedCreditCardNumber.hashCode());
+		int maxNumOfIter = Integer.parseInt(MAX_NUM_OF_ITERATION);
+		while(notUsedCC &amp;&amp; counter&lt;=maxNumOfIter){
+			counter++;
+			String existingCC = null;
+			existingCC = jds.get("existingCC["+creditCardHashCode+"]");
+			
+			// Checks if a new Credit Card was already generated before for this iCreditCardNumber.
+			if(existingCC != null){
+				//if  yes, return the existing CC
+				return  existingCC;
+			}else{// Else - A Credit Card was not generated for the iCreditCardNumber before.
+				// ############### Setup ############### //
+			
+				// Create the Array that will hold all the Credit Card's valid Prefixes.
+				//  Each credit card has its own dedicated prefix numbers.
+				Map&lt;String, String[]&gt; ccArray = new HashMap&lt;String, String[]&gt;();
+			
+				// Add the valid American Express (Amex) Prefixes:
+				ccArray.put("AMEX_Length", new String[]{"15"});
+				ccArray.put("AMEX_Prefix", new String[]{"34","37"});
+				
+				// Add the valid Diners Prefixes:
+				ccArray.put("DINERS_Length", new String[]{"14","15","16"});
+				ccArray.put("DINERS_Prefix", new String[]{"36","38","54","55","300","301","302","303","304","305","2014","2149"});
+				
+				// Add the valid Discover Prefixes:
+				ccArray.put("DISCOVER_Length", new String[]{"14","16"});
+				ccArray.put("DISCOVER_Prefix", new String[]{"64","65","622","6011"});
+		
+				// Add the valid JCB Prefixes:
+				ccArray.put("JCB_Length", new String[]{"16"});
+				ccArray.put("JCB_Prefix", new String[]{"35"});
+				
+				// Add the valid LaserCard Switch:
+				ccArray.put("LASERCARD_Length", new String[]{"16","18","19"});
+				ccArray.put("LASERCARD_Prefix", new String[]{"6304","6706","6771","6709"});
+			
+				// Add the valid Maestro Prefixes:
+				ccArray.put("MAESTRO_Length", new String[]{"12","13","14","15","16","18","19"});
+				ccArray.put("MAESTRO_Prefix", new String[]{"5018","5020","5038","6304","6759","6761","6762","6763"});
+				
+				// Add the valid MasterCard Prefixes:
+				ccArray.put("MASTERCARD_Length", new String[]{"16"});
+				ccArray.put("MASTERCARD_Prefix", new String[]{"51","52","53","54","55"});
+				
+				// Add the valid Solo Prefixes:
+				ccArray.put("SOLO_Length", new String[]{"16","18","19"});
+				ccArray.put("SOLO_Prefix", new String[]{"6334","6767"});
+			
+				// Add the valid Switch Switch:
+				ccArray.put("SWITCH_Length", new String[]{"16","17","18","19"});
+				ccArray.put("SWITCH_Prefix", new String[]{"4903","4905","4911","4936","564182","633110","6333","6759"});
+				
+				// Add the valid Visa Prefixes:
+				ccArray.put("VISA_Length", new String[]{"16"});
+				ccArray.put("VISA_Prefix", new String[]{"4","4485","4508","4532","4539","4556","4716","4844","4913","4916","4917","4929","417500","40240071"});
+					
+				// ############### Calculate a Random Valid Credit Card Number ############### //
+				
+				// Transform the Credit Card Type into an UpperCase text.
+				String iCreditCardTypeUpper = iCreditCardType.toUpperCase();
+			
+				// Select a new random valid length per the Credit Card Type.
+				//  Create a random position.
+				int randomLengthPosition = fnGetRandomNumber(0,(ccArray.get(iCreditCardTypeUpper+"_Length")).length-1);
+				//  Extract the a valid length.
+				String newCreditCardLength = (ccArray.get(iCreditCardTypeUpper+"_Length"))[randomLengthPosition];
+				
+				// Select a random prefix poition for the new Credit Card.
+				int randomPrefixPosition = fnGetRandomNumber(0, ccArray.get(iCreditCardTypeUpper+"_Prefix").length-1);
+				// Extract the new prefix to be used by the masked value.
+				String newCreditCardPrefix = (ccArray.get(iCreditCardTypeUpper+"_Prefix"))[randomPrefixPosition];
+				
+				// Generate the new masked Credit Card.
+				String oMaskedCreditCard = fnGenerateRandomValidCreditCard(newCreditCardLength,newCreditCardPrefix);
+			
+				int success = jds.setnx("maskedCC["+oMaskedCreditCard+"]",creditCardHashCode).intValue();
+				// Checks if the new masked Credit Card is already used by another existing Credit Card.
+				if(success == 1){
+					// Try to allocate it
+					success = jds.setnx("existingCC["+creditCardHashCode+"]",oMaskedCreditCard).intValue(); 
+					if(success == 1){
+						// If the allocation was succesfull, set notUsedCC to false to exist the loop.
+						notUsedCC = false;	
+						// Return the masked credit card.
+						return oMaskedCreditCard;
+					}	
+				}
+			}
+		}
+	}
+}catch(Exception e){
+	throw new Exception("Could not mask Credit Card.",e.getCause());
+}finally{
+	closeJedisConnection(jds);
+}
+return null;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iCreditCardType" id="fi.DataMaskingLibrary.fnMaskCreditCard.0" index="0" dataType="String">
+      <Comment>The Credit Card Type (Visa,MasterCard,Amex,Discover,Diners,Jcb,enRoute,Voyager, etc...)</Comment>
+    </Input>
+    <Input name="iCreditCardNumber" id="fi.DataMaskingLibrary.fnMaskCreditCard.1" index="1" dataType="String">
+      <Comment>The Credit Card Number</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedCreditCard" id="fo.DataMaskingLibrary.fnMaskCreditCard.0" index="0" dataType="String">
+      <Comment>The masked Credit Card.</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

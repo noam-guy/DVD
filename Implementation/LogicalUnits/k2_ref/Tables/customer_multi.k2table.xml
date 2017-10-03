@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>customer_multi</Name>
+  <ID>tbl_customer_multi</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="customer_id" id="tblCol_f6e5dce2e44e41f0a63c09c41f66e7de" index="0" datatype="Text" />
+    <Column name="store_id" id="tblCol_10395191a547402b82838bea638f1c02" index="1" datatype="Text" />
+    <Column name="first_name" id="tblCol_dce4c59a98354fba88e044aba7c21291" index="2" datatype="Text" />
+    <Column name="last_name" id="tblCol_d526b44bbced4671a566744edeea829a" index="3" datatype="Text" />
+    <Column name="email" id="tblCol_14bb62ce1da24b73a74abf88c88547e9" index="4" datatype="Text" />
+    <Column name="address_id" id="tblCol_159d4eaf416e41d1b052d972c88426ea" index="5" datatype="Text" />
+    <Column name="activebool" id="tblCol_a5e1e3f7ebe44e70a82d5ce0af949874" index="6" datatype="Text" />
+    <Column name="create_date" id="tblCol_bc4030e3e5464c5ca6072e3e92f68684" index="7" datatype="Text" />
+    <Column name="last_update" id="tblCol_2284854200c843cba7593b0fc5649a77" index="8" datatype="Text" />
+    <Column name="active" id="tblCol_1e0b1de81c60445e93984fadf9881065" index="9" datatype="Text" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+</TableObject>

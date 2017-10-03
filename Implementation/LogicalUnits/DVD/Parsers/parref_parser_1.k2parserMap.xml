@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>parref_parser_1</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_225</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>ref_parser_1</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_225" name="fnCallParserThread" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnCallParserThread.k2function.xml">
+          <InputsList>
+            <Input id="fi_225.0" name="numOfThreads" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_225.0" name="dummy" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_ref_parser_1" name="ref_parser_1" nodeOrder="1" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="parref_parser_1">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_475e60fdba3d4044b6bf99f82301d2a5" name="dummy" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn>rtCol_475e60fdba3d4044b6bf99f82301d2a5</RecordTypeKeyColumn>
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_475e60fdba3d4044b6bf99f82301d2a5" name="dummy" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="228" fromNodeOrder="0" fromItemID="f_225" fromColID="fo_225.0" toItemID="rt_ref_parser_1" toColID="rtCol_475e60fdba3d4044b6bf99f82301d2a5" />
+      </LinksList>
+      <ParserMapRecordType id="rt_ref_parser_1" name="ref_parser_1" parentParser="parref_parser_1">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn>rtCol_475e60fdba3d4044b6bf99f82301d2a5</RecordTypeKeyColumn>
+        <Columns>
+          <Column id="rtCol_475e60fdba3d4044b6bf99f82301d2a5" name="dummy" index="0">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_475e60fdba3d4044b6bf99f82301d2a5" name="dummy" pkType="Partition_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+  <ExecutionScope>All_Nodes</ExecutionScope>
+</ParserMap>

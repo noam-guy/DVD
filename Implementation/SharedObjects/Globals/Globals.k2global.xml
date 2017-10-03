@@ -1,5 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <MajorGlobal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>Globals</Name>
-  <ItemsList />
+  <ItemsList>
+    <MajorGlobalItem category="MASKING" type="Constant" name="MASK_FLAG">
+      <Value>1</Value>
+      <Comment>THIS IS A GLOBAL FLAG THAT IS USED TO DETERMINE IF TO PERFORM MASKING OR NOT. IF SET TO 0 MASKING WILL NOT BE DONE, OTHERWISE MASKING WILL BE PERFORMED.</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="SHARED MEMORY" type="Constant" name="SHARED_MEMORY_HOST_NAME">
+      <Value>localhost</Value>
+      <Comment>The host name/ip where the shared memory service (memchace) runs.</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="SHARED MEMORY" type="Constant" name="SHARED_MEMORY_HOST_PORT">
+      <Value>6379</Value>
+      <Comment>The port of the shared memory service (memchace).</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="SHARED MEMORY" type="Constant" name="SHARED_MEMORY_COMPRESSED_FLAG">
+      <Value>0</Value>
+      <Comment>Boolean indicator used to determine if to compress the value stored in the shared memroy</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="SHARED MEMORY" type="Constant" name="SHARED_MEMORY_EXPIRATION">
+      <Value>86400</Value>
+      <Comment>The expiration time of values in the shared memory.</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="REPLACE_APOSTROPHE_FLAG">
+      <Value>1</Value>
+      <Comment>Determines if to convert a single apostrophe to double apostrophe.</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="MAX_NUM_OF_ITERATION">
+      <Value>10000</Value>
+      <Comment>This global is defined  in  order  to  prevent  infinite  loops for SSN masking,  EIN masking...</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="DB_INTERFACE_NAME">
+      <Value>ludb</Value>
+      <Comment>The interface of the DB on which DBExecute, DBQuery ... will run</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="FLAG_ENABLED">
+      <Value>1</Value>
+      <Comment>Indicates if flag is enabled</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="TRN_ACTIVE_COLUMN_HEADER">
+      <Value>ACTIVE</Value>
+      <Comment>Active Column Header</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="TRN_PARAMETERS_COLUMN_HEADER">
+      <Value>PARAMETERS</Value>
+      <Comment>Translation data Parameteres header</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="TRN_ENCRYPTION_COLUMN_HEADER">
+      <Value>ENCRYPTION</Value>
+      <Comment>Translation data Encryption header</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="TRN_FIELD_NAME_COLUMN_HEADER">
+      <Value>FIELD_NAME</Value>
+      <Comment>Translation data FIELD_NAME header</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="TRN_TABLE_NAME_COLUMN_HEADER">
+      <Value>TABLE_NAME</Value>
+      <Comment>Translation data TABLE_NAME header</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="NUMBER_REGEX">
+      <Value>\\d+</Value>
+      <Comment>regular expression for a number</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="TRN_MASKING">
+      <Value>trnMasking</Value>
+      <Comment>The translation data masking</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="SHARED_TRN_MASKING">
+      <Value>strnMasking</Value>
+      <Comment>The shared translation data masking</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="DATE_FORMAT">
+      <Value>yyyy-MM-dd</Value>
+      <Comment>Date format</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="MASKING" type="Constant" name="RANDOM_ENCRYPTION">
+      <Value>RANDOM</Value>
+      <Comment>random encryption indication</Comment>
+    </MajorGlobalItem>
+    <MajorGlobalItem category="SHARED MEMORY" type="Constant" name="SHARED_MEMORY_FLUSH_ALL">
+      <Value>0</Value>
+      <Comment>Decides if to flush al shared memory objects prior to running the masking</Comment>
+    </MajorGlobalItem>
+  </ItemsList>
 </MajorGlobal>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>wsGetCustomerInfo</Name>
+  <ID>WsCustomerInfo.wsGetCustomerInfo</ID>
+  <Category>WsCustomerInfo</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>WebService</FunctionType>
+  <FunctionType2>WebService</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>log.info("Ws wsGetCustomerInfo is running");
+DBExecute("fabric","get DVD."+ customerId, null);
+Object [] param = new Object[]{customerId};
+String sql = "SELECT * FROM STORE";
+ResultSetWrapper rs = DBQuery("fabric",sql,null);
+Map &lt;String, Object&gt; retrunMap = new LinkedHashMap&lt;String,Object&gt;();
+retrunMap.put("Store",rs.getResults());
+return retrunMap;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="customerId" id="fi.WsCustomerInfo.wsGetCustomerInfo.0" index="0" dataType="Integer">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="res" id="fo.WsCustomerInfo.wsGetCustomerInfo.0" index="0" dataType="Map&lt;String,Object&gt;">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

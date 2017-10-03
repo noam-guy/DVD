@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2s_MaskTable</Name>
+  <ID>CoreDataMasking.k2s_MaskTable</ID>
+  <Category>CoreDataMasking</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask (obfuscate) the iTable fields based on an encryption taken from the trnMasking translation..
+The function will preapre SQL Update statement(s) to update the iTable.
+It will check the ENCRYPTION field in the translation, if it's a number value, the function will use that number to encrypt the field by calling the fnMaskNumber function.
+If the value is a function name, this function will call that function on the field and it will be that function's job to mask it.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>
+final String MASKING_EXE_ENABLED = "1";
+final String SQL_UPDATE = "UPDATE ";
+final String SQL_UPDATE_SET = " SET ";
+final String ASSIGN_OPERATOR = "=";
+final String COMMA = ",";
+
+
+if (MASK_FLAG.equals(FLAG_ENABLED)){
+
+	Map&lt;String, Map&lt;String,String&gt;&gt; maskingMap = new HashMap&lt;String, Map&lt;String,String&gt;&gt;();
+	Map&lt;String, Map&lt;String,String&gt;&gt; activeMaskingMap = new HashMap&lt;String, Map&lt;String,String&gt;&gt;();
+	// Read the encryption information for iTableName from the strnMasking translation.
+	Map&lt;String,Map&lt;String,String&gt;&gt; data = getTranslationsData(SHARED_TRN_MASKING);
+	for(String index: data.keySet()){
+		Map&lt;String, String&gt; valMap = data.get(index);
+		if(valMap.get(TRN_TABLE_NAME_COLUMN_HEADER).equals(iTableName)){
+			maskingMap.put(index, valMap);
+		}
+	}
+	
+	String fieldName = null;
+	String encryption = null;
+	String parameters = null;
+	String active = null;
+	// In case the strnMasking translation holds entries for iTableName.
+	if(maskingMap.keySet().size()!=0){
+		// Used to determine if to create a single UPDATE statement in case no values are provided 
+		// in the PARAMETERS field or all values in the PARAMETERS fields match the values in FIELD_NAME.
+		boolean singleUpdate = true;
+		// Checks if all entries for the $iTableName table in the trnMasking translation are inactive.
+		boolean activeTranslations = false;
+		Map&lt;String,String&gt; maskingValues = null;
+		
+		int counter = 0;
+		// Checks if any of the translation entries for $iTableName have any values in the PARAMETERS field
+		// that do not match the value in FIELD_NAME.
+		for(String key :maskingMap.keySet()){
+			maskingValues = maskingMap.get(key);
+			
+			fieldName  = maskingValues.get(TRN_FIELD_NAME_COLUMN_HEADER); // The field name from the trnMasking translation.
+			encryption = maskingValues.get(TRN_ENCRYPTION_COLUMN_HEADER);  // The encryption value from the trnMasking translation.
+			parameters = maskingValues.get(TRN_PARAMETERS_COLUMN_HEADER); // The parameters from the trnMasking translation.
+			active     = maskingValues.get(TRN_ACTIVE_COLUMN_HEADER); // The active field from the trnMasking translation.
+			
+			// Checks if translation entry is active.
+			if(active.equalsIgnoreCase("true")){
+				// Announce at least one entry is active. 
+				activeTranslations = true;
+				
+				// Prepare an active translation array.
+				activeMaskingMap.put(Integer.toString(counter), maskingValues);
+				
+			}
+			
+			// Checks if to build a single UPDATE statement or multiple ones.
+			if(!encryption.matches(NUMBER_REGEX) &amp;&amp; 	// Checks that the encryption entry is a non-numeric value (representing a function).
+			   active.equalsIgnoreCase("true") &amp;&amp; 		// Checks that the current translation entry is active.
+			   parameters != null &amp;&amp; 	  // Checks that the parameters entry is not null.
+			   (!fieldName.equals(parameters))){   // Checks that the fieldName field doesn't match the parameters field.
+				// Mark for multiple updates.
+				singleUpdate = false;
+			}
+			counter++;
+		}
+		counter = 0;
+		
+		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+		
+		if(activeTranslations){
+			StringBuilder sqlQueryBuilder = new StringBuilder();
+			// Prepare a single update statement in case there are no
+			if(singleUpdate){
+				// Prepare the "header" for the single UPDATE statement.
+				
+				sqlQueryBuilder.append(SQL_UPDATE);
+				sqlQueryBuilder.append(iTableName);
+				sqlQueryBuilder.append(SQL_UPDATE_SET);
+			
+				sqlQueryBuilder.append(" ");
+				
+				// Loop through the $activeMaskingArray array to prepare the UPDATE statement.
+				for(String key :activeMaskingMap.keySet()){
+					maskingValues = activeMaskingMap.get(key);
+					fieldName  = maskingValues.get(TRN_FIELD_NAME_COLUMN_HEADER); // The field name from the trnMasking translation.
+					encryption = maskingValues.get(TRN_ENCRYPTION_COLUMN_HEADER); // The encryption value from the trnMasking translation.
+					
+					// Add the SET for the specific fieldName to the UPDATE statement.
+					// Checks if the encryption is numeric, if yes, use the k2s_MaskField function to make the field.
+					if(encryption.matches(NUMBER_REGEX)){
+						sqlQueryBuilder.append(fieldName);
+						sqlQueryBuilder.append(" = k2s_MaskField(");
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(fieldName);
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(COMMA);						
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(encryption);
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(")");
+						sqlQueryBuilder.append(COMMA);
+					// if encryption is not a numeric field, use the function in the encryption field to mask the field.
+					} else {
+						sqlQueryBuilder.append(fieldName); 
+						sqlQueryBuilder.append(ASSIGN_OPERATOR);
+						sqlQueryBuilder.append(encryption);
+						sqlQueryBuilder.append("(");
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(fieldName);
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(")");
+						sqlQueryBuilder.append(COMMA);
+					}
+				}
+				
+				String sqlUpdate = sqlQueryBuilder.toString();
+				// Update the sqlUpdate removing the last , from the statement.
+				sqlUpdate = sqlUpdate.substring(0, sqlUpdate.length()-1);
+				// Execute the UDPATE statement on the ludb.
+				DBExecute(DB_INTERFACE_NAME, sqlUpdate, null);
+			}else{//Multi
+				List&lt;String&gt; updateStatementList = new ArrayList&lt;String&gt;();
+				// For each field in the translation for $iTableName prepare an UPDATE statement.
+				for(String key :activeMaskingMap.keySet()){
+					sqlQueryBuilder.setLength(0);
+					maskingValues = activeMaskingMap.get(key);
+					fieldName  = maskingValues.get(TRN_FIELD_NAME_COLUMN_HEADER); // The field name from the trnMasking translation.
+					encryption = maskingValues.get(TRN_ENCRYPTION_COLUMN_HEADER); // The encryption value from the trnMasking translation.
+					parameters = maskingValues.get(TRN_PARAMETERS_COLUMN_HEADER); // The parameters from the trnMasking translation.
+					
+					// Checks if the encryption is numeric, if yes, use the k2s_MaskField function to make the field.
+					if(encryption.matches(NUMBER_REGEX)){
+						sqlQueryBuilder.append(SQL_UPDATE);
+						sqlQueryBuilder.append(iTableName);
+						sqlQueryBuilder.append(SQL_UPDATE_SET);
+						sqlQueryBuilder.append(" ");
+						sqlQueryBuilder.append(fieldName);
+						sqlQueryBuilder.append(" = k2s_MaskField(");
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(fieldName);
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(COMMA);						
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(encryption);
+						sqlQueryBuilder.append('"');
+						sqlQueryBuilder.append(");");
+						
+						updateStatementList.add(sqlQueryBuilder.toString());			
+					// if encryption is not a numeric field, use the function in the encryption field to mask the field.
+					} else {
+						sqlQueryBuilder.append(SQL_UPDATE);
+						sqlQueryBuilder.append(iTableName);
+						sqlQueryBuilder.append(SQL_UPDATE_SET);
+						
+						sqlQueryBuilder.append(" ");
+						sqlQueryBuilder.append(fieldName);
+						sqlQueryBuilder.append(ASSIGN_OPERATOR);
+						sqlQueryBuilder.append(encryption);
+						sqlQueryBuilder.append("(");
+						sqlQueryBuilder.append(parameters);
+						sqlQueryBuilder.append(");");
+						
+						updateStatementList.add(sqlQueryBuilder.toString());			
+					}
+				}
+	
+				// Execute all UPDATE statements
+				for(String updateStatement: updateStatementList){
+					DBExecute(DB_INTERFACE_NAME, updateStatement, null);
+				}	
+			}	
+		}
+	}
+}
+
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iTableName" id="fi.CoreDataMasking.k2s_MaskTable.0" index="0" dataType="String">
+      <Comment>The table to mask</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams />
+</KFunction>

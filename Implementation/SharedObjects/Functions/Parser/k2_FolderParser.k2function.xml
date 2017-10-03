@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>k2_FolderParser</Name>
+  <ID>Parser.k2_FolderParser</ID>
+  <Category>Parser</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>A template function to be used as a root function for parser map.
+The function scans a folder for delimited files based on a file name pattern, parses the files and generates a stream of records.
+</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>// Check if function is running in debug mode
+boolean inDebug = inDebugMode();
+// If yes, look at the "Debug" folder
+if (inDebug){
+	folderPath = folderPathDebug;
+}
+
+// If no header or footer skip values provided, set them to 0
+if(skipHeaderRows == null || skipHeaderRows &lt; 0) skipHeaderRows = 0;
+if(skipFooterRows == null || skipFooterRows &lt; 0) skipFooterRows = 0;
+
+// Look at the location/folder and search for the file
+// based on the file regex name
+FolderReader reader = new FolderReader(folderPath, regexFilter);
+InputStreamReader stream = null;
+
+// Ready the next file
+while ((stream = reader.getNextStream()) != null) {	
+	// Prepare an array to hold the next X rows to allow to handle the "skip footer" functionality
+	// The Algorithem will create an array in a footer skip size and use it to hold
+	// the last X rows, at each point, the function will return the (row number - X) row.
+	
+	// Define the size of the array
+	int footerArraySize = skipFooterRows + 1;
+
+	// Define the array
+	@SuppressWarnings("unchecked") 
+	Map&lt;String, Object&gt;[] mapArray = new HashMap[footerArraySize];
+	
+	// Parser the file
+	com.k2view.cdbms.shared.StreamParser parser = com.k2view.cdbms.shared.StreamParser.getInstance(stream, enclosingChar.charAt(0), fieldDelimiter.charAt(0), recordDelimiter);
+	
+	// Set a counter to indicate the row number we're working at.
+	int rowCounter = 0;
+	do{
+		// Get the next row from the file
+		Map&lt;String, Object&gt; map = parser.lineFramer(null);
+		
+		// Check if you reached EOF
+		if(map == null) { break; } else {; }
+		
+		// Increase the row number count
+		rowCounter++;
+		
+		// Check if to skip row becuase of the header skip parameter
+		if(rowCounter &lt;= skipHeaderRows) continue;
+		
+		int insertArray = (rowCounter - skipHeaderRows - 1)%(footerArraySize);
+		
+		// Insert row into array
+		mapArray[insertArray] = map;
+		
+		// if row count is smaller than footer skip continue until you have
+		// enough values to make sure the current line should not be skipped.
+		if(rowCounter &lt;= skipFooterRows + skipHeaderRows) continue;
+		
+		// Calcuate which row should be returned from the array
+		int extractValue = (insertArray+1)%footerArraySize;
+		
+		// Return the row
+		Object[] row = {mapArray[extractValue]};
+		
+		yield(row);
+		
+	} while (true);
+	
+	// Drop stream only in running mode
+	if(!inDebug) { // Running mode
+		reader.dropStream(stream);
+	}
+}</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="folderPath" id="fi.Parser.k2_FolderParser.0" index="0" dataType="String">
+      <Comment>the folder to scan for files</Comment>
+    </Input>
+    <Input name="folderPathDebug" id="fi.Parser.k2_FolderParser.1" index="1" dataType="String">
+      <Comment>the folder to scan for files in debug mode</Comment>
+    </Input>
+    <Input name="regexFilter" id="fi.Parser.k2_FolderParser.2" index="2" dataType="String">
+      <Comment>a Java regualr expression of file names to be parsed</Comment>
+    </Input>
+    <Input name="recordDelimiter" id="fi.Parser.k2_FolderParser.3" index="3" dataType="String">
+      <Comment>a character to be used as a separator between records</Comment>
+    </Input>
+    <Input name="fieldDelimiter" id="fi.Parser.k2_FolderParser.4" index="4" dataType="String">
+      <Comment>a character to be used as a separator between fields</Comment>
+    </Input>
+    <Input name="enclosingChar" id="fi.Parser.k2_FolderParser.5" index="5" dataType="String">
+      <Comment>a character to be used to enclose fields</Comment>
+    </Input>
+    <Input name="skipHeaderRows" id="fi.Parser.k2_FolderParser.6" index="6" dataType="Integer">
+      <Comment />
+    </Input>
+    <Input name="skipFooterRows" id="fi.Parser.k2_FolderParser.7" index="7" dataType="Integer">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="result" id="fo.Parser.k2_FolderParser.0" index="0" dataType="Map&lt;String,Object&gt;">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

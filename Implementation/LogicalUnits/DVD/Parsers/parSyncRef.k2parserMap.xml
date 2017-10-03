@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>parSyncRef</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_189</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>dummy</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item id="f_189" name="fnRootForsyncRef" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnRootForsyncRef.k2function.xml">
+          <InputsList>
+            <Input id="fi_189.0" name="numOfThreads" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_189.0" name="ref_table_name" />
+            <Output id="fo_189.1" name="start_time" />
+            <Output id="fo_189.2" name="end_time" />
+            <Output id="fo_189.3" name="status" />
+            <Output id="fo_189.4" name="ref_load_time" />
+            <Output id="fo_189.5" name="error_msg" />
+            <Output id="fo_189.6" name="num_of_rows_loaded" />
+            <Output id="fo_189.7" name="thread_name" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_dummy" name="dummy" nodeOrder="1" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="parSyncRef">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_ba2059948c3144ea887885d7534e3bfa" name="ref_table_name" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_584f1b9c5c394465b08445c75ec1984c" name="start_time" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_cda7b4acbfe947c193ed36030ce1a733" name="end_time" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_fe39039ef01741af86c24575b2c3c9fe" name="status" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_7022eb7c83fd42af9b6d5ead69d28851" name="ref_load_time" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_772cfcb05cd546b6b74e76174df8f75e" name="error_msg" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_13a794051faa4e36afecbab68c7df511" name="num_of_rows_loaded" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_475e60fdba3d4044b6bf99f82301d2a5" name="thread_name" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn>rtCol_ba2059948c3144ea887885d7534e3bfa</RecordTypeKeyColumn>
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_ba2059948c3144ea887885d7534e3bfa" name="ref_table_name" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="199" fromNodeOrder="0" fromItemID="f_189" fromColID="fo_189.0" toItemID="rt_dummy" toColID="rtCol_ba2059948c3144ea887885d7534e3bfa" />
+        <Link partId="200" fromNodeOrder="0" fromItemID="f_189" fromColID="fo_189.1" toItemID="rt_dummy" toColID="rtCol_584f1b9c5c394465b08445c75ec1984c" />
+        <Link partId="201" fromNodeOrder="0" fromItemID="f_189" fromColID="fo_189.2" toItemID="rt_dummy" toColID="rtCol_cda7b4acbfe947c193ed36030ce1a733" />
+        <Link partId="202" fromNodeOrder="0" fromItemID="f_189" fromColID="fo_189.3" toItemID="rt_dummy" toColID="rtCol_fe39039ef01741af86c24575b2c3c9fe" />
+        <Link partId="203" fromNodeOrder="0" fromItemID="f_189" fromColID="fo_189.4" toItemID="rt_dummy" toColID="rtCol_7022eb7c83fd42af9b6d5ead69d28851" />
+        <Link partId="204" fromNodeOrder="0" fromItemID="f_189" fromColID="fo_189.5" toItemID="rt_dummy" toColID="rtCol_772cfcb05cd546b6b74e76174df8f75e" />
+        <Link partId="205" fromNodeOrder="0" fromItemID="f_189" fromColID="fo_189.6" toItemID="rt_dummy" toColID="rtCol_13a794051faa4e36afecbab68c7df511" />
+        <Link partId="206" fromNodeOrder="0" fromItemID="f_189" fromColID="fo_189.7" toItemID="rt_dummy" toColID="rtCol_475e60fdba3d4044b6bf99f82301d2a5" />
+      </LinksList>
+      <ParserMapRecordType id="rt_dummy" name="dummy" parentParser="parSyncRef">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn>rtCol_ba2059948c3144ea887885d7534e3bfa</RecordTypeKeyColumn>
+        <Columns>
+          <Column id="rtCol_ba2059948c3144ea887885d7534e3bfa" name="ref_table_name" index="0">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_584f1b9c5c394465b08445c75ec1984c" name="start_time" index="1">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_cda7b4acbfe947c193ed36030ce1a733" name="end_time" index="2">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_fe39039ef01741af86c24575b2c3c9fe" name="status" index="3">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_7022eb7c83fd42af9b6d5ead69d28851" name="ref_load_time" index="4">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_772cfcb05cd546b6b74e76174df8f75e" name="error_msg" index="5">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_13a794051faa4e36afecbab68c7df511" name="num_of_rows_loaded" index="6">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_475e60fdba3d4044b6bf99f82301d2a5" name="thread_name" index="7">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_ba2059948c3144ea887885d7534e3bfa" name="ref_table_name" pkType="Partition_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <Active>true</Active>
+  <ExecutionMode>Manually</ExecutionMode>
+  <syncEvery>00:00:00</syncEvery>
+  <ExecutionScope>All_Nodes</ExecutionScope>
+</ParserMap>

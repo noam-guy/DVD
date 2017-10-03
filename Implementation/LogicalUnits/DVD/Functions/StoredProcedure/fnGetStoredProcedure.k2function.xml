@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.3.0.10">
+  <Name>fnGetStoredProcedure</Name>
+  <ID>StoredProcedure.fnGetStoredProcedure</ID>
+  <Category>StoredProcedure</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>/*String sql = "{call getFilmOoo(?,?)}";
+Connection oraConn = getConnection("dbOracle");
+CallableStatement callStmt = oraConn.prepareCall(sql);
+
+callStmt.setInt(1, Film_Id);
+callStmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR);
+
+Boolean bl = callStmt.execute();
+
+ResultSet rs = (ResultSet) callStmt.getObject(2);
+
+Object[] row = null;
+while(rs.next()){
+	row = new Object[3];
+	row[0] = rs.getString(1);
+	row[1] = rs.getString(2);
+	yield(row);
+}
+callStmt.close();
+*/
+yield(null);</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="Film_Id" id="fi.StoredProcedure.fnGetStoredProcedure.0" index="0" dataType="Integer" />
+  </InputParams>
+  <OutputParams>
+    <Output name="Film_Id" id="fo.StoredProcedure.fnGetStoredProcedure.0" index="0" dataType="Integer" />
+    <Output name="ooo_date" id="fo.StoredProcedure.fnGetStoredProcedure.1" index="1" dataType="String" />
+  </OutputParams>
+</KFunction>

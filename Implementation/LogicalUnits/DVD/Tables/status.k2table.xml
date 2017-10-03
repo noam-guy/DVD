@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>status</Name>
+  <ID>tbl_status</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="entity_id" id="tblCol_441d26ba5056439e9dfe78496343f4c5" index="0" datatype="Text" />
+    <Column name="status" id="tblCol_165eeeb307b844f8b9f40ec32e3bfe61" index="1" datatype="Text" />
+    <Column name="last_updated" id="tblCol_bd13e790ca3b4fbdb511460a54d8520b" index="2" datatype="Text" />
+    <Column name="status_comment" id="tblCol_8cecd2c6d3d24b86a8aef7cb12a83a82" index="3" datatype="Text" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+</TableObject>

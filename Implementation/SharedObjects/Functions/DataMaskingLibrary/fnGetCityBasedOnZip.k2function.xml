@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnGetCityBasedOnZip</Name>
+  <ID>DataMaskingLibrary.fnGetCityBasedOnZip</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will return the City name based on the input Zip Code.
+The function will translate the City name using the refZipCodes Global Container</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>
+// Get the City name from the hcZipCodes Global Container.
+return (String)DBSelectValue(DB_INTERFACE_NAME, "SELECT primary_city FROM refZipCodes WHERE zip="+'"'+iZip+'"', null);
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iZip" id="fi.DataMaskingLibrary.fnGetCityBasedOnZip.0" index="0" dataType="String">
+      <Comment>The Zip Code based on which to return the city name</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oCity" id="fo.DataMaskingLibrary.fnGetCityBasedOnZip.0" index="0" dataType="String">
+      <Comment>The City name</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

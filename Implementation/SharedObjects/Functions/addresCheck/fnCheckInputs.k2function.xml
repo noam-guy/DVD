@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.1.0.0">
+  <Name>fnCheckInputs</Name>
+  <ID>addresCheck.fnCheckInputs</ID>
+  <Category>addresCheck</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RegularFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(Address.equalsIgnoreCase(""))return "Addrss";
+if(City.equalsIgnoreCase(""))return "City";
+if(State.equalsIgnoreCase(""))return "State";
+return null;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="Address" id="fi.addresCheck.fnCheckInputs.0" index="0" dataType="String" />
+    <Input name="City" id="fi.addresCheck.fnCheckInputs.1" index="1" dataType="String" />
+    <Input name="State" id="fi.addresCheck.fnCheckInputs.2" index="2" dataType="String" />
+  </InputParams>
+  <OutputParams>
+    <Output name="res" id="fo.addresCheck.fnCheckInputs.0" index="0" dataType="String" />
+  </OutputParams>
+</KFunction>

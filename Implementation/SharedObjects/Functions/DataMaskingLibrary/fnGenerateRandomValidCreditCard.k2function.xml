@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnGenerateRandomValidCreditCard</Name>
+  <ID>DataMaskingLibrary.fnGenerateRandomValidCreditCard</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will generate a valid Credit Card Number based on a given length and prefix information.
+It uses the Modulus 10 algorithm to determine the validity of the number.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>String oValidCreditCardNumber = null;
+// Create a new Credit Card Number.
+// The new card will be built with the following structure:
+// &lt;prefix&gt;&lt;random numbers until the size (including the prefix) is the request length -1&gt;&lt;checksum&gt;
+
+// Generate random numbers to complete the Credit Card to the requested size -1.
+String newCC = iCreditCardPrefix;
+int intCreditCardLength = Integer.parseInt(iCreditCardLength);
+
+// Keep adding more random numbers until you reach the right size.
+while(newCC.length() &lt; intCreditCardLength - 1){
+	// Append a random single number to the existing number.
+	newCC = newCC + Integer.toString(fnGetRandomNumber(0,9));
+}
+
+// Define the parameter that would  hold the sum of the numbers (needed for the Modulus 10 Algorithm).
+int sumCCnumbers = 0;
+
+// Reverse the Credit Card Number so to make it easier to apply the Modulus 10 algorithm.
+String reversedCC =  new StringBuilder(newCC).reverse().toString(); 
+
+// Apply the Mudolus 10 Algorithm.
+//  For information on this algorithm please see: http://en.wikipedia.org/wiki/Luhn_algorithm.
+int oddNumberDouble = 0;
+for(int i = 1 ; i &lt;= reversedCC.length() ; i++){
+	
+	// Check if it's an odd digit.
+	if ( (i &amp; 1) != 0 ){
+		// If Yes, multiply it by 2.
+		oddNumberDouble = java.lang.Character.getNumericValue(reversedCC.charAt(i-1)) * 2;
+		// If the new value is larger than 9, subtract 9 from it.
+		oddNumberDouble = (oddNumberDouble &gt; 9)?oddNumberDouble - 9:oddNumberDouble;
+		// Add the value to the overall Credit Card summation.
+		sumCCnumbers += oddNumberDouble;
+		// If the digit is Even.
+	} else {//Even
+		// Add the value of the even digit to the overall Credit Card summation.
+		sumCCnumbers += java.lang.Character.getNumericValue(reversedCC.charAt(i-1));
+	}
+}
+
+// Calcualte the checksum digit by substracting the units digit from 10.
+int checkSumDigit = 10 - (sumCCnumbers % 10);
+//In case checkSumDigit equals to 10 then change it to 0
+checkSumDigit  = (checkSumDigit==10)?0:checkSumDigit;
+// Append the Checksum Digit to the Credit Card Number to compelte it.
+newCC = newCC + Integer.toString(checkSumDigit);
+oValidCreditCardNumber = newCC;
+
+//Return the new valid Credit Card Number.
+return oValidCreditCardNumber;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iCreditCardLength" id="fi.DataMaskingLibrary.fnGenerateRandomValidCreditCard.0" index="0" dataType="String">
+      <Comment>The Credit Card Length.</Comment>
+    </Input>
+    <Input name="iCreditCardPrefix" id="fi.DataMaskingLibrary.fnGenerateRandomValidCreditCard.1" index="1" dataType="String">
+      <Comment>The Credit Card Prefix.</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oValidCreditCardNumber" id="fo.DataMaskingLibrary.fnGenerateRandomValidCreditCard.0" index="0" dataType="String">
+      <Comment>A Random valid Credit Card Number</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

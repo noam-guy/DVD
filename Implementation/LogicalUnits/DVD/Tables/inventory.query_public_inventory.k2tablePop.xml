@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_inventory</ID>
+  <PopulationObjectName>query_public_inventory</PopulationObjectName>
+  <TableName>inventory</TableName>
+  <RootItemID>query_query_public_inventory</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="inventory_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="film_id" id="queryCol_1" dataType="Integer" index="1" />
+    <Arg name="store_id" id="queryCol_2" dataType="Integer" index="2" />
+    <Arg name="last_update" id="queryCol_3" dataType="Text" index="3" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_inventory" name="query_public_inventory" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="inventory_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="film_id" dataType="Integer" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="store_id" dataType="Integer" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="last_update" dataType="Text" index="3" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.inventory]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_inventory" fromColID="queryCol_0" toItemID="tbl_inventory" toColID="tblCol_e09034dffd10440981379ba96c6d915d" />
+    <Link partId="13" fromNodeOrder="0" fromItemID="query_query_public_inventory" fromColID="queryCol_1" toItemID="tbl_inventory" toColID="tblCol_cc93252cbd2a4cf1be3d4f62d69c7d5e" />
+    <Link partId="14" fromNodeOrder="0" fromItemID="query_query_public_inventory" fromColID="queryCol_2" toItemID="tbl_inventory" toColID="tblCol_b2e795c6d9b64984817a516e829a1478" />
+    <Link partId="15" fromNodeOrder="0" fromItemID="query_query_public_inventory" fromColID="queryCol_3" toItemID="tbl_inventory" toColID="tblCol_04766f2d4f55413abd18773492ac7135" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

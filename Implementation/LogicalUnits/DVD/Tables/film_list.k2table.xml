@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>film_list</Name>
+  <ID>tbl_film_list</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="fid" id="tblCol_828a982409934c5b86f4e6da36388722" index="0" datatype="Integer" />
+    <Column name="title" id="tblCol_e0c67bc028e44b53ba7eb682e327ebbc" index="1" datatype="Text" />
+    <Column name="description" id="tblCol_407780577d5e447a839a57683622cb48" index="2" datatype="Text" />
+    <Column name="category" id="tblCol_7df905ca3e124786a14566426cc7001c" index="3" datatype="Text" />
+    <Column name="price" id="tblCol_0d28cf6e35da48aa80519c6788eff929" index="4" datatype="Real" />
+    <Column name="length" id="tblCol_89e61196e7f6406d8f757d19b0aca5d3" index="5" datatype="Integer" />
+    <Column name="rating" id="tblCol_b075e2ef026f4e61b2344d66ef41ff9b" index="6" datatype="Text" />
+    <Column name="actors" id="tblCol_a0fbcea9cdb448839f6ef5ad38e588d9" index="7" datatype="Text" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+</TableObject>

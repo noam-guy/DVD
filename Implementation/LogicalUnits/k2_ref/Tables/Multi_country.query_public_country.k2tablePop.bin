@@ -1,0 +1,9 @@
+﻿<Graph name="Multi_country.query_public_country.k2tablePop.bin" lastPartID="12">
+  <TableNode partID="0" name="Multi_country" pos="383.000031 5.854168" width="309.324158" />
+  <DBQueryNode partID="6" name="dvdRental" pos="10 0.890625" size="253 96.21875" isRoot="true">
+    <DBQuery>{"Name":"query_public_country","ID":"query_query_public_country","ConnName":"dvdRental","SQL":"SELECT * FROM public.country","ColumnsList":[{"ID":"queryCol_0","Name":"country_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"country","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"last_update","DataType":"Text","Index":2,"IsInputArgument":true}]}</DBQuery>
+  </DBQueryNode>
+  <Link partID="10" from="0" to="1" pointsArr="263 36.9270859 273 36.9270859 313 37 333 37 373.000031 36.890625 383.000031 36.890625" fromNodePartID="6" fromNodeColumnName="country_id" toNodePartID="0" toNodeColumnName="country_id" />
+  <Link partID="11" from="2" to="3" pointsArr="263 49 273 49 313 49 333 49 373.000031 48.9635429 383.000031 48.9635429" fromNodePartID="6" fromNodeColumnName="country" toNodePartID="0" toNodeColumnName="country" />
+  <Link partID="12" from="4" to="5" pointsArr="263 61.0729141 273 61.0729141 313 61 333 61 373.000031 61.0364571 383.000031 61.0364571" fromNodePartID="6" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+</Graph>

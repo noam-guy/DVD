@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>actor</Name>
+  <ID>tbl_actor</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="actor_id" id="tblCol_4f0e6ad4858346c09ef50deb83247296" index="0" datatype="Integer" mandatory="true" />
+    <Column name="first_name" id="tblCol_64434e12ca0a4a0cb60f8ed175d374c2" index="1" datatype="Text" mandatory="true" />
+    <Column name="last_name" id="tblCol_f10b47aa8fe54275b81a3381b491ba50" index="2" datatype="Text" mandatory="true" />
+    <Column name="last_update" id="tblCol_6b7aea03b28844938f7d4e1836f9d14f" index="3" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_4f0e6ad4858346c09ef50deb83247296" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

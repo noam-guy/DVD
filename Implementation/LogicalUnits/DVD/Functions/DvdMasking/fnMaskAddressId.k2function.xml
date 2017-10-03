@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.1.4.0">
+  <Name>fnMaskAddressId</Name>
+  <ID>DvdMasking.fnMaskAddressId</ID>
+  <Category>DvdMasking</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>LudbFunction</FunctionType2>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>return (ADDRESS_ID + inc);</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="ADDRESS_ID" id="fi.DvdMasking.fnMaskAddressId.0" index="0" dataType="Integer" />
+    <Input name="inc" id="fi.DvdMasking.fnMaskAddressId.1" index="1" dataType="Integer" />
+  </InputParams>
+  <OutputParams>
+    <Output name="newId" id="fo.DvdMasking.fnMaskAddressId.0" index="0" dataType="Integer" />
+  </OutputParams>
+</KFunction>

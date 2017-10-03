@@ -1,6 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProjectItemsProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>ItemsProperties</Name>
-  <ProjectItemPropList />
-  <ProjectItemsCategoryList />
+  <ProjectItemPropList>
+    <ProjectItemProp>
+      <NodeName>fnGetValFromTrn</NodeName>
+      <RelativePath>Implementation\LogicalUnits\dvd\Functions\root\fnGetValFromTrn</RelativePath>
+      <CategoryKey>Implementation\LogicalUnits\dvd\Functions\root@TrnFunctions</CategoryKey>
+    </ProjectItemProp>
+    <ProjectItemProp>
+      <NodeName>fnGetValFromTrnAllData</NodeName>
+      <RelativePath>Implementation\LogicalUnits\dvd\Functions\root\fnGetValFromTrnAllData</RelativePath>
+      <CategoryKey>Implementation\LogicalUnits\dvd\Functions\root@TrnFunctions</CategoryKey>
+    </ProjectItemProp>
+  </ProjectItemPropList>
+  <ProjectItemsCategoryList>
+    <ProjectItemsCategory>
+      <Name>TrnFunctions</Name>
+      <Key>Implementation\LogicalUnits\dvd\Functions\root@TrnFunctions</Key>
+    </ProjectItemsCategory>
+  </ProjectItemsCategoryList>
 </ProjectItemsProperties>

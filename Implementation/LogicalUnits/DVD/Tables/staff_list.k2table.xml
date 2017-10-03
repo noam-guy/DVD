@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>staff_list</Name>
+  <ID>tbl_staff_list</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="id" id="tblCol_998eb5f00bab41868e148615fa7be09c" index="0" datatype="Integer" />
+    <Column name="name" id="tblCol_9833dd1e1eff428b9eb9505a9640c5fb" index="1" datatype="Text" />
+    <Column name="address" id="tblCol_cf7156a593c944788cf8024b1cd0431b" index="2" datatype="Text" />
+    <Column name="zip code" id="tblCol_ce4d0795c7864ffe88a9bac3256a5dfb" index="3" datatype="Text" />
+    <Column name="phone" id="tblCol_aed18bbc1a0a4aa3bf9811299f80f4f7" index="4" datatype="Text" />
+    <Column name="city" id="tblCol_114ac226207347a4b06aaec66e3eaabf" index="5" datatype="Text" />
+    <Column name="country" id="tblCol_89aeaff4487949b9a7b13b4335490f2b" index="6" datatype="Text" />
+    <Column name="sid" id="tblCol_8ec0806a0480435388f0cc9872b653e2" index="7" datatype="Integer" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+</TableObject>

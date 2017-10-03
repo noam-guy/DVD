@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_sales_by_store</ID>
+  <PopulationObjectName>query_public_sales_by_store</PopulationObjectName>
+  <TableName>sales_by_store</TableName>
+  <RootItemID>query_query_public_sales_by_store</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="store" id="queryCol_0" dataType="Text" index="0" />
+    <Arg name="manager" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="total_sales" id="queryCol_2" dataType="Real" index="2" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_sales_by_store" name="query_public_sales_by_store" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="store" dataType="Text" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="manager" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="total_sales" dataType="Real" index="2" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.sales_by_store]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="10" fromNodeOrder="0" fromItemID="query_query_public_sales_by_store" fromColID="queryCol_0" toItemID="tbl_sales_by_store" toColID="tblCol_fefe077ec63b47b39cc6bb47a37cb0f7" />
+    <Link partId="11" fromNodeOrder="0" fromItemID="query_query_public_sales_by_store" fromColID="queryCol_1" toItemID="tbl_sales_by_store" toColID="tblCol_b4b27188a6d44a27961e564fd1b0f1f0" />
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_sales_by_store" fromColID="queryCol_2" toItemID="tbl_sales_by_store" toColID="tblCol_bf52672dc7cc42d19d56d1f6345c205c" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

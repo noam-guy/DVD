@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnGetRandomNumber</Name>
+  <ID>DataMaskingLibrary.fnGetRandomNumber</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will return a random value between iMin and iMax.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>//return random number in the range [iMin,iMax]
+return new Random().nextInt(iMax - iMin + 1) + iMin;</FunctionBody>
+  <IsSyntaxValid>false</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iMin" id="fi.DataMaskingLibrary.fnGetRandomNumber.0" index="0" dataType="Integer">
+      <Comment>The lowest value to return</Comment>
+    </Input>
+    <Input name="iMax" id="fi.DataMaskingLibrary.fnGetRandomNumber.1" index="1" dataType="Integer">
+      <Comment>The highest value to return</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oRandomNumber" id="fo.DataMaskingLibrary.fnGetRandomNumber.0" index="0" dataType="Integer">
+      <Comment>The new random value</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.1.4.0">
+  <Name>fnGenerateEmailFromName</Name>
+  <ID>DataMaskingLibrary.fnGenerateEmailFromName</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>LudbFunction</FunctionType2>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function generates an email with the format:&lt;maskedFirstName&gt;.&lt;maskedLastName&gt;@&lt;originalDomain&gt;
+MAke sure to run the masking of the first and last names before calling this function.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>final String EMAIL_SHTROUDL = "@";
+final String SQL_SELECT = "SELECT ";
+final String SQL_FROM = " FROM ";
+reportUserMessage(iNamesTable);
+//validate that the iEmail input is not null and not empty.Else, If the iEmail is NULL then return NULL.
+if(iEmail!=null &amp;&amp; !iEmail.isEmpty()){
+	// Verify the email format
+	if( iEmail.contains(EMAIL_SHTROUDL)){
+		// Exploding the email address using in two chunks (left and right side of the @ symbol)
+		String [] emailArray = iEmail.split(EMAIL_SHTROUDL);
+		// Verify the email format
+		if(emailArray.length == 2){
+			String oMaskedEmail = "";
+			
+			// Getting the data from the table in input
+			//String fname = (String)DBSelectValue(DB_INTERFACE_NAME,SQL_SELECT+iFirstName+SQL_FROM+iNamesTable, null);
+			//String lname = (String)DBSelectValue(DB_INTERFACE_NAME,SQL_SELECT+iLastName+SQL_FROM+iNamesTable, null);
+	
+			//&lt;maskedFirstName&gt;.&lt;maskedLastName&gt;@&lt;originalDomain&gt;
+			//return fname + "." + lname + EMAIL_SHTROUDL + emailArray[1];	
+		}
+	}
+}
+return null;
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iEmail" id="fi.DataMaskingLibrary.fnGenerateEmailFromName.0" index="0" dataType="String">
+      <Comment>The email address to mask</Comment>
+    </Input>
+    <Input name="iFirstName" id="fi.DataMaskingLibrary.fnGenerateEmailFromName.1" index="1" dataType="String">
+      <Comment>The masked first name</Comment>
+    </Input>
+    <Input name="iLastName" id="fi.DataMaskingLibrary.fnGenerateEmailFromName.2" index="2" dataType="String">
+      <Comment>The masked last name</Comment>
+    </Input>
+    <Input name="iNamesTable" id="fi.DataMaskingLibrary.fnGenerateEmailFromName.3" index="3" dataType="String">
+      <Comment>Table containing the first and last names</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedEmail" id="fo.DataMaskingLibrary.fnGenerateEmailFromName.0" index="0" dataType="String">
+      <Comment>The masked email address</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

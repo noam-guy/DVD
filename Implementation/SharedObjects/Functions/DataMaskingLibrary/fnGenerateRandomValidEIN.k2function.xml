@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnGenerateRandomValidEIN</Name>
+  <ID>DataMaskingLibrary.fnGenerateRandomValidEIN</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will generate a random valid EIN number.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>final int PADDING_LENGTH = 7;
+// Prepare a list of all Campuses profix for the EIN.
+String [] campusPrefixArray = new String[]{"01","02","03","04","05","06","10","11","12","13","14","15","16","20","21","22","23","24","25","26","27","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","46","48","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","71","72","73","74","75","76","77","80","81","82","83","84","85","86","87","88","90","91","92","93","94","95","98","99"};
+// Generate a random Key value to extract a random prefix from the $campusPrefixArray array.
+int campusPrefixIndex = -1; int integerRandomVal = -1;
+String randomVal = null;
+int arrayLastIndex = campusPrefixArray.length - 1;
+
+//prevent generating random index value which is out of campusPrefixArray array
+do{
+	campusPrefixIndex = fnGetRandomNumber(0,arrayLastIndex);
+	randomVal = campusPrefixArray[campusPrefixIndex];
+	integerRandomVal = Integer.parseInt(randomVal);
+}while(integerRandomVal &gt; arrayLastIndex);
+
+
+String campusPrefix = campusPrefixArray[integerRandomVal];
+String oMaskedEIN = null;
+
+// Check to see if an hyphen exists in the EIN.
+// If it exists and its located after the first 2 digits:
+if((iEIN.replaceAll("[^\\d]", "")).length() == 9){
+	String rand = Integer.toString(fnGetRandomNumber(0,9999999));
+	//padd the random number with zeros on the left so eventually we will have a number of 7 digits
+	rand = k2_pad(rand,"0",PADDING_LENGTH,false) ;
+	// Prepare the masked value with the new prefix.
+	oMaskedEIN = campusPrefix + "-" + rand ;
+	// If EIN doesn't have a hyphen and is not 9 digits exactly, keep it as is.
+}else {
+	// Initiate the Random Encryption argument.
+	String randomEncryption = "";
+	
+	// For every charecter in the EIN:
+	for(int i = 0 ; i &lt; iEIN.length() ; i++){
+		
+		// If the current charecter equals -
+		if(iEIN.charAt(i) == '-'){
+			// Concatenate 0 to the Encrption arguent
+			randomEncryption = randomEncryption + "0";
+			
+			// Else - The current charecter is not -
+		} else {
+			// Concatenate a rnadom number to the Encryption argument
+			randomEncryption = randomEncryption + Integer.toString(fnGetRandomNumber(0,9));
+		}
+	}
+	// Mask the EIN.
+	oMaskedEIN = k2s_MaskField(iEIN,randomEncryption);
+}
+
+// Return the masked value.
+return oMaskedEIN;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iEIN" id="fi.DataMaskingLibrary.fnGenerateRandomValidEIN.0" index="0" dataType="String">
+      <Comment>EIN to mask</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedEIN" id="fo.DataMaskingLibrary.fnGenerateRandomValidEIN.0" index="0" dataType="String">
+      <Comment>The masked EIN</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

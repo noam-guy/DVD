@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskSSN</Name>
+  <ID>DataMaskingLibrary.fnMaskSSN</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will choose a new masked SSN from the gcSSN based on the iSSN.
+The function will transform the SSN into a number and run modulo on it based on the NUM_OF_RAND_SSN global.
+The new value will be used as the key of the gcSSN for the new SSN.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if((iSSN != null &amp;&amp; !iSSN.isEmpty())){
+	redis.clients.jedis.Jedis jds =null;
+	try{
+		int counter = 0;
+		//Get connection of Redis DB
+		jds = getJedisConnection(SHARED_MEMORY_HOST_NAME,SHARED_MEMORY_HOST_PORT,SHARED_MEMORY_EXPIRATION);
+		if(jds != null){
+			int maxNumOfIter = Integer.parseInt(MAX_NUM_OF_ITERATION);
+			// This parameter is used to determine if a exist the loop which indicates the new SSN was accepted
+			boolean notUsedSSN = true;
+			//Boolean isSSNExists = null;
+			String existingSSN = null;
+			String ssnHashCode = Integer.toString(iSSN.hashCode());
+			
+			while(notUsedSSN &amp;&amp; counter &lt;= maxNumOfIter){
+				counter++;
+				existingSSN = jds.get("existingSSN["+ssnHashCode+"]");
+				// Checks if a new SSN was already generated before for this iSSN.
+				if(existingSSN != null){
+					//if  yes, return the existing SSN
+					return  existingSSN;
+				}else{//Else, use the provided encyrption
+					String newSSN = null;
+					// If to create the encryption randomly.
+					if(RANDOM_ENCRYPTION.equals(iEncryption.toUpperCase())){
+						// Generate a new SSN.
+						newSSN = fnGenerateRandomValidSSN(iSSN);				
+					} else {// Else - Use provided encryption.
+						// Mask the SSN using the provided encryption
+						newSSN = k2s_MaskField(iSSN,iEncryption);	
+					}
+					int success = jds.setnx("maskedSSN["+newSSN+"]",ssnHashCode).intValue();
+					// Checks if the new masked SSN is already used by another existing SSN.
+					if(success == 1){
+						// Try to allocate it
+						success = jds.setnx("existingSSN["+ssnHashCode+"]",newSSN).intValue(); 
+						if(success == 1){
+							// If the allocation was succesfull, set $notUsedSSN to false to exist the loop.
+							notUsedSSN = false;
+							// Return the new SSN.
+							return newSSN;
+						}	
+					}
+				}
+			}
+		}
+	}catch(Exception e){
+		throw new Exception("Could not mask SSN.",e.getCause());
+	}finally{
+		closeJedisConnection(jds);
+	}
+}
+return null;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iSSN" id="fi.DataMaskingLibrary.fnMaskSSN.0" index="0" dataType="String">
+      <Comment>Social Security Number</Comment>
+    </Input>
+    <Input name="iEncryption" id="fi.DataMaskingLibrary.fnMaskSSN.1" index="1" dataType="String">
+      <Comment>The Encryption to use to mask the SSN</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedSSN" id="fo.DataMaskingLibrary.fnMaskSSN.0" index="0" dataType="String">
+      <Comment>The masked SSN</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

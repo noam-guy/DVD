@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>staff</Name>
+  <ID>tbl_staff</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="staff_id" id="tblCol_c14f2afcc44b461ebbda25ce98b33331" index="0" datatype="Integer" mandatory="true" />
+    <Column name="first_name" id="tblCol_b47921b496ab49fe9996bc2659ceb7d5" index="1" datatype="Text" mandatory="true" />
+    <Column name="last_name" id="tblCol_96c5b9528447405d86c79d066a191042" index="2" datatype="Text" mandatory="true" />
+    <Column name="address_id" id="tblCol_f46aa88be1d24547bb5817cd7876d44d" index="3" datatype="Integer" mandatory="true" />
+    <Column name="email" id="tblCol_ad8f36e8ecb44c748283e442bd2bc747" index="4" datatype="Text" />
+    <Column name="store_id" id="tblCol_6c2119c1ee444b698e0706db3e3d9e6f" index="5" datatype="Integer" mandatory="true" />
+    <Column name="active" id="tblCol_b829cd8b241941248fd22309c6d8c451" index="6" datatype="Text" mandatory="true" />
+    <Column name="username" id="tblCol_25768356dec547ae8544f0ed71943d55" index="7" datatype="Text" mandatory="true" />
+    <Column name="password" id="tblCol_ed5b0bc41b3547bdb49be687a83237e3" index="8" datatype="Text" />
+    <Column name="last_update" id="tblCol_b5d028ffc7034eb29ce8762ca73a8bb6" index="9" datatype="Text" mandatory="true" />
+    <Column name="picture" id="tblCol_fb8092f3481d4d068d44a3340975e9e2" index="10" datatype="BLOB" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_c14f2afcc44b461ebbda25ce98b33331" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

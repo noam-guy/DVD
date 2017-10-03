@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>fnPrsRootPayment</Name>
+  <ID>root.fnPrsRootPayment</ID>
+  <Category>root</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>Object[] values = null;
+String parserName = "payment";//Needs to be in LOWER CASE
+String luName = luType.luName.toLowerCase();
+boolean parserFailed = false;
+int rowCnt = 0;
+
+if(k2_amIMinNode_multi_dc()){
+	
+	//Start time
+	long startTime = System.nanoTime();
+	
+	//Creating parser log table if not exists
+	DBExecute("cass_local", "CREATE TABLE if not exists k2view_" + luName + ".parser_log (parser_name text, start_time text, end_time text, status text, parser_load_time text, ErrorMsg text, num_of_rows_loaded text, PRIMARY KEY (parser_name))", null);
+	
+	java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	java.util.Date date = new java.util.Date();
+	values = new Object[]{parserName, dateFormat.format(date), "running", null, null, null, null};
+	//Inserting log data to parser log table
+	DBExecute("cass_local", "insert into k2view_" + luName + ".parser_log (parser_name, start_time, status, end_time, parser_load_time, ErrorMsg, num_of_rows_loaded) values (?,?,?,?,?,?,?)", values);
+	
+	//Change here to your SQL
+	String sql = "SELECT payment_id, customer_id, staff_id, rental_id, amount_new, payment_date, tmp  from public.payment limit 400";
+	values = null;
+	ResultSetWrapper rs = null;
+	try{
+	rs = DBQuery("dvdRental", sql, values);
+	
+	for(Object[] row : rs) {
+		rowCnt++;
+	    yield(row);
+	}
+		
+	}catch(Exception e){
+		//Setting excpetion indicator to true
+		parserFailed = true;
+		
+		//Calculating parser run duration
+		String parserDuration = (System.nanoTime() - startTime)/1000000000.0+"";
+		date = new java.util.Date();
+		values = new Object[]{parserName, dateFormat.format(date), "failed", parserDuration, e.getMessage(), rowCnt};
+		
+		//Inserting parser run data to parser log table 
+		DBExecute("cass_local", "insert into k2view_" + luName + ".parser_log (parser_name, end_time, status , parser_load_time, ErrorMsg, num_of_rows_loaded) values (?,?,?,?,?,?)", values);
+	}finally{
+		if(rs != null)rs.close();
+	}
+	if(!parserFailed){
+		//Checking parser run duration
+		String parserDuration = (System.nanoTime() - startTime)/1000000000.0+"";
+		date = new java.util.Date();
+		values = new Object[]{parserName, dateFormat.format(date), "finished", parserDuration, rowCnt, null};
+		
+		//Inserting parser run data to parser log table 
+		DBExecute("cass_local", "insert into k2view_" + luName + ".parser_log (parser_name, end_time, status, parser_load_time, num_of_rows_loaded, ErrorMsg) values (?,?,?,?,?,?)", values);
+	}
+}</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="input" id="fi.root.fnPrsRootPayment.0" index="0" dataType="String" />
+  </InputParams>
+  <OutputParams>
+    <Output name="payment_id" id="fo.root.fnPrsRootPayment.0" index="0" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="customer_id" id="fo.root.fnPrsRootPayment.1" index="1" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="staff_id" id="fo.root.fnPrsRootPayment.2" index="2" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="rental_id" id="fo.root.fnPrsRootPayment.3" index="3" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="amount_new" id="fo.root.fnPrsRootPayment.4" index="4" dataType="Double">
+      <Comment />
+    </Output>
+    <Output name="payment_date" id="fo.root.fnPrsRootPayment.5" index="5" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="tmp" id="fo.root.fnPrsRootPayment.6" index="6" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

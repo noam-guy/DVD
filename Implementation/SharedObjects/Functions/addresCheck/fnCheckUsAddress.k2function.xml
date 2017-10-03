@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>fnCheckUsAddress</Name>
+  <ID>addresCheck.fnCheckUsAddress</ID>
+  <Category>addresCheck</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RegularFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>final String newLine = System.getProperty("line.separator");
+String chkFileds = fnCheckInputs(Address,City,State);
+if(chkFileds != null){
+			Map&lt;String,Object&gt; respCheckCol = new LinkedHashMap&lt;String,Object&gt;();
+			Map&lt;String,Object&gt; responce = new LinkedHashMap&lt;String,Object&gt;();
+			responce.put("Address", Address);
+			responce.put("City", City);
+			responce.put("State", State);
+			responce.put("Zip", zip);
+			respCheckCol.put("Responce", "Failure");
+			respCheckCol.put("Error Details", "Field "+chkFileds+" can't be empty");
+			respCheckCol.put("Adress Details", responce);
+			return respCheckCol;}
+java.net.URL url;
+String CusAdress = "&lt;AddressValidateRequest USERID=\""+UserId+"\"&gt;&lt;IncludeOptionalElements&gt;true&lt;/IncludeOptionalElements&gt;"+ 
+				 "&lt;ReturnCarrierRoute&gt;true&lt;/ReturnCarrierRoute&gt;&lt;Address ID=\"0\"&gt;"+
+				 "&lt;FirmName /&gt;&lt;Address1/&gt;&lt;Address2&gt;"+Address+"&lt;/Address2&gt;&lt;City&gt;"+City+"&lt;/City&gt;"+
+				 "&lt;State&gt;"+State+"&lt;/State&gt;&lt;Zip5&gt;"+zip+"&lt;/Zip5&gt;&lt;Zip4&gt;&lt;/Zip4&gt;&lt;/Address&gt;&lt;/AddressValidateRequest&gt;";
+try {
+  String urlAddress = "http://production.shippingapis.com/ShippingAPI.dll?API=Verify&amp;XML="+CusAdress; 
+  urlAddress = urlAddress.replaceAll(" ", "%20");
+  url = new java.net.URL(urlAddress);
+  java.net.HttpURLConnection connection = (java.net.HttpURLConnection)url.openConnection();
+  connection.setUseCaches (false);
+  connection.setDoInput(true);
+  connection.setDoOutput(true);
+  
+  //Send request
+  DataOutputStream wr = new DataOutputStream (connection.getOutputStream ());
+  //wr.writeBytes (urlParameters);
+  wr.flush ();
+  wr.close ();
+  //Get Response	
+  InputStream is = connection.getInputStream();
+  BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+  String line;
+  StringBuffer response = new StringBuffer(); 
+  while((line = rd.readLine()) != null) {
+    response.append(line);
+    response.append('\r');
+  }
+  rd.close();
+  //return fnParseXmlAnswer(response.toString(), Address, City, State, zip);
+return null;
+} catch (Exception e) {
+	throw new Exception(e.getMessage());
+}
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="UserId" id="fi.addresCheck.fnCheckUsAddress.0" index="0" dataType="String" />
+    <Input name="Address" id="fi.addresCheck.fnCheckUsAddress.1" index="1" dataType="String" />
+    <Input name="City" id="fi.addresCheck.fnCheckUsAddress.2" index="2" dataType="String" />
+    <Input name="State" id="fi.addresCheck.fnCheckUsAddress.3" index="3" dataType="String" />
+    <Input name="zip" id="fi.addresCheck.fnCheckUsAddress.4" index="4" dataType="String" />
+  </InputParams>
+  <OutputParams>
+    <Output name="res" id="fo.addresCheck.fnCheckUsAddress.0" index="0" dataType="Object" />
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_country</ID>
+  <PopulationObjectName>query_public_country</PopulationObjectName>
+  <TableName>country</TableName>
+  <RootItemID>query_query_public_country</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="country_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="country" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_update" id="queryCol_2" dataType="Text" index="2" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_country" name="query_public_country" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="country_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="country" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_update" dataType="Text" index="2" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.country]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="10" fromNodeOrder="0" fromItemID="query_query_public_country" fromColID="queryCol_0" toItemID="tbl_country" toColID="tblCol_1f989a3713fe482dbf42e46aa2ededc5" />
+    <Link partId="11" fromNodeOrder="0" fromItemID="query_query_public_country" fromColID="queryCol_1" toItemID="tbl_country" toColID="tblCol_de1bf94b4f834692a118348949e2e57c" />
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_country" fromColID="queryCol_2" toItemID="tbl_country" toColID="tblCol_0a4b1e955d1844faa14661c48096c483" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

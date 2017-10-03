@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskZipCode</Name>
+  <ID>DataMaskingLibrary.fnMaskZipCode</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask a US ZIP code using the iEncryption Key.
+The function will find the entry index of the Zip Code in the full list of all available US Zip Codes,
+Then it will add the Encryption value to the index value and modulo it based on the number of available US Zip Codes.
+The new value is used as the index of the new Zip Code which will be returned.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(iZipCode!=null &amp;&amp; !iZipCode.isEmpty()){
+	
+	// Take only 5 digits US Zip Code (remove any PLUS4 values).
+	// Strip any non-numeric values and take the first 5 digits.
+	String modifiedIzipCode = iZipCode.replaceAll("[^\\d]", "");
+	String zipNoPlus4 = modifiedIzipCode.substring(0,5);
+	
+	final String sql = "SELECT DISTINCT zip FROM refZipCodes ORDER BY zip";
+	@SuppressWarnings("unchecked")
+	List&lt;String&gt; indexdList =(List&lt;String&gt;) getThreadGlobals("ZipCodes");
+	// Check if the list of ZIP Codes were already loaded into Global Memory.
+	if (null == indexdList){
+		// Get a list of all US based ZIP Codes.
+		ResultSetWrapper results = DBQuery(DB_INTERFACE_NAME, sql, null);
+		if(results!=null){
+			// Prepare a new array to hold the indexed ZIP Codes.
+			indexdList = new ArrayList&lt;String&gt;();
+		
+			// Loop through the restuls array and organize all ZIP codes under an indexed array.
+			int index=0;int counter = 0;
+	
+			for(Object[] res:results){
+				indexdList.add((String)res[0]);
+			}
+			setThreadGlobals("ZipCodes",indexdList);
+		}
+	}
+	
+	int zipIndex = indexdList.indexOf(zipNoPlus4);
+	if(zipIndex &lt; 0){
+		zipIndex = 0;	
+	}
+	int maskedZipIndex = 0;
+	// Check if the encryption should be created using a random number or a hard-coded one.
+	// If random encryption is required:
+	if(RANDOM_ENCRYPTION.equals(iEncryption.toUpperCase())){
+		// Get the new ZipIndex by adding a random number between 1 and 100000 to the ZipIndex
+		// and using Modulo on the number of ZIP Codes available.
+		maskedZipIndex = (zipIndex + fnGetRandomNumber(1,100000))% indexdList.size();
+		// Use the hard-coded Encryption value.
+	} else {
+		// Get the new ZipIndex by adding the iEncryption to the ZipIndex
+		// and using Modulo on the number of ZIP Codes available.
+		maskedZipIndex = (zipIndex + Integer.parseInt(iEncryption))% indexdList.size();
+	}
+	// Retrieve the new Zip Code based on the maskedZipIndex.
+	return indexdList.get(maskedZipIndex);
+}
+return iZipCode;
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iZipCode" id="fi.DataMaskingLibrary.fnMaskZipCode.0" index="0" dataType="String">
+      <Comment>the zip code</Comment>
+    </Input>
+    <Input name="iEncryption" id="fi.DataMaskingLibrary.fnMaskZipCode.1" index="1" dataType="String">
+      <Comment>The encryption used to mask the Zip Code</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedZipCode" id="fo.DataMaskingLibrary.fnMaskZipCode.0" index="0" dataType="String">
+      <Comment>The Masked Zip Code</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

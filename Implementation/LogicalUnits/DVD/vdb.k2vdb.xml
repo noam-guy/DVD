@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VirtualDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.1.0">
+  <Name>vdb</Name>
+  <RootView>customer</RootView>
+  <AutomaticGenerationFK>false</AutomaticGenerationFK>
+  <EnableDataEncryption>false</EnableDataEncryption>
+  <LazyDataUpdate enabled="true" executePreVCs="false" executePostVCs="false" />
+  <Tables>
+    <Table>address</Table>
+    <Table>film</Table>
+    <Table>inventory</Table>
+    <Table>city</Table>
+    <Table>store</Table>
+    <Table>staff</Table>
+    <Table>rental</Table>
+    <Table>customer</Table>
+    <Table>country</Table>
+    <Table>INSTANCE_TABLE_COUNT</Table>
+  </Tables>
+  <TablesProperties>
+    <TableProperties name="address">
+      <Populations>
+        <Population id="query_public_address" name="query_public_address" order="2" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="film">
+      <Populations>
+        <Population id="query_public_film" name="query_public_film" order="4" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="inventory">
+      <Populations>
+        <Population id="query_public_inventory" name="query_public_inventory" order="3" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="city">
+      <Populations>
+        <Population id="query_public_city" name="query_public_city" order="3" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="store">
+      <Populations>
+        <Population id="query_public_store" name="query_public_store" order="4" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="staff">
+      <Populations>
+        <Population id="query_public_staff" name="query_public_staff" order="3" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="rental">
+      <Populations>
+        <Population id="query_public_rental" name="query_public_rental" order="2" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="customer">
+      <Populations>
+        <Population id="query_public_customer" name="query_public_customer" order="1" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="country">
+      <Populations>
+        <Population id="query_public_country" name="query_public_country" order="4" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+    <TableProperties name="INSTANCE_TABLE_COUNT">
+      <Populations>
+        <Population id="query_INSTANCE_TABLE_COUNT" name="query_INSTANCE_TABLE_COUNT" order="99" disabled="false" enrichment="false" />
+      </Populations>
+    </TableProperties>
+  </TablesProperties>
+  <EnrichmentsOrderList>
+    <Item order="1" active="true" name="customer" columnName="k2_MaskAllLuTables" type="Table" />
+    <Item order="2" active="true" name="INSTANCE_TABLE_COUNT" columnName="fnPopINSTANCE_TABLE_COUNT" type="Table" />
+  </EnrichmentsOrderList>
+  <ReferencesList>
+    <Item active="false" name="refZipCodes" />
+  </ReferencesList>
+  <Relations />
+  <DatabaseRelations>
+    <Relation id="560">
+      <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
+      <To tableType="TableObject" table="rental" populationObjectName="query_public_rental" column="customer_id" columnId="fi_41.0" />
+    </Relation>
+    <Relation id="561">
+      <From tableType="TableObject" table="rental" column="staff_id" columnId="tblCol_60db80b10f3a42fdb8a474b0dca3c500" />
+      <To tableType="TableObject" table="staff" populationObjectName="query_public_staff" column="staff_id" columnId="queryCol_0" />
+    </Relation>
+    <Relation id="562">
+      <From tableType="TableObject" table="staff" column="store_id" columnId="tblCol_6c2119c1ee444b698e0706db3e3d9e6f" />
+      <To tableType="TableObject" table="store" populationObjectName="query_public_store" column="store_id" columnId="queryCol_0" />
+    </Relation>
+    <Relation id="575">
+      <From tableType="TableObject" table="customer" column="address_id" columnId="tblCol_a6536491760c4690bbd7f044c5b71d8d" />
+      <To tableType="TableObject" table="address" populationObjectName="query_public_address" column="address_id" columnId="queryCol_0" />
+    </Relation>
+    <Relation id="576">
+      <From tableType="TableObject" table="address" column="city_id" columnId="tblCol_5fc7e05c2a684947b163c44ba8419b92" />
+      <To tableType="TableObject" table="city" populationObjectName="query_public_city" column="city_id" columnId="queryCol_0" />
+    </Relation>
+    <Relation id="577">
+      <From tableType="TableObject" table="city" column="country_id" columnId="tblCol_208468c460684ab8aaa8b19ff3691859" />
+      <To tableType="TableObject" table="country" populationObjectName="query_public_country" column="country_id" columnId="queryCol_0" />
+    </Relation>
+    <Relation id="636">
+      <From tableType="TableObject" table="inventory" column="film_id" columnId="tblCol_cc93252cbd2a4cf1be3d4f62d69c7d5e" />
+      <To tableType="TableObject" table="film" populationObjectName="query_public_film" column="film_id" columnId="queryCol_0" />
+    </Relation>
+    <Relation id="637">
+      <From tableType="TableObject" table="rental" column="inventory_id" columnId="tblCol_1ec50b239c6b4c34b5d145eb1e0a7a41" />
+      <To tableType="TableObject" table="inventory" populationObjectName="query_public_inventory" column="inventory_id" columnId="queryCol_0" />
+    </Relation>
+    <Relation id="2743">
+      <From tableType="TableObject" table="customer" column="customer_id" columnId="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
+      <To tableType="TableObject" table="INSTANCE_TABLE_COUNT" populationObjectName="query_INSTANCE_TABLE_COUNT" column="input" columnId="fi_7.0" />
+    </Relation>
+  </DatabaseRelations>
+</VirtualDB>

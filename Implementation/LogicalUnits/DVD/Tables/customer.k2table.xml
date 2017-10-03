@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>customer</Name>
+  <ID>tbl_customer</ID>
+  <EntityId>tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5</EntityId>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="customer_id" id="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" index="0" datatype="Integer" mandatory="true" />
+    <Column name="store_id" id="tblCol_a990fb87b0a747e48987db199636e1bc" index="1" datatype="Integer" mandatory="true" />
+    <Column name="first_name" id="tblCol_100a1eaabd2847e0b741de1f20c8f686" index="2" datatype="Text" mandatory="true" />
+    <Column name="last_name" id="tblCol_272fdba9b3514f939fd387761d624e36" index="3" datatype="Text" mandatory="true" />
+    <Column name="email" id="tblCol_5ef0d421755e4445962a846d7cb613d1" index="4" datatype="Text" />
+    <Column name="address_id" id="tblCol_a6536491760c4690bbd7f044c5b71d8d" index="5" datatype="Integer" mandatory="true" />
+    <Column name="activebool" id="tblCol_26d1187c79d84b849e9b1b42e200c2a8" index="6" datatype="Text" mandatory="true" />
+    <Column name="create_date" id="tblCol_c75e7ade625a4237b9d5b711691106b6" index="7" datatype="Text" mandatory="true" />
+    <Column name="last_update" id="tblCol_083d3be8d00b486e995e64562f141782" index="8" datatype="Text" />
+    <Column name="active" id="tblCol_9cd661dd4e1141bc805340abe90569af" index="9" datatype="Integer" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
+  </IndexesList>
+  <EnrichmentList>
+    <Enrichment>
+      <Name>k2_MaskAllLuTables</Name>
+      <Type>Function</Type>
+      <TableName>customer</TableName>
+    </Enrichment>
+  </EnrichmentList>
+</TableObject>

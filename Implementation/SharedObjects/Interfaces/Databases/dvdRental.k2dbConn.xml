@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DBConn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DBConnPostgreSQL" name="dvdRental" type="PostgreSQL" version="2.4.0.11">
+  <Active>true</Active>
+  <DataSource>192.168.232.1</DataSource>
+  <PortNum>5432</PortNum>
+  <DataBase>dvdRental</DataBase>
+  <UserId>postgres</UserId>
+  <Password>YiTPEpq7GkbK95O6awnc91ZL46Lkqiw8CWZIrdNB9RI=:EPhrWPtcoyW1vtKa6n5iPXi22a9SSaMJN5nVnjykkos=</Password>
+  <MaxConnectionsNumber>60</MaxConnectionsNumber>
+  <ConnectionStringClient>Server='192.168.232.1';Port=5432;Database='dvdRental';User Id='postgres';Password='[PASSWORD]';</ConnectionStringClient>
+  <ConnectionStringServerSide>jdbc:postgresql://192.168.232.1:5432/dvdRental?stringtype=unspecified</ConnectionStringServerSide>
+  <CommandList />
+  <ProviderType>Npgsql</ProviderType>
+</DBConn>

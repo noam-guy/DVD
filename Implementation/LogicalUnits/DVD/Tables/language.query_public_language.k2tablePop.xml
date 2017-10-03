@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_language</ID>
+  <PopulationObjectName>query_public_language</PopulationObjectName>
+  <TableName>language</TableName>
+  <RootItemID>query_query_public_language</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="language_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="name" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_update" id="queryCol_2" dataType="Text" index="2" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_language" name="query_public_language" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="language_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="name" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_update" dataType="Text" index="2" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.language]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="10" fromNodeOrder="0" fromItemID="query_query_public_language" fromColID="queryCol_0" toItemID="tbl_language" toColID="tblCol_ea43c651f8094634a6a0cecc4aea670c" />
+    <Link partId="11" fromNodeOrder="0" fromItemID="query_query_public_language" fromColID="queryCol_1" toItemID="tbl_language" toColID="tblCol_2cfe64deba0e4bb6b5a5f3b1a3fcaf6c" />
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_language" fromColID="queryCol_2" toItemID="tbl_language" toColID="tblCol_09f9df3fc4674b8db604399f56f45efb" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

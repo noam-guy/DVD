@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskEmail</Name>
+  <ID>DataMaskingLibrary.fnMaskEmail</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask an Email Address by randomly masking every letter in the email address expect . and @ signs.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>
+// If the iEmail is NULL then return NULL.
+if(iEmail!=null &amp;&amp; !iEmail.isEmpty()){
+	// Initiate the Random Encryption argument.
+	String randomEncryption = "";
+	// Check if the function calls to use a hard-coded Encryption (provided as an input)
+	// or a randomized value.
+	//   If a random value is needed
+			
+	if(RANDOM_ENCRYPTION.equals(iEncryption.toUpperCase())){
+		// For every charecter in the email address:
+		for(int i = 0 ; i &lt; iEmail.length() ; i++){
+			char currentChar = iEmail.charAt(i);
+			// If the current charecter equals . or @
+			if(currentChar=='@' || currentChar=='.'){
+				// Concatenate 0 to the Encrption arguent
+				randomEncryption = randomEncryption + "0";
+				// Else - The current charecter is not . or @.
+			} else {
+				// Concatenate a rnadom number to the Encryption argument
+				randomEncryption = randomEncryption + Integer.toString(fnGetRandomNumber(0,9));
+			}		
+		}
+	// Else - use the provided encryption.
+	} else {
+		// Use the existing/provided Encryption.
+		randomEncryption = iEncryption;
+	}
+	
+	// Mask the Email address.
+	return k2s_MaskField(iEmail,randomEncryption);
+}
+return null;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iEmail" id="fi.DataMaskingLibrary.fnMaskEmail.0" index="0" dataType="String">
+      <Comment>The email address to mask</Comment>
+    </Input>
+    <Input name="iEncryption" id="fi.DataMaskingLibrary.fnMaskEmail.1" index="1" dataType="String">
+      <Comment>The Encryption to use to mask the Email Address</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedEmail" id="fo.DataMaskingLibrary.fnMaskEmail.0" index="0" dataType="String">
+      <Comment>The masked Email Address</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

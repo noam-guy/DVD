@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_actor_info</ID>
+  <PopulationObjectName>query_public_actor_info</PopulationObjectName>
+  <TableName>actor_info</TableName>
+  <RootItemID>query_query_public_actor_info</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="actor_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="first_name" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_name" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="film_info" id="queryCol_3" dataType="Text" index="3" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_actor_info" name="query_public_actor_info" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="actor_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="first_name" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_name" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="film_info" dataType="Text" index="3" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.actor_info]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_actor_info" fromColID="queryCol_0" toItemID="tbl_actor_info" toColID="tblCol_18bf83f9d56c440eb0a4bc04365a6f40" />
+    <Link partId="13" fromNodeOrder="0" fromItemID="query_query_public_actor_info" fromColID="queryCol_1" toItemID="tbl_actor_info" toColID="tblCol_dff42dcf989544858dce00822e4a46aa" />
+    <Link partId="14" fromNodeOrder="0" fromItemID="query_query_public_actor_info" fromColID="queryCol_2" toItemID="tbl_actor_info" toColID="tblCol_159f96b41216438b9e5837f8a8331f53" />
+    <Link partId="15" fromNodeOrder="0" fromItemID="query_query_public_actor_info" fromColID="queryCol_3" toItemID="tbl_actor_info" toColID="tblCol_091ab925949544bfbb17611e6182f532" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

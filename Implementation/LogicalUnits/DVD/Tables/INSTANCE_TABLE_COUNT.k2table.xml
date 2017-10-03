@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>INSTANCE_TABLE_COUNT</Name>
+  <ID>tbl_INSTANCE_TABLE_COUNT</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="EI" id="tblCol_00276338514e4387b89bc7d10a8891cd" index="0" datatype="text" />
+    <Column name="TABLE_NAME" id="tblCol_fd1f3ad734824bd2bb073e8224d4cd99" index="1" datatype="text" />
+    <Column name="TBALE_CNT" id="tblCol_5093f1cc184e40578f6b3ba77284b9da" index="2" datatype="integer" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_00276338514e4387b89bc7d10a8891cd,tblCol_fd1f3ad734824bd2bb073e8224d4cd99,tblCol_5093f1cc184e40578f6b3ba77284b9da" />
+    <Index id="2" unique="true" columnsIdsList="tblCol_fd1f3ad734824bd2bb073e8224d4cd99,tblCol_00276338514e4387b89bc7d10a8891cd" />
+  </IndexesList>
+  <EnrichmentList>
+    <Enrichment>
+      <Name>fnPopINSTANCE_TABLE_COUNT</Name>
+      <Type>Function</Type>
+      <TableName>INSTANCE_TABLE_COUNT</TableName>
+    </Enrichment>
+  </EnrichmentList>
+</TableObject>

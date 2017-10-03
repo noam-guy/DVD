@@ -1,0 +1,14 @@
+﻿<Graph name="address.query_public_address.k2tablePop.bin" lastPartID="27">
+  <TableNode partID="0" name="address" pos="308 0.671890259" width="309.324158" />
+  <DBQueryNode partID="11" name="dvdRental" pos="10 21.7083435" size="253 156.583313" isRoot="true">
+    <DBQuery>{"Name":"query_public_address","ID":"query_query_public_address","ConnName":"dvdRental","SQL":"SELECT * FROM public.address","ColumnsList":[{"ID":"queryCol_0","Name":"address_id","DataType":"Integer","Index":0,"IsInputArgument":true},{"ID":"queryCol_1","Name":"address","DataType":"Text","Index":1,"IsInputArgument":true},{"ID":"queryCol_2","Name":"address2","DataType":"Text","Index":2,"IsInputArgument":true},{"ID":"queryCol_3","Name":"district","DataType":"Text","Index":3,"IsInputArgument":true},{"ID":"queryCol_4","Name":"city_id","DataType":"Integer","Index":4,"IsInputArgument":true},{"ID":"queryCol_5","Name":"postal_code","DataType":"Text","Index":5,"IsInputArgument":true},{"ID":"queryCol_6","Name":"phone","DataType":"Text","Index":6,"IsInputArgument":true},{"ID":"queryCol_7","Name":"last_update","DataType":"Text","Index":7,"IsInputArgument":true}]}</DBQuery>
+  </DBQueryNode>
+  <Link partID="20" from="0" to="1" pointsArr="263 57.7447968 273 57.7447968 275.5 0 295.5 0 298 31.7083435 308 31.7083435" fromNodePartID="11" fromNodeColumnName="address_id" toNodePartID="0" toNodeColumnName="address_id" />
+  <Link partID="21" from="2" to="3" pointsArr="263 69.81771 273 69.81771 275.5 25 295.5 25 298 43.7812576 308 43.7812576" fromNodePartID="11" fromNodeColumnName="address" toNodePartID="0" toNodeColumnName="address" />
+  <Link partID="22" from="4" to="5" pointsArr="263 81.890625 273 81.890625 275.5 50 295.5 50 298 55.85417 308 55.85417" fromNodePartID="11" fromNodeColumnName="address2" toNodePartID="0" toNodeColumnName="address2" />
+  <Link partID="23" from="6" to="7" pointsArr="263 93.96355 273 93.96355 275.5 75 295.5 75 298 67.92709 308 67.92709" fromNodePartID="11" fromNodeColumnName="district" toNodePartID="0" toNodeColumnName="district" />
+  <Link partID="24" from="8" to="9" pointsArr="263 106.036453 273 106.036453 275.5 100 295.5 100 298 80 308 80" fromNodePartID="11" fromNodeColumnName="city_id" toNodePartID="0" toNodeColumnName="city_id" />
+  <Link partID="25" from="10" to="11" pointsArr="263 118.109375 273 118.109375 275.5 125 295.5 125 298 92.07292 308 92.07292" fromNodePartID="11" fromNodeColumnName="postal_code" toNodePartID="0" toNodeColumnName="postal_code" />
+  <Link partID="26" from="12" to="13" pointsArr="263 130.1823 273 130.1823 275.5 150 295.5 150 298 104.145844 308 104.145844" fromNodePartID="11" fromNodeColumnName="phone" toNodePartID="0" toNodeColumnName="phone" />
+  <Link partID="27" from="14" to="15" pointsArr="263 142.255219 273 142.255219 275.5 175 295.5 175 298 116.218765 308 116.218765" fromNodePartID="11" fromNodeColumnName="last_update" toNodePartID="0" toNodeColumnName="last_update" />
+</Graph>

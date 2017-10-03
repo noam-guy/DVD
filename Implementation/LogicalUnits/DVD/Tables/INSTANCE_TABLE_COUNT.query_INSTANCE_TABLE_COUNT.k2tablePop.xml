@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_INSTANCE_TABLE_COUNT</ID>
+  <PopulationObjectName>query_INSTANCE_TABLE_COUNT</PopulationObjectName>
+  <TableName>INSTANCE_TABLE_COUNT</TableName>
+  <RootItemID>f_7</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <InputArguments>
+    <Arg name="input" id="fi_7.0" dataType="String" index="0" />
+  </InputArguments>
+  <ItemsList>
+    <Item id="f_7" name="fnRootINSTANCE_TABLE_COUNT" nodeOrder="0" module="Function" mapObjectModule="Function" fileName="fnRootINSTANCE_TABLE_COUNT.k2function.xml">
+      <InputsList>
+        <Input id="fi_7.0" name="input" />
+      </InputsList>
+      <OutputsList>
+        <Output id="fo_7.0" name="output" />
+      </OutputsList>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="10" fromNodeOrder="0" fromItemID="f_7" fromColID="fo_7.0" toItemID="tbl_INSTANCE_TABLE_COUNT" toColID="tblCol_00276338514e4387b89bc7d10a8891cd" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

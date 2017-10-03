@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskFieldRandomly</Name>
+  <ID>DataMaskingLibrary.fnMaskFieldRandomly</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask an input field using the iEncryption Key.
+It will randomly generate the encryption.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>// Create a random encryption # between 1000 and 100000
+int encryption = fnGetRandomNumber(1000,100000);
+// Mask the field.
+String oMaskedRowField = k2s_MaskField(iFieldValue,Integer.toString(encryption));
+String oMaskedField = null;
+// Check the globals flag to determine if to convert a single apostrophe to double apostrohe.
+if(REPLACE_APOSTROPHE_FLAG.equals(FLAG_ENABLED)){
+	// Add supprot for apostrophes, replacing ' with '', e.g: O'Brian =&gt; O''Brian
+	oMaskedField = oMaskedRowField.replaceAll("'","''" );
+	
+	// Else - If apostrophe flag is set to 0
+} else {
+
+	// Keep the original value.
+	oMaskedField = oMaskedRowField;
+}
+
+// Return the masked value.
+return oMaskedField;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iFieldValue" id="fi.DataMaskingLibrary.fnMaskFieldRandomly.0" index="0" dataType="String">
+      <Comment>The value of the field.</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMasedField" id="fo.DataMaskingLibrary.fnMaskFieldRandomly.0" index="0" dataType="String">
+      <Comment>The mased field value.</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

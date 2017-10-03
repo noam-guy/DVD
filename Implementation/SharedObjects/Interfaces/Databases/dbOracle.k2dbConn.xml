@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DBConn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="DBConnOracle" name="dbOracle" type="Oracle" version="3.2.0.3">
+  <Active>true</Active>
+  <DataSource>192.168.232.1</DataSource>
+  <PortNum>1521</PortNum>
+  <DataBase>orcl</DataBase>
+  <UserId>SYSTEM</UserId>
+  <Password>6ZEZJsrRrUkDCpeBjpe6UqCPa3M+Nk/XOsUhd4cBn6U=:BeZa9CKvwflYiSWtyR5qORS/c0bn560DvU7FWFsWtmg=</Password>
+  <MaxConnectionsNumber>60</MaxConnectionsNumber>
+  <ConnectionStringClient>Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.232.1)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orcl)));User Id=SYSTEM;Password=[PASSWORD];</ConnectionStringClient>
+  <ConnectionStringServerSide>jdbc:oracle:thin:@192.168.232.1:1521/orcl</ConnectionStringServerSide>
+  <UseSelectAsteriskInAutoCreatedQueries>true</UseSelectAsteriskInAutoCreatedQueries>
+  <CommandList />
+  <DBSourceList />
+</DBConn>

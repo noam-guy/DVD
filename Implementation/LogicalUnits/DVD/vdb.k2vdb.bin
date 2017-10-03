@@ -1,0 +1,41 @@
+﻿<Graph version="3.2.0.3" name="vdb.k2vdb.bin" lastPartID="2743">
+  <Node id="0" partID="321" name="address" isRootView="false" pos="313 438" size="257 138.546875" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"address","TablePopulationPropertiesList":[{"ID":"query_public_address","Name":"query_public_address","Order":2,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Node id="1" partID="360" name="film" isRootView="false" pos="917 38" size="257 138.546844" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"film","TablePopulationPropertiesList":[{"ID":"query_public_film","Name":"query_public_film","Order":4,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Node id="2" partID="389" name="inventory" isRootView="false" pos="615 13" size="257 137" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"inventory","TablePopulationPropertiesList":[{"ID":"query_public_inventory","Name":"query_public_inventory","Order":3,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Node id="3" partID="411" name="city" isRootView="false" pos="615 488" size="257 137" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"city","TablePopulationPropertiesList":[{"ID":"query_public_city","Name":"query_public_city","Order":3,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Node id="4" partID="423" name="store" isRootView="false" pos="917 313" size="257 137" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"store","TablePopulationPropertiesList":[{"ID":"query_public_store","Name":"query_public_store","Order":4,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Node id="5" partID="446" name="staff" isRootView="false" pos="615 213" size="257 138.546936" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"staff","TablePopulationPropertiesList":[{"ID":"query_public_staff","Name":"query_public_staff","Order":3,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Node id="6" partID="500" name="rental" isRootView="false" pos="313 38" size="257 138.5469" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"rental","TablePopulationPropertiesList":[{"ID":"query_public_rental","Name":"query_public_rental","Order":2,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Node id="7" partID="519" name="customer" isRootView="true" pos="11 238" size="257 138.546936" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"customer","TablePopulationPropertiesList":[{"ID":"query_public_customer","Name":"query_public_customer","Order":1,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Node id="8" partID="564" name="country" isRootView="false" pos="917 538" size="257 137" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"country","TablePopulationPropertiesList":[{"ID":"query_public_country","Name":"query_public_country","Order":4,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Node id="9" partID="2732" name="INSTANCE_TABLE_COUNT" isRootView="false" pos="313 238" size="257 137" listGroupSize="250 100" viewType="Table">
+    <TableProperties>{"TableName":"INSTANCE_TABLE_COUNT","TablePopulationPropertiesList":[{"ID":"query_INSTANCE_TABLE_COUNT","Name":"query_INSTANCE_TABLE_COUNT","Order":99,"Disabled":false,"IsEnrichment":false}]}</TableProperties>
+  </Node>
+  <Link from="10" to="11" partID="560" linkType="Database" pointsArr="268 284.545563 278 284.545563 303 132.819 313 132.819" fromNodePartID="519" fromNodeColumnName="customer_id" toNodePartID="500" toNodeColumnName="customer_id" toNodePopulationObjectName="query_public_rental" />
+  <Link from="12" to="13" partID="561" linkType="Database" pointsArr="570 165.001312 580 165.001312 605 259.545563 615 259.545563" fromNodePartID="500" fromNodeColumnName="staff_id" toNodePartID="446" toNodeColumnName="staff_id" toNodePopulationObjectName="query_public_staff" />
+  <Link from="14" to="15" partID="562" linkType="Database" pointsArr="872 340.001343 882 340.001343 907 359.545563 917 359.545563" fromNodePartID="446" fromNodeColumnName="store_id" toNodePartID="423" toNodeColumnName="store_id" toNodePopulationObjectName="query_public_store" />
+  <Link from="16" to="17" partID="575" linkType="Database" pointsArr="268 365.001343 278 365.001343 303 484.545563 313 484.545563" fromNodePartID="519" fromNodeColumnName="address_id" toNodePartID="321" toNodeColumnName="address_id" toNodePopulationObjectName="query_public_address" />
+  <Link from="18" to="19" partID="576" linkType="Database" pointsArr="570 548.910156 580 548.910156 605 534.545532 615 534.545532" fromNodePartID="321" fromNodeColumnName="city_id" toNodePartID="411" toNodeColumnName="city_id" toNodePopulationObjectName="query_public_city" />
+  <Link from="20" to="21" partID="577" linkType="Database" pointsArr="872 566.7279 882 566.7279 907 584.5456 917 584.5456" fromNodePartID="411" fromNodeColumnName="country_id" toNodePartID="564" toNodeColumnName="country_id" toNodePopulationObjectName="query_public_country" />
+  <Link from="22" to="23" partID="636" linkType="Database" pointsArr="872 75.63671 882 75.63671 907 84.54556 917 84.54556" fromNodePartID="389" fromNodeColumnName="film_id" toNodePartID="360" toNodeColumnName="film_id" toNodePopulationObjectName="query_public_film" />
+  <Link from="24" to="25" partID="637" linkType="Database" pointsArr="570 116.727844 580 116.727844 605 59.54557 615 59.54557" fromNodePartID="500" fromNodeColumnName="inventory_id" toNodePartID="389" toNodeColumnName="inventory_id" toNodePopulationObjectName="query_public_inventory" />
+  <Link from="10" to="26" partID="2743" linkType="Database" pointsArr="268 284.545563 278 284.545563 303 284.545563 313 284.545563" fromNodePartID="519" fromNodeColumnName="customer_id" toNodePartID="2732" toNodeColumnName="input" toNodePopulationObjectName="query_INSTANCE_TABLE_COUNT" />
+</Graph>

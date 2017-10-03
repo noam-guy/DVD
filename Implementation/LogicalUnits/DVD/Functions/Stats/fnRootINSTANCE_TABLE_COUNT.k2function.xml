@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.1.0.0">
+  <Name>fnRootINSTANCE_TABLE_COUNT</Name>
+  <ID>Stats.fnRootINSTANCE_TABLE_COUNT</ID>
+  <Category>Stats</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(1 == 2){
+	yield(new Object[]{null});
+}</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="input" id="fi.Stats.fnRootINSTANCE_TABLE_COUNT.0" index="0" dataType="String" />
+  </InputParams>
+  <OutputParams>
+    <Output name="output" id="fo.Stats.fnRootINSTANCE_TABLE_COUNT.0" index="0" dataType="String" />
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskCompanyEIN</Name>
+  <ID>DataMaskingLibrary.fnMaskCompanyEIN</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask a Company EIN by randomly masking every digit in the EIN expect the '-' sign.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>//ensure input EIN is not null and not empty
+if((iEIN != null &amp;&amp; !iEIN.isEmpty())){
+	redis.clients.jedis.Jedis jds =null;
+	try{
+		int counter = 0;
+		jds = getJedisConnection(SHARED_MEMORY_HOST_NAME,SHARED_MEMORY_HOST_PORT,SHARED_MEMORY_EXPIRATION);
+		if(jds != null){
+			int maxNumOfIter = Integer.parseInt(MAX_NUM_OF_ITERATION);
+			// This parameter is used to determine if to exist the loop which indicates the new EIN was accepted
+			boolean notUsedEIN = true;
+			//Boolean isEINExists = null;
+			String existingEIN = null;
+			String einHashCode = Integer.toString(iEIN.hashCode());
+			// Runs in a loop until receive an unused new EIN. counter ensures we will not have infinite loop
+			while(notUsedEIN &amp;&amp; counter&lt;=maxNumOfIter){
+				existingEIN = jds.get("existingSSN["+einHashCode+"]");
+				if(existingEIN != null){
+					//if  yes, return the existing EIN
+					return  existingEIN;
+				}else{//Else, use the provided encyrption
+					String newEIN = null;
+					if(RANDOM_ENCRYPTION.equals(iEncryption.toUpperCase())){
+						// Generate a new EIN.
+						newEIN = fnGenerateRandomValidEIN(iEIN);				
+					} else {// Else - Use provided encryption.
+						// Mask the EIN using the provided encryption
+						newEIN = k2s_MaskField(newEIN,iEncryption);	
+					}
+					int success = jds.setnx("maskedSSN["+newEIN+"]",einHashCode).intValue();
+					// Checks if the new masked SSN is already used by another existing EIN.
+					if(success == 1){
+						// Try to allocate it
+						success = jds.setnx("existingSSN["+einHashCode+"]",newEIN).intValue(); 
+						if(success == 1){
+							// If the allocation was succesfull, set notUsedEIN to false to exist the loop.
+							notUsedEIN = false;	
+							// Return the new EIN.
+							return newEIN;
+						}	
+					}
+				}
+			}
+		}
+	}catch(Exception e){
+		throw new Exception("Could not mask company EIN.",e.getCause());
+	}finally{
+		closeJedisConnection(jds);
+	}
+}
+return null;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iEIN" id="fi.DataMaskingLibrary.fnMaskCompanyEIN.0" index="0" dataType="String">
+      <Comment>The company's EIN</Comment>
+    </Input>
+    <Input name="iEncryption" id="fi.DataMaskingLibrary.fnMaskCompanyEIN.1" index="1" dataType="String">
+      <Comment>The Encryption to use to mask the EIN</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedEIN" id="fo.DataMaskingLibrary.fnMaskCompanyEIN.0" index="0" dataType="String">
+      <Comment>The masked EIN</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

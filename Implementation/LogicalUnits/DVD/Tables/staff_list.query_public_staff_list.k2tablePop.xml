@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_staff_list</ID>
+  <PopulationObjectName>query_public_staff_list</PopulationObjectName>
+  <TableName>staff_list</TableName>
+  <RootItemID>query_query_public_staff_list</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="name" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="address" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="zip code" id="queryCol_3" dataType="Text" index="3" />
+    <Arg name="phone" id="queryCol_4" dataType="Text" index="4" />
+    <Arg name="city" id="queryCol_5" dataType="Text" index="5" />
+    <Arg name="country" id="queryCol_6" dataType="Text" index="6" />
+    <Arg name="sid" id="queryCol_7" dataType="Integer" index="7" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_staff_list" name="query_public_staff_list" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="name" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="address" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="zip code" dataType="Text" index="3" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_4" name="phone" dataType="Text" index="4" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_5" name="city" dataType="Text" index="5" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_6" name="country" dataType="Text" index="6" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_7" name="sid" dataType="Integer" index="7" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.staff_list]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="20" fromNodeOrder="0" fromItemID="query_query_public_staff_list" fromColID="queryCol_0" toItemID="tbl_staff_list" toColID="tblCol_998eb5f00bab41868e148615fa7be09c" />
+    <Link partId="21" fromNodeOrder="0" fromItemID="query_query_public_staff_list" fromColID="queryCol_1" toItemID="tbl_staff_list" toColID="tblCol_9833dd1e1eff428b9eb9505a9640c5fb" />
+    <Link partId="22" fromNodeOrder="0" fromItemID="query_query_public_staff_list" fromColID="queryCol_2" toItemID="tbl_staff_list" toColID="tblCol_cf7156a593c944788cf8024b1cd0431b" />
+    <Link partId="23" fromNodeOrder="0" fromItemID="query_query_public_staff_list" fromColID="queryCol_3" toItemID="tbl_staff_list" toColID="tblCol_ce4d0795c7864ffe88a9bac3256a5dfb" />
+    <Link partId="24" fromNodeOrder="0" fromItemID="query_query_public_staff_list" fromColID="queryCol_4" toItemID="tbl_staff_list" toColID="tblCol_aed18bbc1a0a4aa3bf9811299f80f4f7" />
+    <Link partId="25" fromNodeOrder="0" fromItemID="query_query_public_staff_list" fromColID="queryCol_5" toItemID="tbl_staff_list" toColID="tblCol_114ac226207347a4b06aaec66e3eaabf" />
+    <Link partId="26" fromNodeOrder="0" fromItemID="query_query_public_staff_list" fromColID="queryCol_6" toItemID="tbl_staff_list" toColID="tblCol_89aeaff4487949b9a7b13b4335490f2b" />
+    <Link partId="27" fromNodeOrder="0" fromItemID="query_query_public_staff_list" fromColID="queryCol_7" toItemID="tbl_staff_list" toColID="tblCol_8ec0806a0480435388f0cc9872b653e2" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

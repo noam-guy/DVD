@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskUniqueValueInSharedMemory</Name>
+  <ID>DataMaskingLibrary.fnMaskUniqueValueInSharedMemory</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask an input value by either an input encryption or a random one.
+The function supports the following inputs:
+[1] iValue: The value to mask.
+[2] iEncryption: Can be either the word "Random" or a number.
+   If the first, the function will generate a random number to be used as the encryption.
+   If the latter, the function will use the provided number as the encryption.
+[3] iSharedMemoryObject: Represents the name of the object as it will be stored in the Shared Memory.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(iValue!=null &amp;&amp; !iValue.isEmpty()){
+	redis.clients.jedis.Jedis jds = null;
+	try{
+		//Get connection of Redis DB	
+		jds = getJedisConnection(SHARED_MEMORY_HOST_NAME,SHARED_MEMORY_HOST_PORT,SHARED_MEMORY_EXPIRATION);
+		if(jds != null){
+			int maxNumOfIter = Integer.parseInt(MAX_NUM_OF_ITERATION);
+			// This parameter is used to determine if to exist the loop which indicates the new Value was accepted
+			boolean notUsedValue = true;
+			int counter = 0;
+			// Construct the "existing" Shared Memory Object.
+			String existingSharedMemoryObject = "existingSharedMemory_" + iSharedMemoryObject;
+			// Construct the "masked" Shared Memory Object.
+			String maskedSharedMemoryObject = "maskedSharedMemory_" + iSharedMemoryObject;
+			//hash code of the input
+			String inputHashCode = Integer.toString(iValue.hashCode());
+			//Boolean isSMExists = null;
+			String existingSM = null;
+			// Runs in a loop until receive an unused new Value.
+			while(notUsedValue &amp;&amp; counter&lt;=maxNumOfIter){
+				counter++;
+				existingSM = jds.get(existingSharedMemoryObject+"["+inputHashCode+"]");
+				// Checks if a new Value was already generated before for this iValue.
+				if(existingSM!=null){
+					// If yes, return the existing Value.
+					return  existingSM;
+				}else{
+					String newValue = null;
+					// If to create the encryption randomly.
+					if(RANDOM_ENCRYPTION.equals(iEncryption.toUpperCase())){
+						// Mask the Value using the random encryption
+						newValue = fnMaskFieldRandomly(iValue);				
+					} else {// Else - Use provided encryption.
+						// Mask the Value using the provided encryption
+						newValue = k2s_MaskField(iValue,iEncryption);
+					}
+					int success = jds.setnx(maskedSharedMemoryObject+"["+newValue+"]",inputHashCode).intValue();
+					// Checks if the new masked Value is already used by another existing Value.
+					if(success == 1){
+						success = jds.setnx(existingSharedMemoryObject+"["+inputHashCode+"]",newValue).intValue();
+						if(success == 1){
+							// If the allocation was succesfull, set $notUsedValue to false to exist the loop.
+							notUsedValue = false;
+							// Return the new Value.
+							return newValue;
+						}
+					}
+				}
+			}
+		}
+	}catch(Exception e){
+		throw new Exception("Could not mask unique value in shared memory.",e.getCause());
+	}finally{
+		closeJedisConnection(jds);	
+	}
+}
+return null;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iValue" id="fi.DataMaskingLibrary.fnMaskUniqueValueInSharedMemory.0" index="0" dataType="String">
+      <Comment>The value to mask</Comment>
+    </Input>
+    <Input name="iEncryption" id="fi.DataMaskingLibrary.fnMaskUniqueValueInSharedMemory.1" index="1" dataType="String">
+      <Comment>The Encryption to use to mask the EIN</Comment>
+    </Input>
+    <Input name="iSharedMemoryObject" id="fi.DataMaskingLibrary.fnMaskUniqueValueInSharedMemory.2" index="2" dataType="String">
+      <Comment>The object that stores the Shared Memory for this value</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedValue" id="fo.DataMaskingLibrary.fnMaskUniqueValueInSharedMemory.0" index="0" dataType="String">
+      <Comment>The masked value</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnGetRandomReferenceValue</Name>
+  <ID>DataMaskingLibrary.fnGetRandomReferenceValue</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask a value based on a list of reference data existing in K2View in a form of either a table (ivv,vc or gc) or a Translation.
+The funcion will identify where the reference data is located based on the iObject input value and what is the key that holds the information based on the $iKey input value;
+Then it will randomly select a different masked value from the reference list per each iValueToMask input value provided 
+and will linked between the two values so if the same $iValueToMask if provided the same masked value will be returned.
+Note: This function does not use Shared Memory to store the information.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>@SuppressWarnings("unchecked") 
+Map&lt;String, String&gt; dmValuesMap = (Map&lt;String, String&gt;)getThreadGlobals("DM");
+String maskedValue = null; 
+StringBuilder keySb = new StringBuilder();
+keySb.append(iObjectType);
+keySb.append(":");
+keySb.append(iObject);
+keySb.append(":");
+keySb.append(iKey);
+keySb.append(":");
+keySb.append(iValueToMask);
+String key = keySb.toString();
+//if global DM is set
+if(dmValuesMap!=null){
+	maskedValue = dmValuesMap.get(key);
+}
+	
+if(maskedValue != null){
+	return maskedValue;
+} else {// If the iValueToMask hasn't already been masked
+
+		dmValuesMap = new HashMap&lt;String, String&gt;();
+		keySb.setLength(0);
+		keySb.append("COUNTS");
+		keySb.append(":");
+		keySb.append(iObjectType);
+		keySb.append(":");
+		keySb.append(iObject);
+		//key is COUNTS:iObjectType:iObject
+		key = keySb.toString();
+		// Check is the Object Type is a Table (ivv,vc or gc).
+		if("TABLE".equals(iObjectType.toUpperCase())){
+			// Check to see if the size (number of rows) in the Table is already known.
+			//  This is done to eliminate the need to count this information more than once.
+			if(dmValuesMap.get(key) == null){
+				// If "No", calculate the number of rows.
+				int objectCount = (int)DBSelectValue(DB_INTERFACE_NAME,"SELECT COUNT(1) FROM "+'"'+iObject+'"' ,null);
+				// Update the Gloabal array so this calculation will not have to happen again.
+				dmValuesMap.put(key,Integer.toString(objectCount));
+			}
+			String rowCount = dmValuesMap.get(key);
+		
+			// Generate a random value representing the row number that will be used for the masked value.
+			//  The random value is set between 1 and the number of rows in the object.
+			int randRowValue = fnGetRandomNumber(1, Integer.parseInt(rowCount));
+			
+			// Select a new value to be used as the masked value based on the $randRowValue.
+			String oRandomMaskedRowValue = (String)DBSelectValue(DB_INTERFACE_NAME,"SELECT "+'"'+iKey+'"'+" FROM "+'"'+iObject+'"'+" where rowid="+'"'+randRowValue+'"', null);
+			
+			// Add support for apostrophe, replacing ' with '', e.g: O'Brain =&gt; O''Brain.
+			String oRandomMaskedValue = oRandomMaskedRowValue.replaceAll("'","''" );
+			keySb.setLength(0);
+			keySb.append(iObjectType);
+			keySb.append(":");
+			keySb.append(iObject);
+			keySb.append(":");
+			keySb.append(iKey);
+			keySb.append(":");
+			keySb.append(iValueToMask);
+			
+			//key is iObjectType:iObject:iKey:iValueToMask
+			dmValuesMap.put(keySb.toString(), oRandomMaskedValue);
+			setThreadGlobals("DM",dmValuesMap);
+			
+			// Return the masked value.
+			return oRandomMaskedValue;
+		}
+	}
+	
+return null;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iObjectType" id="fi.DataMaskingLibrary.fnGetRandomReferenceValue.0" index="0" dataType="String">
+      <Comment>The type of the K2 Object that will be used to reference the data ('Table' or 'Translation').</Comment>
+    </Input>
+    <Input name="iObject" id="fi.DataMaskingLibrary.fnGetRandomReferenceValue.1" index="1" dataType="String">
+      <Comment>The name of the object.</Comment>
+    </Input>
+    <Input name="iKey" id="fi.DataMaskingLibrary.fnGetRandomReferenceValue.2" index="2" dataType="String">
+      <Comment>The name of the key/field to use as reference in the iObject.</Comment>
+    </Input>
+    <Input name="iValueToMask" id="fi.DataMaskingLibrary.fnGetRandomReferenceValue.3" index="3" dataType="String">
+      <Comment>The Value to be masked.</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oRandomMaskedValue" id="fo.DataMaskingLibrary.fnGetRandomReferenceValue.0" index="0" dataType="String">
+      <Comment>The masked value.</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

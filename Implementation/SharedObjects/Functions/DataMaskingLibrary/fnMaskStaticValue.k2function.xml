@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskStaticValue</Name>
+  <ID>DataMaskingLibrary.fnMaskStaticValue</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function is used for masking a given field with a constant value.
+Simply returns the input value.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>return iStaticValue;</FunctionBody>
+  <IsSyntaxValid>false</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iStaticValue" id="fi.DataMaskingLibrary.fnMaskStaticValue.0" index="0" dataType="String">
+      <Comment>A constant value that will be used for masking the field</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedValue" id="fo.DataMaskingLibrary.fnMaskStaticValue.0" index="0" dataType="String">
+      <Comment>Return the iStaticValue</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

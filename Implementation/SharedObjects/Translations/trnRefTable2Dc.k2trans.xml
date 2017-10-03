@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Translation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>trnRefTable2Dc</Name>
+  <InputNotFoundAction>Use_Default</InputNotFoundAction>
+  <SchemaColumns>
+    <Column>
+      <Title>TABLE_NAME</Title>
+      <ColumnName>TABLE_NAME</ColumnName>
+      <Direction>Input</Direction>
+      <Type>Text</Type>
+      <Length>100</Length>
+      <Format />
+      <Index>0</Index>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="100" />
+    </Column>
+    <Column>
+      <Title>DC</Title>
+      <ColumnName>DC</ColumnName>
+      <Direction>Output</Direction>
+      <Type>Text</Type>
+      <Length>10</Length>
+      <Format />
+      <Index>0</Index>
+      <DefaultValueIsExpression>false</DefaultValueIsExpression>
+      <AllowNULL>true</AllowNULL>
+      <GridColumnProperties width="100" />
+    </Column>
+  </SchemaColumns>
+  <IsImportFromSQL>false</IsImportFromSQL>
+  <IsDynamicData>false</IsDynamicData>
+  <ColumnMapping />
+  <TranslationData>
+    <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+      <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="trnRefTable2Dc" msdata:UseCurrentLocale="true">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="trnRefTable2Dc">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="TABLE_NAME" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="DC" default="" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+      <DocumentElement>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc1" msdata:rowOrder="0">
+          <TABLE_NAME>customer_multi</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc2" msdata:rowOrder="1">
+          <TABLE_NAME>customer_multi_2</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc3" msdata:rowOrder="2">
+          <TABLE_NAME>customer_multi_3</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc4" msdata:rowOrder="3">
+          <TABLE_NAME>customer_multi_4</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc5" msdata:rowOrder="4">
+          <TABLE_NAME>customer_multi_5</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc6" msdata:rowOrder="5">
+          <TABLE_NAME>customer_multi_6</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc7" msdata:rowOrder="6">
+          <TABLE_NAME>customer_multi_7</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc8" msdata:rowOrder="7">
+          <TABLE_NAME>Multi_actor</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc9" msdata:rowOrder="8">
+          <TABLE_NAME>Multi_city</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc10" msdata:rowOrder="9">
+          <TABLE_NAME>Multi_country</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+        <trnRefTable2Dc diffgr:id="trnRefTable2Dc11" msdata:rowOrder="10">
+          <TABLE_NAME>Multi_film_actor</TABLE_NAME>
+          <DC>DC1</DC>
+        </trnRefTable2Dc>
+      </DocumentElement>
+    </diffgr:diffgram>
+  </TranslationData>
+  <DataRowsHeight>20</DataRowsHeight>
+</Translation>

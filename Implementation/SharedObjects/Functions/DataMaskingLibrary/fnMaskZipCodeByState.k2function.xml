@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskZipCodeByState</Name>
+  <ID>DataMaskingLibrary.fnMaskZipCodeByState</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask a US ZIP code using the iEncryption Key.
+The function will find the entry index of the Zip Code in the full list of all available US Zip Codes,
+Then it will add the Encryption value to the index value and modulo it based on the number of available US Zip Codes.
+The new value is used as the index of the new Zip Code which will be returned.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>if(iZipCode!=null &amp;&amp; !iZipCode.isEmpty()){
+	
+	//remove all the non-digit characters from the zip code
+	String modifiedIzipCode = iZipCode.replaceAll("[^\\d]", "");
+	if(modifiedIzipCode.length() &gt;= 5){
+		String zipNoPlus4 = modifiedIzipCode.substring(0,5);
+		//SQL Query for retrieving state based on the zipcode
+		final String SELECT_STATE_SQL = "Select Distinct state From refZipCodes Where Zip = "+'"'+zipNoPlus4+'"';
+	
+		String state = (String)DBSelectValue(DB_INTERFACE_NAME, SELECT_STATE_SQL, null);
+		//SQL Query for retrieving state
+		final String SELECT_STATE_ZIP_SQL = "SELECT DISTINCT zip FROM refZipCodes Where state = "+'"'+state+'"'+" ORDER BY zip";
+		
+		@SuppressWarnings("unchecked")
+		Map&lt;String, List&lt;String&gt;&gt; zipCodeStateMap = (Map&lt;String, List&lt;String&gt;&gt;)getThreadGlobals("ZipCodesByState");
+		List&lt;String&gt; zipCodeList = null;
+		// Get the US State based on the zipNoPlus4.
+		if(state!=null &amp;&amp; !state.isEmpty() &amp;&amp; !state.equalsIgnoreCase("NULL")) {
+			if(zipCodeStateMap == null) zipCodeStateMap = new HashMap&lt;String, List&lt;String&gt;&gt;();
+			
+			// Check if the list of ZIP Codes were already loaded into Global Memory.
+			if(zipCodeStateMap.get(state)==null){
+				
+				// Get a list of all US based ZIP Codes.
+				ResultSetWrapper results = DBQuery(DB_INTERFACE_NAME, SELECT_STATE_ZIP_SQL, null);
+				if(results != null){
+					// Prepare a new list to hold the indexed ZIP Codes.
+					zipCodeList = new ArrayList&lt;String&gt;();
+
+					// Loop through the restuls array and organize all ZIP codes under an indexed list.
+					for(Object[] res:results){
+						zipCodeList.add((String)res[0]);
+					}
+					zipCodeStateMap.put(state,zipCodeList);
+					setThreadGlobals("ZipCodesByState",zipCodeStateMap);
+				}
+			}
+			zipCodeList = zipCodeStateMap.get(state);
+			// Get the index/location of the Zip Code in the zipCodeList.
+			int zipIndex =   zipCodeList.indexOf(zipNoPlus4);
+			if(zipIndex &lt; 0){
+				zipIndex = 0;
+			}
+			int maskedZipIndex = 0;
+			// Check if the encryption should be created using a random number or a hard-coded one.
+			// If random encryption is required:
+			if(RANDOM_ENCRYPTION.equalsIgnoreCase(iEncryption)){
+				// Get the new ZipIndex by adding a random number between 1 and 100000 to the ZipIndex
+				// and using Modulo on the number of ZIP Codes available.
+				maskedZipIndex = (zipIndex + fnGetRandomNumber(1,100000))% zipCodeList.size();
+			// Use the hard-coded Encryption value.
+			} else {
+				// Get the new ZipIndex by adding the iEncryption to the ZipIndex
+				// and using Modulo on the number of ZIP Codes available.
+				maskedZipIndex = (zipIndex + Integer.parseInt(iEncryption)) % zipCodeList.size();
+			}
+			// Retrieve the new Zip Code based on the maskedZipIndex.
+			String oMaskedZipCode = zipCodeList.get(maskedZipIndex);
+			
+			// Return the new masked Zip Code.
+			return (oMaskedZipCode);
+		}
+	}
+}
+return iZipCode;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iZipCode" id="fi.DataMaskingLibrary.fnMaskZipCodeByState.0" index="0" dataType="String">
+      <Comment>The zip code</Comment>
+    </Input>
+    <Input name="iEncryption" id="fi.DataMaskingLibrary.fnMaskZipCodeByState.1" index="1" dataType="String">
+      <Comment>The encryption used to mask the Zip Code</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaskedZipCode" id="fo.DataMaskingLibrary.fnMaskZipCodeByState.0" index="0" dataType="String">
+      <Comment>The masked Zip Code</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

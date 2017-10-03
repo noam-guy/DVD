@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_customer_multi</ID>
+  <PopulationObjectName>query_public_customer_multi</PopulationObjectName>
+  <TableName>customer_multi</TableName>
+  <RootItemID>query_query_public_customer_multi</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="customer_id" id="queryCol_0" dataType="Text" index="0" />
+    <Arg name="store_id" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="first_name" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="last_name" id="queryCol_3" dataType="Text" index="3" />
+    <Arg name="email" id="queryCol_4" dataType="Text" index="4" />
+    <Arg name="address_id" id="queryCol_5" dataType="Text" index="5" />
+    <Arg name="activebool" id="queryCol_6" dataType="Text" index="6" />
+    <Arg name="create_date" id="queryCol_7" dataType="Text" index="7" />
+    <Arg name="last_update" id="queryCol_8" dataType="Text" index="8" />
+    <Arg name="active" id="queryCol_9" dataType="Text" index="9" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_customer_multi" name="query_public_customer_multi" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="customer_id" dataType="Text" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="store_id" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="first_name" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="last_name" dataType="Text" index="3" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_4" name="email" dataType="Text" index="4" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_5" name="address_id" dataType="Text" index="5" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_6" name="activebool" dataType="Text" index="6" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_7" name="create_date" dataType="Text" index="7" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_8" name="last_update" dataType="Text" index="8" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_9" name="active" dataType="Text" index="9" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.customer_multi]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="24" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_0" toItemID="tbl_customer_multi" toColID="tblCol_f6e5dce2e44e41f0a63c09c41f66e7de" />
+    <Link partId="25" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_1" toItemID="tbl_customer_multi" toColID="tblCol_10395191a547402b82838bea638f1c02" />
+    <Link partId="26" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_2" toItemID="tbl_customer_multi" toColID="tblCol_dce4c59a98354fba88e044aba7c21291" />
+    <Link partId="27" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_3" toItemID="tbl_customer_multi" toColID="tblCol_d526b44bbced4671a566744edeea829a" />
+    <Link partId="28" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_4" toItemID="tbl_customer_multi" toColID="tblCol_14bb62ce1da24b73a74abf88c88547e9" />
+    <Link partId="29" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_5" toItemID="tbl_customer_multi" toColID="tblCol_159d4eaf416e41d1b052d972c88426ea" />
+    <Link partId="30" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_6" toItemID="tbl_customer_multi" toColID="tblCol_a5e1e3f7ebe44e70a82d5ce0af949874" />
+    <Link partId="31" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_7" toItemID="tbl_customer_multi" toColID="tblCol_bc4030e3e5464c5ca6072e3e92f68684" />
+    <Link partId="32" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_8" toItemID="tbl_customer_multi" toColID="tblCol_2284854200c843cba7593b0fc5649a77" />
+    <Link partId="33" fromNodeOrder="0" fromItemID="query_query_public_customer_multi" fromColID="queryCol_9" toItemID="tbl_customer_multi" toColID="tblCol_1e0b1de81c60445e93984fadf9881065" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>fnMaskFieldAES</Name>
+  <ID>DataMaskingLibrary.fnMaskFieldAES</ID>
+  <Category>DataMaskingLibrary</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask an input field using the iEncryption Key.
+It will randomly generate the encryption.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>byte[] encrypted = null;
+final String key = "abcdefghijklmnop";
+final String initVector = org.apache.commons.lang.StringUtils.repeat("a", 10240); 
+
+javax.crypto.spec.IvParameterSpec iv =new javax.crypto.spec.IvParameterSpec(initVector.getBytes("UTF-8"));
+javax.crypto.spec.SecretKeySpec skeySpec = new javax.crypto.spec.SecretKeySpec(key.getBytes("UTF-8"), "AES");
+javax.crypto.Cipher cipher = javax.crypto.Cipher.getInstance("AES/CBC/PKCS5PADDING");
+try {
+	
+    cipher.init(javax.crypto.Cipher.ENCRYPT_MODE, skeySpec, iv);
+
+    encrypted = cipher.doFinal(iFieldValue.getBytes());
+
+    //encrypted = org.apache.commons.codec.binary.Base64.encodeBase64String(encrypted);
+	
+    cipher.init(javax.crypto.Cipher.DECRYPT_MODE, skeySpec, iv);
+	String encryptStr = org.apache.commons.codec.binary.Base64.encodeBase64String(encrypted);
+    byte[] original = cipher.doFinal(org.apache.commons.codec.binary.Base64.decodeBase64(encryptStr));
+
+    return new String(original);
+} catch (Exception ex) {
+    ex.printStackTrace();
+}
+return null;
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iFieldValue" id="fi.DataMaskingLibrary.fnMaskFieldAES.0" index="0" dataType="String">
+      <Comment>The value of the field.</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMasedField" id="fo.DataMaskingLibrary.fnMaskFieldAES.0" index="0" dataType="String">
+      <Comment>The mased field value.</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.1.0.0">
+  <Name>fnGetRowValues</Name>
+  <ID>ResultSet.fnGetRowValues</ID>
+  <Category>ResultSet</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RegularFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>ResultSet rs = (ResultSet) rsInput;
+ArrayList&lt;Object&gt; rowVal = new ArrayList&lt;Object&gt;();
+ResultSetMetaData rsmd = rs.getMetaData();
+int columnsNumber = rsmd.getColumnCount();
+for (int i=1; i &lt; columnsNumber + 1 ; i++) {
+	 rowVal.add(rs.getObject(i));
+}
+Object[] row = rowVal.toArray();
+return row;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="rsInput" id="fi.ResultSet.fnGetRowValues.0" index="0" dataType="Object" />
+  </InputParams>
+  <OutputParams>
+    <Output name="rowVal" id="fo.ResultSet.fnGetRowValues.0" index="0" dataType="Object[]" />
+  </OutputParams>
+</KFunction>

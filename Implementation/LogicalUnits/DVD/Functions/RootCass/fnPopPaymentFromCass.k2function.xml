@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.1.0.0">
+  <Name>fnPopPaymentFromCass</Name>
+  <ID>RootCass.fnPopPaymentFromCass</ID>
+  <Category>RootCass</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>String sql = "SELECT customer_id, payment_id, amount_new, payment_date, rental_id, staff_id, tmp FROM k2view_dvd.payment where customer_id = ?";
+Object[] valuesArr = new Object[]{customer_id};
+ResultSetWrapper rs = DBQuery("cass_local", sql, valuesArr);
+
+for(Object[] row : rs) {
+	yield(row);
+}
+
+rs.closeStmt();
+</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="customer_id" id="fi.RootCass.fnPopPaymentFromCass.0" index="0" dataType="Long">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="customer_id" id="fo.RootCass.fnPopPaymentFromCass.0" index="0" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="payment_id" id="fo.RootCass.fnPopPaymentFromCass.1" index="1" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="amount_new" id="fo.RootCass.fnPopPaymentFromCass.2" index="2" dataType="Double">
+      <Comment />
+    </Output>
+    <Output name="payment_date" id="fo.RootCass.fnPopPaymentFromCass.3" index="3" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="rental_id" id="fo.RootCass.fnPopPaymentFromCass.4" index="4" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="staff_id" id="fo.RootCass.fnPopPaymentFromCass.5" index="5" dataType="Integer">
+      <Comment />
+    </Output>
+    <Output name="tmp" id="fo.RootCass.fnPopPaymentFromCass.6" index="6" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

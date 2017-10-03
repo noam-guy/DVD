@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Multi_actor</Name>
+  <ID>tbl_Multi_actor</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="actor_id" id="tblCol_49ef33188c6b4d609e9767c8d3961317" index="0" datatype="Integer" mandatory="true" />
+    <Column name="first_name" id="tblCol_fc8403168fca4d9ca68667228fab6da0" index="1" datatype="Text" mandatory="true" />
+    <Column name="last_name" id="tblCol_9e84de96c2e34dbd8acb6cce16a7a0d3" index="2" datatype="Text" mandatory="true" />
+    <Column name="last_update" id="tblCol_ed9962503ab14c5d9ac17c19e0bcf625" index="3" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" instanceOnly="true" columnsIdsList="tblCol_49ef33188c6b4d609e9767c8d3961317" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

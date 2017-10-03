@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_city</ID>
+  <PopulationObjectName>query_public_city</PopulationObjectName>
+  <TableName>Multi_city</TableName>
+  <RootItemID>query_query_public_city</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="city_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="city" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="country_id" id="queryCol_2" dataType="Integer" index="2" />
+    <Arg name="last_update" id="queryCol_3" dataType="Text" index="3" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_city" name="query_public_city" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="city_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="city" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="country_id" dataType="Integer" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="last_update" dataType="Text" index="3" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.city]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_city" fromColID="queryCol_0" toItemID="tbl_Multi_city" toColID="tblCol_ad60a233583345c49679dac52e628448" />
+    <Link partId="13" fromNodeOrder="0" fromItemID="query_query_public_city" fromColID="queryCol_1" toItemID="tbl_Multi_city" toColID="tblCol_808b350228814c04b3b3f79bf65571e0" />
+    <Link partId="14" fromNodeOrder="0" fromItemID="query_query_public_city" fromColID="queryCol_2" toItemID="tbl_Multi_city" toColID="tblCol_530d074aa89845df9ecc9cd63dcd24ba" />
+    <Link partId="15" fromNodeOrder="0" fromItemID="query_query_public_city" fromColID="queryCol_3" toItemID="tbl_Multi_city" toColID="tblCol_b6f889b6403543f5bc5d3fd731dfb2be" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

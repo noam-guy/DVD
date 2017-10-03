@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>category</Name>
+  <ID>tbl_category</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="category_id" id="tblCol_0f4777dfd0bb4ffe825aca1b3fe6accc" index="0" datatype="Integer" mandatory="true" />
+    <Column name="name" id="tblCol_c7af1f16686146f7ba9f1239dc7af4ba" index="1" datatype="Text" mandatory="true" />
+    <Column name="last_update" id="tblCol_c773f419463c44c8b54ad7d0e2da1930" index="2" datatype="Text" mandatory="true" />
+  </Columns>
+  <IndexesList>
+    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_0f4777dfd0bb4ffe825aca1b3fe6accc" />
+  </IndexesList>
+  <EnrichmentList />
+</TableObject>

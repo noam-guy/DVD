@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>fnPopINSTANCE_TABLE_COUNT</Name>
+  <ID>Stats.fnPopINSTANCE_TABLE_COUNT</ID>
+  <Category>Stats</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RegularFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>String entityId = getInstanceID();
+Object[] param = new Object[]{"INSTANCE_TABLE_COUNT", "LU_PARAMS"};
+String tableName = null;
+
+if (inDebugMode()){
+	 tableName = "_k2_objects_info";
+}else{
+	 tableName = "dvd._k2_objects_info";
+}
+// Fetching all LU tables
+ResultSetWrapper luTableList =  DBQuery("ludb", "SELECT distinct table_name FROM "+tableName+" where table_name != ? and table_name != ?", param);
+for (Object[] row : luTableList) {
+	 // Get table's count
+	param = null;
+	Integer luTableCnt = (Integer) DBSelectValue("ludb", "select count(*) from "+row[0], param);
+	param = new Object[]{entityId, row[0], luTableCnt};
+	DBExecute("ludb", "insert into INSTANCE_TABLE_COUNT values (?, ?, ?)", param);
+}
+luTableList.closeStmt();</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams />
+  <OutputParams />
+</KFunction>

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="2.3.0.1">
+  <Name>k2s_MaskField</Name>
+  <ID>CoreDataMasking.k2s_MaskField</ID>
+  <Category>CoreDataMasking</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>LudbFunction</FunctionType2>
+  <RegisterAsLuDbFunction>true</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc>This function will mask (obfuscate) a field based on the $iEncryption value.
+It will add the value of the first number of the $iEncryption number to the ASCII value 
+of the first character of the $iFieldValue and translate it back to its Char value.</Desc>
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>//Null check
+if(iFieldValue == null || iFieldValue.isEmpty()) return iFieldValue;
+
+int valueLength = iFieldValue.length();
+int encryptionLength = iEncryption.length();
+String newEncryption = iEncryption;
+
+// If the length of the iEncryption is smaller than the length of the iFieldValue,
+// Append the iEncryption to itself as many times as needed to match the length of iFieldValue.
+while(encryptionLength &lt; valueLength){
+	// Append iEncryption to itself.
+	newEncryption = newEncryption + iEncryption;
+	// Checks the length of the new iEncryption.
+	encryptionLength = newEncryption.length();
+}
+
+String oMaksedField = "";
+newEncryption = newEncryption.substring(0,valueLength);
+
+//if iFieldValue is numeric
+// If it is, it will use the same encryption but on a cycle of 0-9
+// As an example, if $iFieldValue = 92 and $iEncryption = 86
+// The function will add 9 + 8 = 17 and will change it to 7
+// And 2 + 6 = 8 and will leave it as 8, so the final masked value is 78.
+if(iFieldValue.matches(NUMBER_REGEX)){	
+	int tempRes = 0;
+	// Goes number by number in iFieldValue and adds it's equivalent iEncryption number.
+	for(int i=0;i&lt;valueLength;i++){
+		tempRes = (Character.getNumericValue(iFieldValue.charAt(i)) + 
+					Character.getNumericValue(newEncryption.charAt(i))) % 10;
+		oMaksedField = oMaksedField + Integer.toString(tempRes);
+		tempRes = 0;
+	}
+}
+// In case iFieldValue is a non-numeric value.
+// Mask every alphanumeric charecter using the same logic.
+// First convert the alphanumeric charecter into ASCII, then add the equivalent value from iEncryption
+// Lastly, convert the new ASCII value back to Char.
+else{
+	String maskedFieldValue = iFieldValue;
+	char currentChar;
+	int charecterASCII = 0;
+	int maskedASCII = 0;
+	char maskedChar;
+	// Go charecter by charecter and check if it's alphanumeric,
+	// If it is mask it, if not, leave it as is.
+	for(int i = 0 ; i &lt; valueLength ; i++){
+		// Extract the current charecter from the iFieldValue argument.
+		currentChar = iFieldValue.charAt(i);
+		
+		// If charecter is alphanumeric.
+		if(Character.isDigit(currentChar) || Character.isLetter(currentChar)){
+			
+			// Convert the current charecter into ASCII format
+			charecterASCII = (int)currentChar;
+			
+			// Check the range of the alphanumeric charecter
+			if(Character.isDigit(currentChar)){ // If 0-9 (same as - "is_numeric($charecterValue)")
+
+				// Update the specific charecter in the value.
+				maskedASCII = (Character.getNumericValue(currentChar) + Character.getNumericValue(newEncryption.charAt(i))) % 10;
+				maskedChar = (Integer.toString(maskedASCII)).charAt(0);
+				
+			} else if(Character.isUpperCase(currentChar)){ // If A-Z (upper case letter)
+				// Get the masked ASCII value.
+				maskedASCII = charecterASCII + Character.getNumericValue(newEncryption.charAt(i));
+				// Update the masked value.
+				maskedChar = (maskedASCII&gt;90)?(char)(maskedASCII-26):(char)(maskedASCII);
+			} else { // if a-z (lower case letter)
+				// Get the masked ASCII value.
+				maskedASCII = charecterASCII + Character.getNumericValue(newEncryption.charAt(i));
+				maskedChar = (maskedASCII&gt;122)?(char)(maskedASCII-26):(char)(maskedASCII);
+			}
+			// Update the masked value.
+			maskedFieldValue = maskedFieldValue.substring(0,i)+(char)maskedChar + maskedFieldValue.substring(i+1);
+		}else{
+			maskedFieldValue = maskedFieldValue.substring(0,i)+ currentChar + maskedFieldValue.substring(i+1);
+		}
+	}
+	// Update the return value.
+	oMaksedField = maskedFieldValue;
+}
+return oMaksedField;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="iFieldValue" id="fi.CoreDataMasking.k2s_MaskField.0" index="0" dataType="String">
+      <Comment>The value of the field on which to apply the masking</Comment>
+    </Input>
+    <Input name="iEncryption" id="fi.CoreDataMasking.k2s_MaskField.1" index="1" dataType="String">
+      <Comment>The encryption to be used to mask the value</Comment>
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="oMaksedField" id="fo.CoreDataMasking.k2s_MaskField.0" index="0" dataType="String">
+      <Comment>The obfuscated field</Comment>
+    </Output>
+  </OutputParams>
+</KFunction>

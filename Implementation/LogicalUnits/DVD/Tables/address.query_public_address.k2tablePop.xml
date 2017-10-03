@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_address</ID>
+  <PopulationObjectName>query_public_address</PopulationObjectName>
+  <TableName>address</TableName>
+  <RootItemID>query_query_public_address</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="address_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="address" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="address2" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="district" id="queryCol_3" dataType="Text" index="3" />
+    <Arg name="city_id" id="queryCol_4" dataType="Integer" index="4" />
+    <Arg name="postal_code" id="queryCol_5" dataType="Text" index="5" />
+    <Arg name="phone" id="queryCol_6" dataType="Text" index="6" />
+    <Arg name="last_update" id="queryCol_7" dataType="Text" index="7" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_address" name="query_public_address" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="address_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="address" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="address2" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="district" dataType="Text" index="3" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_4" name="city_id" dataType="Integer" index="4" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_5" name="postal_code" dataType="Text" index="5" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_6" name="phone" dataType="Text" index="6" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_7" name="last_update" dataType="Text" index="7" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.address]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="20" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_0" toItemID="tbl_address" toColID="tblCol_6d1ff732d9b54a8298567d33419d1218" />
+    <Link partId="21" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_1" toItemID="tbl_address" toColID="tblCol_578b2e681c334baabd7836da7e57c2c1" />
+    <Link partId="22" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_2" toItemID="tbl_address" toColID="tblCol_7f918ab7771d49fba8d44f76f0667be5" />
+    <Link partId="23" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_3" toItemID="tbl_address" toColID="tblCol_35d5879a8b25446c9489f9fc14ec6807" />
+    <Link partId="24" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_4" toItemID="tbl_address" toColID="tblCol_5fc7e05c2a684947b163c44ba8419b92" />
+    <Link partId="25" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_5" toItemID="tbl_address" toColID="tblCol_869cc3e4466a4c8c9bb39bb5440f430e" />
+    <Link partId="26" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_6" toItemID="tbl_address" toColID="tblCol_8316942e23854acb9b416480985185f7" />
+    <Link partId="27" fromNodeOrder="0" fromItemID="query_query_public_address" fromColID="queryCol_7" toItemID="tbl_address" toColID="tblCol_243126d0afcd4194972c8342bb9ecdc7" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

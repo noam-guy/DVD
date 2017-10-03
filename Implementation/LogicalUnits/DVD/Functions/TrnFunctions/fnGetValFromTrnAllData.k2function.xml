@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+  <Name>fnGetValFromTrnAllData</Name>
+  <ID>TrnFunctions.fnGetValFromTrnAllData</ID>
+  <Category>TrnFunctions</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RegularFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>String trnName = "trnExample";
+java.util.Map &lt;String,Map &lt;String,String&gt;&gt; rsFromTrn = new java.util.HashMap&lt;String,Map &lt;String,String&gt;&gt;();
+java.util.Map &lt;String,String&gt; outputColandVal = new java.util.HashMap&lt;String,String&gt;();
+String inputColum = null;
+rsFromTrn = getTranslationsData(trnName);
+for (java.util.Map.Entry&lt;String, Map&lt;String, String&gt;&gt; entry : rsFromTrn.entrySet())
+{
+   inputColum = entry.getKey();
+   outputColandVal = entry.getValue();
+	reportUserMessage(inputColum+" - "+outputColandVal.get("value_one")+" - "+outputColandVal.get("value_two"));
+}
+return null;</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>false</IsRootFunction>
+  <InputParams>
+    <Input name="input" id="fi.TrnFunctions.fnGetValFromTrnAllData.0" index="0" dataType="String" />
+  </InputParams>
+  <OutputParams>
+    <Output name="inputValue" id="fo.TrnFunctions.fnGetValFromTrnAllData.0" index="0" dataType="String" />
+    <Output name="first" id="fo.TrnFunctions.fnGetValFromTrnAllData.1" index="1" dataType="String" />
+    <Output name="last" id="fo.TrnFunctions.fnGetValFromTrnAllData.2" index="2" dataType="String" />
+  </OutputParams>
+</KFunction>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.1.0.0">
+  <Name>fnPopRootRental</Name>
+  <ID>Parser.fnPopRootRental</ID>
+  <Category>Parser</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Auther name="" id="" />
+  <Language>Java</Language>
+  <FunctionBody>/*Connection con = getConnection("dvdRental");
+Object[] valuesArr = new Object[]{customer_id};
+String sql = "SELECT rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update FROM public.rental where customer_id = ?";
+PreparedStatement pst = con.prepareStatement(sql);
+ResultSetWrapper rs = DBQueryPrepared(pst,valuesArr);
+for(Object[] row : rs) {
+    yield(row);
+}
+
+rs.closeStmt();
+
+String sql = "SELECT rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update FROM public.rental where customer_id = ? ";
+Object[] valuesArr = new Object[]{customer_id};
+ResultSetWrapper rs = DBQuery("dvdRental", sql, valuesArr);
+
+for(Object[] row : rs) {
+    yield(row);
+}
+
+rs.closeStmt();
+*/
+
+String sql = "SELECT rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update FROM public.rental where customer_id = ? ";
+Connection conn = getConnection("dvdRental");
+
+PreparedStatement stmt = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+stmt.setInt(1, customer_id);
+ResultSet rs  = stmt.executeQuery();
+
+if(!rs.next()){reportUserMessage("Result set is empty");}else{rs.beforeFirst();}
+
+while(rs.next()){
+	Object[] row = fnGetRowValues(rs);
+	yield(row);
+}</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="customer_id" id="fi.Parser.fnPopRootRental.0" index="0" dataType="Integer">
+      <Comment />
+    </Input>
+  </InputParams>
+  <OutputParams>
+    <Output name="rental_id" id="fo.Parser.fnPopRootRental.0" index="0" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="rental_date" id="fo.Parser.fnPopRootRental.1" index="1" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="inventory_id" id="fo.Parser.fnPopRootRental.2" index="2" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="customer_id" id="fo.Parser.fnPopRootRental.3" index="3" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="return_date" id="fo.Parser.fnPopRootRental.4" index="4" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="staff_id" id="fo.Parser.fnPopRootRental.5" index="5" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="last_update" id="fo.Parser.fnPopRootRental.6" index="6" dataType="String">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>

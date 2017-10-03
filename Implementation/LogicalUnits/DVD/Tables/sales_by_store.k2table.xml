@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>sales_by_store</Name>
+  <ID>tbl_sales_by_store</ID>
+  <LazyDataUpdate performEvery="1.00:00:00" />
+  <Columns>
+    <Column name="store" id="tblCol_fefe077ec63b47b39cc6bb47a37cb0f7" index="0" datatype="Text" />
+    <Column name="manager" id="tblCol_b4b27188a6d44a27961e564fd1b0f1f0" index="1" datatype="Text" />
+    <Column name="total_sales" id="tblCol_bf52672dc7cc42d19d56d1f6345c205c" index="2" datatype="Real" />
+  </Columns>
+  <IndexesList />
+  <EnrichmentList />
+</TableObject>

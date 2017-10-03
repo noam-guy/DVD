@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_actor</ID>
+  <PopulationObjectName>query_public_actor</PopulationObjectName>
+  <TableName>Multi_actor</TableName>
+  <RootItemID>query_query_public_actor</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="actor_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="first_name" id="queryCol_1" dataType="Text" index="1" />
+    <Arg name="last_name" id="queryCol_2" dataType="Text" index="2" />
+    <Arg name="last_update" id="queryCol_3" dataType="Text" index="3" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_actor" name="query_public_actor" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="actor_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="first_name" dataType="Text" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="last_name" dataType="Text" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="last_update" dataType="Text" index="3" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.actor]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_actor" fromColID="queryCol_0" toItemID="tbl_Multi_actor" toColID="tblCol_49ef33188c6b4d609e9767c8d3961317" />
+    <Link partId="13" fromNodeOrder="0" fromItemID="query_query_public_actor" fromColID="queryCol_1" toItemID="tbl_Multi_actor" toColID="tblCol_fc8403168fca4d9ca68667228fab6da0" />
+    <Link partId="14" fromNodeOrder="0" fromItemID="query_query_public_actor" fromColID="queryCol_2" toItemID="tbl_Multi_actor" toColID="tblCol_9e84de96c2e34dbd8acb6cce16a7a0d3" />
+    <Link partId="15" fromNodeOrder="0" fromItemID="query_query_public_actor" fromColID="queryCol_3" toItemID="tbl_Multi_actor" toColID="tblCol_ed9962503ab14c5d9ac17c19e0bcf625" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>

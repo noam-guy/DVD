@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TablePopulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>query_public_store</ID>
+  <PopulationObjectName>query_public_store</PopulationObjectName>
+  <TableName>store</TableName>
+  <RootItemID>query_query_public_store</RootItemID>
+  <SimpleObject>true</SimpleObject>
+  <InputArguments>
+    <Arg name="store_id" id="queryCol_0" dataType="Integer" index="0" />
+    <Arg name="manager_staff_id" id="queryCol_1" dataType="Integer" index="1" />
+    <Arg name="address_id" id="queryCol_2" dataType="Integer" index="2" />
+    <Arg name="last_update" id="queryCol_3" dataType="Text" index="3" />
+  </InputArguments>
+  <ItemsList>
+    <Item xsi:type="DBQueryDataSave" id="query_query_public_store" name="query_public_store" nodeOrder="0" module="DBQuery" mapObjectModule="DBQuery" connName="dvdRental">
+      <OutputsList>
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_0" name="store_id" dataType="Integer" index="0" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_1" name="manager_staff_id" dataType="Integer" index="1" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_2" name="address_id" dataType="Integer" index="2" />
+        <Output xsi:type="DBQueryDataSaveColumn" id="queryCol_3" name="last_update" dataType="Text" index="3" />
+      </OutputsList>
+      <SQL><![CDATA[SELECT * FROM public.store]]></SQL>
+    </Item>
+  </ItemsList>
+  <LinksList>
+    <Link partId="12" fromNodeOrder="0" fromItemID="query_query_public_store" fromColID="queryCol_0" toItemID="tbl_store" toColID="tblCol_e8744feb5b41466881cc4720ac5a80f7" />
+    <Link partId="13" fromNodeOrder="0" fromItemID="query_query_public_store" fromColID="queryCol_1" toItemID="tbl_store" toColID="tblCol_79f301f5a75d449eb0c367f649d43ab8" />
+    <Link partId="14" fromNodeOrder="0" fromItemID="query_query_public_store" fromColID="queryCol_2" toItemID="tbl_store" toColID="tblCol_35741f7acd044bdab5c8ae1a63a34afc" />
+    <Link partId="15" fromNodeOrder="0" fromItemID="query_query_public_store" fromColID="queryCol_3" toItemID="tbl_store" toColID="tblCol_878332beac77412789d78679da59f864" />
+  </LinksList>
+  <ModeKeyColumnIDs />
+</TablePopulationObject>
