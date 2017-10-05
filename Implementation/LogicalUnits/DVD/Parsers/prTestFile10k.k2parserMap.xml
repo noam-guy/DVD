@@ -136,4 +136,5 @@
   </TargetsList>
   <Active>true</Active>
   <syncEvery>00:00:00</syncEvery>
+  <InterfaceName>ifLocalLinux</InterfaceName>
 </ParserMap>
