@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ParserMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.4.0.14">
+  <Name>prTestFile10k</Name>
+  <MapType>ParserMap</MapType>
+  <RootItemID>f_1</RootItemID>
+  <SimpleObject>false</SimpleObject>
+  <TargetsList>
+    <Target xsi:type="ParserMapTargetItem">
+      <TargetName>test_file_10k</TargetName>
+      <Module>Parser_Map</Module>
+      <ItemsList>
+        <Item xsi:type="ConstantDataSave" id="c.11" nodeOrder="0" module="Constant" mapObjectModule="Constant">
+          <Value><![CDATA[/usr/local/k2view]]></Value>
+        </Item>
+        <Item xsi:type="ConstantDataSave" id="c.56" nodeOrder="0" module="Constant" mapObjectModule="Constant">
+          <Value><![CDATA[C:\K2View]]></Value>
+        </Item>
+        <Item xsi:type="ConstantDataSave" id="c.14" nodeOrder="0" module="Constant" mapObjectModule="Constant">
+          <Value><![CDATA[filename.csv]]></Value>
+        </Item>
+        <Item id="f_1" name="k2_FolderParser" nodeOrder="1" module="Function" mapObjectModule="Function" fileName="k2_FolderParser.k2function.xml">
+          <InputsList>
+            <Input id="fi_1.0" name="folderPath" />
+            <Input id="fi_1.1" name="folderPathDebug" />
+            <Input id="fi_1.2" name="regexFilter" />
+            <Input id="fi_1.3" name="recordDelimiter" defaultValue="\n" />
+            <Input id="fi_1.4" name="fieldDelimiter" defaultValue="," />
+            <Input id="fi_1.5" name="enclosingChar" defaultValue="&quot;" />
+            <Input id="fi_1.6" name="skipHeaderRows" />
+            <Input id="fi_1.7" name="skipFooterRows" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_1.0" name="result" />
+          </OutputsList>
+        </Item>
+        <Item id="f_17" name="fnGetValues" nodeOrder="2" module="Function" mapObjectModule="Function" fileName="fnGetValues.k2function.xml">
+          <InputsList>
+            <Input id="fi_17.0" name="rs" />
+          </InputsList>
+          <OutputsList>
+            <Output id="fo_17.0" name="seq" />
+            <Output id="fo_17.1" name="url_addr" />
+            <Output id="fo_17.2" name="ext" />
+            <Output id="fo_17.3" name="phn" />
+            <Output id="fo_17.4" name="ph2" />
+            <Output id="fo_17.5" name="url_addr2" />
+            <Output id="fo_17.6" name="ext2" />
+            <Output id="fo_17.7" name="ind" />
+            <Output id="fo_17.8" name="ind2" />
+            <Output id="fo_17.9" name="ph3" />
+            <Output id="fo_17.10" name="ph4" />
+          </OutputsList>
+        </Item>
+        <Item xsi:type="ParserRecordTypeDataSave" id="rt_test_file_10k" name="test_file_10k" nodeOrder="3" module="ParserRecordType" mapObjectModule="ParserRecordType" parentParser="prTestFile10k">
+          <InputsList>
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_3ec63b4b843c43829b7f8cacf24bcf10" name="seq" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_2c6a4d57db094d8a812b1ef8df3706a3" name="url_addr" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_66e8c5d2f77c442198687236101eb363" name="ext" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_54132b605caa4447b45001c3f8e28de9" name="phn" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_2cbe6749e75e4edfa9a3afecadb9d388" name="ph2" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_20361afcb40549198a431e772b544ead" name="url_addr2" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_1af94df4de884b3eab9fab6b473d58f5" name="ext2" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_6836b42e0af74a5894382b19e31cf72e" name="ind" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_7fc8f4971b9b40d181c2cb5e9b7709fd" name="ind2" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_4596801f97f54385b5ed739fddc5cf6e" name="ph3" dataType="Text" />
+            <Input xsi:type="ParserRecordTypeDataSaveColumnInput" id="rtCol_b8ad0015fbef4602ace565817c434f3a" name="ph4" dataType="Text" />
+          </InputsList>
+          <OutputsList />
+          <RecordTypeKeyColumn>rtCol_54132b605caa4447b45001c3f8e28de9</RecordTypeKeyColumn>
+          <PkColumnsList>
+            <RecordTypePkColumn id="rtCol_3ec63b4b843c43829b7f8cacf24bcf10" name="seq" pkType="Partition_Key" />
+          </PkColumnsList>
+          <ClusteringKeyOrder>ASC</ClusteringKeyOrder>
+        </Item>
+      </ItemsList>
+      <LinksList>
+        <Link partId="44" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.0" toItemID="rt_test_file_10k" toColID="rtCol_3ec63b4b843c43829b7f8cacf24bcf10" />
+        <Link partId="31" fromNodeOrder="1" fromItemID="f_1" fromColID="fo_1.0" toItemID="f_17" toColID="fi_17.0" />
+        <Link partId="13" fromNodeOrder="0" fromItemID="c.11" fromColID="c.11" toItemID="f_1" toColID="fi_1.0" />
+        <Link partId="58" fromNodeOrder="0" fromItemID="c.56" fromColID="c.56" toItemID="f_1" toColID="fi_1.1" />
+        <Link partId="16" fromNodeOrder="0" fromItemID="c.14" fromColID="c.14" toItemID="f_1" toColID="fi_1.2" />
+        <Link partId="45" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.1" toItemID="rt_test_file_10k" toColID="rtCol_2c6a4d57db094d8a812b1ef8df3706a3" />
+        <Link partId="46" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.2" toItemID="rt_test_file_10k" toColID="rtCol_66e8c5d2f77c442198687236101eb363" />
+        <Link partId="47" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.3" toItemID="rt_test_file_10k" toColID="rtCol_54132b605caa4447b45001c3f8e28de9" />
+        <Link partId="48" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.4" toItemID="rt_test_file_10k" toColID="rtCol_2cbe6749e75e4edfa9a3afecadb9d388" />
+        <Link partId="49" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.5" toItemID="rt_test_file_10k" toColID="rtCol_20361afcb40549198a431e772b544ead" />
+        <Link partId="50" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.6" toItemID="rt_test_file_10k" toColID="rtCol_1af94df4de884b3eab9fab6b473d58f5" />
+        <Link partId="51" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.7" toItemID="rt_test_file_10k" toColID="rtCol_6836b42e0af74a5894382b19e31cf72e" />
+        <Link partId="52" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.8" toItemID="rt_test_file_10k" toColID="rtCol_7fc8f4971b9b40d181c2cb5e9b7709fd" />
+        <Link partId="53" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.9" toItemID="rt_test_file_10k" toColID="rtCol_4596801f97f54385b5ed739fddc5cf6e" />
+        <Link partId="55" fromNodeOrder="2" fromItemID="f_17" fromColID="fo_17.10" toItemID="rt_test_file_10k" toColID="rtCol_b8ad0015fbef4602ace565817c434f3a" />
+      </LinksList>
+      <ParserMapRecordType id="rt_test_file_10k" name="test_file_10k" parentParser="prTestFile10k">
+        <Active xsi:nil="true" />
+        <RecordTypeKeyColumn>rtCol_54132b605caa4447b45001c3f8e28de9</RecordTypeKeyColumn>
+        <Columns>
+          <Column id="rtCol_3ec63b4b843c43829b7f8cacf24bcf10" name="seq" index="0">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_2c6a4d57db094d8a812b1ef8df3706a3" name="url_addr" index="1">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_66e8c5d2f77c442198687236101eb363" name="ext" index="2">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_54132b605caa4447b45001c3f8e28de9" name="phn" index="3">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_2cbe6749e75e4edfa9a3afecadb9d388" name="ph2" index="4">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_20361afcb40549198a431e772b544ead" name="url_addr2" index="5">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_1af94df4de884b3eab9fab6b473d58f5" name="ext2" index="6">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_6836b42e0af74a5894382b19e31cf72e" name="ind" index="7">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_7fc8f4971b9b40d181c2cb5e9b7709fd" name="ind2" index="8">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_4596801f97f54385b5ed739fddc5cf6e" name="ph3" index="9">
+            <DataType>Text</DataType>
+          </Column>
+          <Column id="rtCol_b8ad0015fbef4602ace565817c434f3a" name="ph4" index="10">
+            <DataType>Text</DataType>
+          </Column>
+        </Columns>
+        <PkColumns>
+          <PkColumn id="rtCol_3ec63b4b843c43829b7f8cacf24bcf10" name="seq" pkType="Partition_Key" />
+        </PkColumns>
+      </ParserMapRecordType>
+    </Target>
+  </TargetsList>
+  <Active>true</Active>
+  <syncEvery>00:00:00</syncEvery>
+</ParserMap>

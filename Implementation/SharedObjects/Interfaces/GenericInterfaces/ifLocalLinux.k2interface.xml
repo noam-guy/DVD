@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericInterface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="SFTP" displayName="SFTP" enabled="true" version="1.3">
+  <Name>ifLocalLinux</Name>
+  <Properties>
+    <Property name="IP" displayName="IP" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+      <Value>192.168.139.151</Value>
+      <DefaultValue />
+      <Comments />
+      <OptionsList />
+    </Property>
+    <Property name="User" displayName="User" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+      <Value>k2view</Value>
+      <DefaultValue />
+      <Comments />
+      <OptionsList />
+    </Property>
+    <Property name="Password" displayName="Password" dataType="password" mandatory="false" show="true" readOnly="false" category="">
+      <Value>Z6kyy40aMoN0tCgqjg49CHZTVndcr5PhqU6x6TO75ww=:tCK0cJt1ZUIINi/+O1BeDdqIQxmeZvyoOpa1wxZ86Zk=</Value>
+      <DefaultValue />
+      <Comments />
+      <OptionsList />
+    </Property>
+    <Property name="RemoteDir" displayName="Remote Directory" dataType="string" mandatory="true" show="true" readOnly="false" category="">
+      <Value>/usr/local/k2view/</Value>
+      <DefaultValue />
+      <Comments />
+      <OptionsList />
+    </Property>
+    <Property name="FilesFilter" displayName="Files Filter" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+      <Value>filename.csv</Value>
+      <DefaultValue />
+      <Comments>Regular expression</Comments>
+      <OptionsList />
+    </Property>
+    <Property name="Affinity" displayName="Affinity" dataType="string" mandatory="false" show="true" readOnly="false" category="">
+      <Value />
+      <DefaultValue />
+      <Comments>Comma delimited string to define candidate owners nodes. Can be DC_name/node_ip/Node_identifier</Comments>
+      <OptionsList />
+    </Property>
+  </Properties>
+  <TestConnection displayName="Test Connection" enabled="true">
+    <MethodName>com.k2view.cdbms.services.TestGenericInterfaceConnection</MethodName>
+    <Args>SFTP "@IP@" "@User@" "@Password@" "@RemoteDir@"</Args>
+  </TestConnection>
+</GenericInterface>
