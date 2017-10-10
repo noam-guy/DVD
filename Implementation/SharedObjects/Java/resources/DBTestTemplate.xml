@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<STORE> 
+	[[[STORE  =  select manager_staff_id, address_id from STORE limit 1
+		<Title>
+			<address_id>${@STORE.address_id}</address_id>
+			<manager_staff_id>${@STORE.manager_staff_id}</manager_staff_id>
+		</Title>
+</STORE>
