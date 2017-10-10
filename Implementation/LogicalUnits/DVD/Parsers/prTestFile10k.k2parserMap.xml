@@ -16,7 +16,7 @@
           <Value><![CDATA[C:\K2View]]></Value>
         </Item>
         <Item xsi:type="ConstantDataSave" id="c.14" nodeOrder="0" module="Constant" mapObjectModule="Constant">
-          <Value><![CDATA[filename.csv]]></Value>
+          <Value><![CDATA[]]></Value>
         </Item>
         <Item id="f_1" name="k2_FolderParser" nodeOrder="1" module="Function" mapObjectModule="Function" fileName="k2_FolderParser.k2function.xml">
           <InputsList>
