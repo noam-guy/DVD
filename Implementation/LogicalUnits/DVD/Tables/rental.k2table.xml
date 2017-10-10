@@ -2,7 +2,9 @@
 <TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>rental</Name>
   <ID>tbl_rental</ID>
-  <LazyDataUpdate performEvery="1.00:00:00" />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
   <Columns>
     <Column name="rental_id" id="tblCol_4a1044732c33488092841c4aaef15a69" index="0" datatype="Integer" />
     <Column name="rental_date" id="tblCol_4d8e7a7a058a44f3988c35dd5589100c" index="1" datatype="Text" />
@@ -13,7 +15,7 @@
     <Column name="last_update" id="tblCol_942635dd6b474defb96dea8099c14b6b" index="6" datatype="Text" />
   </Columns>
   <IndexesList>
-    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_4a1044732c33488092841c4aaef15a69" />
+    <Index id="1" unique="true" instanceOnly="true" columnsIdsList="tblCol_4a1044732c33488092841c4aaef15a69" />
   </IndexesList>
   <EnrichmentList />
 </TableObject>

@@ -2,7 +2,9 @@
 <TableObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>address</Name>
   <ID>tbl_address</ID>
-  <LazyDataUpdate performEvery="1.00:00:00" />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
   <Columns>
     <Column name="address_id" id="tblCol_6d1ff732d9b54a8298567d33419d1218" index="0" datatype="Integer" mandatory="true" />
     <Column name="address" id="tblCol_578b2e681c334baabd7836da7e57c2c1" index="1" datatype="Text" mandatory="true" />
@@ -14,7 +16,7 @@
     <Column name="last_update" id="tblCol_243126d0afcd4194972c8342bb9ecdc7" index="7" datatype="Text" mandatory="true" />
   </Columns>
   <IndexesList>
-    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_6d1ff732d9b54a8298567d33419d1218" />
+    <Index id="1" unique="true" instanceOnly="true" columnsIdsList="tblCol_6d1ff732d9b54a8298567d33419d1218" />
   </IndexesList>
   <EnrichmentList />
 </TableObject>

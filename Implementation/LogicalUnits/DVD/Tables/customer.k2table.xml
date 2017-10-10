@@ -3,7 +3,9 @@
   <Name>customer</Name>
   <ID>tbl_customer</ID>
   <EntityId>tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5</EntityId>
-  <LazyDataUpdate performEvery="1.00:00:00" />
+  <LazyDataUpdate syncMethod="Inherited" performEvery="1.00:00:00">
+    <TruncateBeforeSync>true</TruncateBeforeSync>
+  </LazyDataUpdate>
   <Columns>
     <Column name="customer_id" id="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" index="0" datatype="Integer" mandatory="true" />
     <Column name="store_id" id="tblCol_a990fb87b0a747e48987db199636e1bc" index="1" datatype="Integer" mandatory="true" />
@@ -17,7 +19,7 @@
     <Column name="active" id="tblCol_9cd661dd4e1141bc805340abe90569af" index="9" datatype="Integer" />
   </Columns>
   <IndexesList>
-    <Index id="1" pk="true" unique="true" columnsIdsList="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
+    <Index id="1" unique="true" instanceOnly="true" columnsIdsList="tblCol_f6d4805618874c7cbbfb86c6aa1ee5a5" />
   </IndexesList>
   <EnrichmentList>
     <Enrichment>
