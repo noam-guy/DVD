@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.4.0.14">
+  <Name>fnRtFbTst</Name>
+  <ID>RtParser.fnRtFbTst</ID>
+  <Category>RtParser</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Language>Java</Language>
+  <FunctionBody>//if(!k2_amIMinNode()){
+PrintWriter writer = null;
+boolean fileLoad = false; 
+	
+	try{
+		log.info("START CREATING FILE");
+		File myFile = new File ("/usr/local/k2view/fabric_test.csv");
+		writer = new PrintWriter(myFile, "UTF-8");
+		fileLoad = true;
+		log.info("DONE CREATING FILE");
+	}catch(Exception e){
+		log.error("COULDN'T CREATE FILE");
+		log.error(e.getMessage());		
+	}
+
+if(fileLoad){
+	try{
+		int cnt = 1; 
+		StringBuilder raw = new StringBuilder();
+		long start = System.currentTimeMillis();
+		ResultSetWrapper rs = DBQuery("dbOracle", "select url_addr , ext , phn , ph2 , url_addr2 , ext2 , ind , ind2 , ph3 , ph4 from fabric_test", null);
+		log.info("START LOADING TO FILE");
+		for (Object[] row : rs) {
+		raw.append(cnt + ",");
+			for (Object object : row) {
+				raw.append(object + ",");
+			}
+		raw.setLength(raw.length() - 1);
+		writer.println(raw);
+		raw.setLength(0);
+		raw.trimToSize();
+		cnt++;
+		}
+		writer.flush();
+		writer.close();
+		rs.close();
+		long end = System.currentTimeMillis();
+		log.info("DONE LOADING TO FILE, TOTAL TIME:"+(end - start) / 1000f + " seconds");
+		fileLoad = true;
+	}catch(Exception e){
+		log.error("FAILED TO WRITE TO FILE");
+		log.error(e.getMessage());
+		fileLoad = false;
+	} 
+}
+if(fileLoad){
+try{
+	long start = System.currentTimeMillis();
+	log.info("START COPY TO CASSANDRA");
+		String target = "cqlsh -u admin -p admin -f runFile.cql";
+		Runtime rt = Runtime.getRuntime();
+		Process proc = rt.exec(target);
+		proc.waitFor();
+		long end = System.currentTimeMillis();
+		log.info("DONE COPY TO CASSANDRA, TOTAL TIME:"+(end - start) / 1000f + " seconds");	
+	} catch (Exception e) {
+		log.error("FAILED TO COPY FILE");
+		log.error(e.getMessage());
+	}
+
+}
+yield(new Object[]{"dummy"});
+//}</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="fileLocation" id="fi.RtParser.fnRtFbTst.0" index="0" dataType="String" />
+  </InputParams>
+  <OutputParams>
+    <Output name="output" id="fo.RtParser.fnRtFbTst.0" index="0" dataType="String" />
+  </OutputParams>
+</KFunction>
