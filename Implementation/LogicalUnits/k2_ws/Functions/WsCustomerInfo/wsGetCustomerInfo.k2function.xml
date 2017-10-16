@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.2.0.3">
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.4.0.14">
   <Name>wsGetCustomerInfo</Name>
   <ID>WsCustomerInfo.wsGetCustomerInfo</ID>
   <Category>WsCustomerInfo</Category>
@@ -12,9 +12,17 @@
   <DecisionFunction>false</DecisionFunction>
   <RequiresLuReference>false</RequiresLuReference>
   <Desc />
-  <Auther name="" id="" />
   <Language>Java</Language>
   <FunctionBody>log.info("Ws wsGetCustomerInfo is running");
+Map&lt;String, String&gt; requestHeaders = getRequestHeaders();
+Object[] fields = Utils.class.getFields();
+for (Object row : fields) {
+	 log.info("CLASS FIELDS ARE:"+row);
+}
+log.info(com.k2view.cdbms.shared.UserUtils.WEB_SERVICE_DB_PASSWORD);
+requestHeaders.forEach((k,v) -&gt; {
+	log.info("KEY IS:"+k+" VALUE IS:"+v);
+});
 DBExecute("fabric","get DVD."+ customerId, null);
 Object [] param = new Object[]{customerId};
 String sql = "SELECT * FROM STORE";
