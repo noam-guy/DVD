@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KFunction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="3.4.0.14">
+  <Name>fnRtPopStaff</Name>
+  <ID>ROOT_FUNCTIONS.fnRtPopStaff</ID>
+  <Category>ROOT_FUNCTIONS</Category>
+  <FunctionLevel>Project</FunctionLevel>
+  <FunctionType>RegularFunction</FunctionType>
+  <FunctionType2>RootFunction</FunctionType2>
+  <RegisterAsLuDbFunction>false</RegisterAsLuDbFunction>
+  <SaveToDLUR>false</SaveToDLUR>
+  <ApiFunction>false</ApiFunction>
+  <DecisionFunction>false</DecisionFunction>
+  <RequiresLuReference>false</RequiresLuReference>
+  <Desc />
+  <Language>Java</Language>
+  <FunctionBody>String sql = "SELECT STAFF_ID, FIRST_NAME, LAST_NAME, ADDRESS_ID, EMAIL, STORE_ID, ACTIVE, USERNAME,  LAST_UPDATE, PICTURE from staff";
+Object[] valuesArr = null;
+DBExecute("cass_local", "fabric on", valuesArr);
+DBExecute("cass_local", "get STAFF." + staff_id, valuesArr);
+ResultSetWrapper rs = DBQuery("cass_local", sql, valuesArr);
+
+for(Object[] row : rs) {
+    yield(row);
+}
+
+rs.closeStmt();
+DBExecute("cass_local", "set default", valuesArr);
+DBExecute("cass_local", "fabric off", valuesArr);</FunctionBody>
+  <IsSyntaxValid>true</IsSyntaxValid>
+  <IsRootFunction>true</IsRootFunction>
+  <InputParams>
+    <Input name="staff_id" id="fi.ROOT_FUNCTIONS.fnRtPopStaff.0" index="0" dataType="String" />
+  </InputParams>
+  <OutputParams>
+    <Output name="staff_id" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.0" index="0" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="first_name" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.1" index="1" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="last_name" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.2" index="2" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="address_id" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.3" index="3" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="email" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.4" index="4" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="store_id" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.5" index="5" dataType="Long">
+      <Comment />
+    </Output>
+    <Output name="active" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.6" index="6" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="username" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.7" index="7" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="last_update" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.8" index="8" dataType="String">
+      <Comment />
+    </Output>
+    <Output name="picture" id="fo.ROOT_FUNCTIONS.fnRtPopStaff.9" index="9" dataType="Byte[]">
+      <Comment />
+    </Output>
+  </OutputParams>
+</KFunction>
